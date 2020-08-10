@@ -1,2 +1,2 @@
 ## Hello, my name's Daniel Scalena
-This is my website
+#### I'm currently studying CS at the University of Milano-Bicocca
