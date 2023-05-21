@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Affiliation to <a href='https://en.unimib.it/'>University of Milano - Bicocca</a>. Milan, Italy.
+subtitle: When I’m old I want to be an astronaut 🚀
 
 profile:
   align: right
