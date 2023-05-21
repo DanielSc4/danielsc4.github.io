@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Affiliation: <a href='https://en.unimib.it/'>University of Milano - Bicocca</a>. Milan, Italy.
+subtitle: Affiliation to <a href='https://en.unimib.it/'>University of Milano - Bicocca</a>. Milan, Italy.
 
 profile:
   align: right
