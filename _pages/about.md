@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Moto. Etc.
+subtitle: Affiliation:<a href='https://en.unimib.it/'>University of Milano - Bicocca</a>. Milan, Italy.
 
 profile:
   align: right
