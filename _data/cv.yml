@@ -11,7 +11,7 @@
 - title: Education
   type: time_table
   contents:
-    - title: Master of Science
+    - title: MSc, Computer Science
       institution: University of Milano - Bicocca
       year: 2023
       description:
@@ -21,7 +21,7 @@
         #   contents:
         #     - Sub-description 1.
         #     - Sub-description 2.
-    - title: Bachelor of Science
+    - title: BSc, Computer Science
       institution: University of Milano - Bicocca
       year: 2021
       description:
@@ -36,7 +36,7 @@
       institution: University of Groningen, Netherlands
       year: 2023 - Present
       description:
-        - Together with university researchers, I was occupied with the study, research and development of Reinforcement Learning algorithms applied to generative models (LLMs) to modify their behavior in generating hate speech, effectively automating and controlling the detoxification process.
+        - I was occupied with the study, research and development of Reinforcement Learning algorithms applied to generative models (LLMs) to modify their behavior in generating hate speech, effectively automating and controlling the detoxification process.
         - Collaborated further on the interpretability of the models themselves, researching on the motivations of these generations
           # contents:
           #   - Sub-description 1.
