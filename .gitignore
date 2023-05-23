@@ -9,5 +9,7 @@ _site
 Gemfile.lock
 vendor
 
-.DS_store
+
 original_README.md
+.DS_Store
+.DS_Store
