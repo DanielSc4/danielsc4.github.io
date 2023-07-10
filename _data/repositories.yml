@@ -1,12 +1,8 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - DanielSc4
 
 github_repos:
-  - alshedivat/al-folio
-  - twbs/bootstrap
-  - jekyll/jekyll
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - jpswalsh/academicons
-  - mathjax/MathJax
+  - DanielSc4/RewardLM
+  - DanielSc4/machine-learning-classification-w-R
+  - DanielSc4/stock-analysis
+  - DanielSc4/HCI-project
