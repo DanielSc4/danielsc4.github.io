@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Interpreting & Detoxifying Language Models
-date: 2023-05-12 11:59:00-0400
+date: 2023-07-12 11:59:00-0400
 description: Journal to keep track of work during internship @RUG
 categories: journal
 giscus_comments: false
