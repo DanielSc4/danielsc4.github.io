@@ -79,7 +79,7 @@ mastodon_username: # your mastodon instance+username in the format instance.tld/
 linkedin_username: daniel-scalena # your LinkedIn user name
 telegram_username: # your Telegram user name
 scholar_userid: 5Q89Yd8AAAAJ # your Google Scholar ID
-semanticscholar_id: # your Semantic Scholar ID
+semanticscholar_id: 2221318599 # your Semantic Scholar ID
 whatsapp_number: # your WhatsApp number (full phone number in international format. Omit any zeroes, brackets, or dashes when adding the phone number in international format.)
 orcid_id: # your ORCID ID
 medium_username: # your Medium username
@@ -104,7 +104,7 @@ unsplash_id: # your unsplash id
 instagram_id: daniel_sc4 # your instagram id
 facebook_id: # your facebook id
 youtube_id: # your youtube channel id (youtube.com/@<youtube_id>)
-discord_id: # your discord id (18-digit unique numerical identifier)
+discord_id: 709147478963781692 # your discord id (18-digit unique numerical identifier)
 
 contact_note: >
   Feel free to contact me
