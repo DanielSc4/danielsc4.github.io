@@ -1,5 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://danielsc4.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://danielsc4.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-12T12:38:48+00:00</updated><id>https://danielsc4.github.io/feed.xml</id><title type="html">blank</title><subtitle>Master CS student
-</subtitle><entry><title type="html">a post with custom blockquotes</title><link href="https://danielsc4.github.io/blog/2023/custom-blockquotes/" rel="alternate" type="text/html" title="a post with custom blockquotes" /><published>2023-05-12T19:53:00+00:00</published><updated>2023-05-12T19:53:00+00:00</updated><id>https://danielsc4.github.io/blog/2023/custom-blockquotes</id><content type="html" xml:base="https://danielsc4.github.io/blog/2023/custom-blockquotes/"><![CDATA[<p>This post shows how to add custom styles for blockquotes. Based on <a href="https://github.com/sighingnow/jekyll-gitbook">jekyll-gitbook</a> implementation.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://danielsc4.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://danielsc4.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-13T09:46:39+00:00</updated><id>https://danielsc4.github.io/feed.xml</id><title type="html">blank</title><subtitle>Master CS student
+</subtitle><entry><title type="html">Interpreting &amp;amp; Detoxifying Language Models</title><link href="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/" rel="alternate" type="text/html" title="Interpreting &amp;amp; Detoxifying Language Models" /><published>2023-07-12T15:59:00+00:00</published><updated>2023-07-12T15:59:00+00:00</updated><id>https://danielsc4.github.io/blog/2023/interpreting-detox-LM</id><content type="html" xml:base="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/"><![CDATA[<h2 id="abstract">Abstract</h2>
+
+<p><strong>Language Models</strong> (LMs) represent complex systems that are difficult to manage and deploy safely. For this reason, various techniques have been proposed over time with the aim of detoxifying and controlling the behaviour of the models after their training process. To this end, this work focuses on exploring the most popular fine-tuning and Reinforcement Learning techniques, analysing not only which technique is best for the purpose of detoxification but also how the output of LMs is affected by this choice.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<h2 id="related-works">Related works</h2>
+
+<h2 id="approach">Approach</h2>
+
+<h2 id="experiment-and-results">Experiment and results</h2>
+
+<h3 id="dataset">Dataset</h3>
+<h3 id="baseline">Baseline</h3>
+<h3 id="evaluation-setup">Evaluation setup</h3>
+<h3 id="result">Result</h3>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<h2 id="extras">Extras</h2>
+
+<p>Table:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Left aligned</th>
+      <th style="text-align: center">Center aligned</th>
+      <th style="text-align: right">Right aligned</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Left 1</td>
+      <td style="text-align: center">center 1</td>
+      <td style="text-align: right">right 1</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Left 2</td>
+      <td style="text-align: center">center 2</td>
+      <td style="text-align: right">right 2</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Left 3</td>
+      <td style="text-align: center">center 3</td>
+      <td style="text-align: right">right 3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In line math equation: \(E = mc^2\).</p>
+
+<p>Non in line math equation:</p>
+
+\[\sum_{k=1}^\infty |\langle x, e_k \rangle|^2 \leq \|x\|^2\]
+
+<p>Code:</p>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="err">\</span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">myString</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"input a string: "</span><span class="p">;</span>
+    <span class="n">getline</span><span class="p">(</span><span class="n">cin</span><span class="p">,</span> <span class="n">myString</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">myString</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
+
+    <span class="kt">char</span> <span class="n">charArray</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span> <span class="o">*</span> <span class="p">[</span><span class="n">length</span><span class="p">];</span>
+
+    <span class="n">charArray</span> <span class="o">=</span> <span class="n">myString</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">charArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>]]></content><author><name></name></author><category term="journal" /><summary type="html"><![CDATA[Journal to keep track of work during internship @RUG]]></summary></entry><entry><title type="html">a post with custom blockquotes</title><link href="https://danielsc4.github.io/blog/2023/custom-blockquotes/" rel="alternate" type="text/html" title="a post with custom blockquotes" /><published>2023-05-12T19:53:00+00:00</published><updated>2023-05-12T19:53:00+00:00</updated><id>https://danielsc4.github.io/blog/2023/custom-blockquotes</id><content type="html" xml:base="https://danielsc4.github.io/blog/2023/custom-blockquotes/"><![CDATA[<p>This post shows how to add custom styles for blockquotes. Based on <a href="https://github.com/sighingnow/jekyll-gitbook">jekyll-gitbook</a> implementation.</p>
 
 <p>We decided to support the same custom blockquotes as in <a href="https://sighingnow.github.io/jekyll-gitbook/jekyll/2022-06-30-tips_warnings_dangers.html">jekyll-gitbook</a>, which are also found in a lot of other sites’ styles. The styles definitions can be found on the <a href="https://github.com/alshedivat/al-folio/blob/master/_sass/_base.scss">_base.scss</a> file, more specifically:</p>
 
@@ -99,81 +173,7 @@ be used when you want to warn the user</p>
 
   <p>This is a danger zone, and thus should
 be used carefully</p>
-</blockquote>]]></content><author><name></name></author><category term="sample-posts" /><category term="blockquotes" /><summary type="html"><![CDATA[an example of a blog post with custom blockquotes]]></summary></entry><entry><title type="html">Interpreting &amp;amp; Detoxifying Language Models</title><link href="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/" rel="alternate" type="text/html" title="Interpreting &amp;amp; Detoxifying Language Models" /><published>2023-05-12T15:59:00+00:00</published><updated>2023-05-12T15:59:00+00:00</updated><id>https://danielsc4.github.io/blog/2023/interpreting-detox-LM</id><content type="html" xml:base="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/"><![CDATA[<h2 id="abstract">Abstract</h2>
-
-<p><strong>Language Models</strong> (LMs) represent complex systems that are difficult to manage and deploy safely. For this reason, various techniques have been proposed over time with the aim of detoxifying and controlling the behaviour of the models after their training process. To this end, this work focuses on exploring the most popular fine-tuning and Reinforcement Learning techniques, analysing not only which technique is best for the purpose of detoxification but also how the output of LMs is affected by this choice.</p>
-
-<h2 id="introduction">Introduction</h2>
-
-<h2 id="related-works">Related works</h2>
-
-<h2 id="approach">Approach</h2>
-
-<h2 id="experiment-and-results">Experiment and results</h2>
-
-<h3 id="dataset">Dataset</h3>
-<h3 id="baseline">Baseline</h3>
-<h3 id="evaluation-setup">Evaluation setup</h3>
-<h3 id="result">Result</h3>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<h2 id="extras">Extras</h2>
-
-<p>Table:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Left aligned</th>
-      <th style="text-align: center">Center aligned</th>
-      <th style="text-align: right">Right aligned</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">Left 1</td>
-      <td style="text-align: center">center 1</td>
-      <td style="text-align: right">right 1</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Left 2</td>
-      <td style="text-align: center">center 2</td>
-      <td style="text-align: right">right 2</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Left 3</td>
-      <td style="text-align: center">center 3</td>
-      <td style="text-align: right">right 3</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>In line math equation: \(E = mc^2\).</p>
-
-<p>Non in line math equation:</p>
-
-\[\sum_{k=1}^\infty |\langle x, e_k \rangle|^2 \leq \|x\|^2\]
-
-<p>Code:</p>
-<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="err">\</span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-    <span class="n">string</span> <span class="n">myString</span><span class="p">;</span>
-
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"input a string: "</span><span class="p">;</span>
-    <span class="n">getline</span><span class="p">(</span><span class="n">cin</span><span class="p">,</span> <span class="n">myString</span><span class="p">);</span>
-    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">myString</span><span class="p">.</span><span class="n">length</span><span class="p">();</span>
-
-    <span class="kt">char</span> <span class="n">charArray</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span> <span class="o">*</span> <span class="p">[</span><span class="n">length</span><span class="p">];</span>
-
-    <span class="n">charArray</span> <span class="o">=</span> <span class="n">myString</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
-        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">charArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>]]></content><author><name></name></author><category term="journal" /><summary type="html"><![CDATA[Journal to keep track of work during internship @RUG]]></summary></entry><entry><title type="html">a post with table of contents on a sidebar</title><link href="https://danielsc4.github.io/blog/2023/sidebar-table-of-contents/" rel="alternate" type="text/html" title="a post with table of contents on a sidebar" /><published>2023-04-25T14:14:00+00:00</published><updated>2023-04-25T14:14:00+00:00</updated><id>https://danielsc4.github.io/blog/2023/sidebar-table-of-contents</id><content type="html" xml:base="https://danielsc4.github.io/blog/2023/sidebar-table-of-contents/"><![CDATA[<p>This post shows how to add a table of contents as a sidebar.</p>
+</blockquote>]]></content><author><name></name></author><category term="sample-posts" /><category term="blockquotes" /><summary type="html"><![CDATA[an example of a blog post with custom blockquotes]]></summary></entry><entry><title type="html">a post with table of contents on a sidebar</title><link href="https://danielsc4.github.io/blog/2023/sidebar-table-of-contents/" rel="alternate" type="text/html" title="a post with table of contents on a sidebar" /><published>2023-04-25T14:14:00+00:00</published><updated>2023-04-25T14:14:00+00:00</updated><id>https://danielsc4.github.io/blog/2023/sidebar-table-of-contents</id><content type="html" xml:base="https://danielsc4.github.io/blog/2023/sidebar-table-of-contents/"><![CDATA[<p>This post shows how to add a table of contents as a sidebar.</p>
 
 <h2 id="adding-a-table-of-contents">Adding a Table of Contents</h2>
 
