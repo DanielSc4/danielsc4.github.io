@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Let the Models Respond: interpreting the detoxification process of LMs"
+title: "Let the Models Respond: Interpreting the Detoxification process of LMs"
 date: 2023-07-12 11:59:00-0400
 description: Journal to keep track of work during internship @RUG
 categories: journal
@@ -33,7 +33,7 @@ In the recent period, LMs are observing a rise in terms of parameters, complexit
 
 It is for this reason that efforts in research have been made to try to mitigate these phenomena as much as possible, both from the data point of view and from the point of view of the pre-trained LMs. Among the best known techniques can be found fine-tuning, RLHF [(Bai et al., 2022)](https://arxiv.org/abs/2204.05862) and model steering [(Dathathri et al. 2020)](https://arxiv.org/abs/1912.02164). These techniques turn out to be more than effective in controlling the toxicity in model input/output but, especially in the presence of particularly "tendentious" cases it still remains possible to fool the models that still end up generating potentially toxic or unsafe responses. In addition, the most well-known response pattern to prompts deemed as dangerous is to stop the conversation, trying to stop proceeding to toxic behaviors (e.g., "As an AI Language Model I cannot answer this question, ...").
 
-![Toxic Prompt on ChatGPT that generates conversation blocking](https://www.danielsc4.it/assets/img/detox_LMs/Example_chatGPT_toxic.png "Title")
+{% include figure.html path="assets/img/detox_LMs/Example_chatGPT_toxic.png" class="img-fluid rounded z-depth-1" zoomable=true %}
 *Toxic Prompt on [ChatGPT](https://openai.com/blog/chatgpt) that generates conversation blocking*
 
 With the following research project, we therefore want to investigate the detoxification process, pushing not only the models to be safer but exploring their potential by allowing them to respond even to potentially toxic prompts by offering a useful counter narrative to send the conversation forward to reason with the user who authored the original prompt.
