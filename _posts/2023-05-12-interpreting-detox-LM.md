@@ -69,12 +69,20 @@ This advantage of matrix representation, however, comes at a cost in the inabili
 In order to fine-tune or otherwise modify the weights of the model there must be weights in FP32 or FP16 representation. For this very reason, [(J. Hu et al., 2021)](https://arxiv.org/abs/2106.09685) with Low-Rank Adaptation (LoRA) aims to create adapters that, in parallel with the frozen weights of the model, allow one to circumvent the problem by offering trainable lower-rank matrices based on the frozen model. The details of this operation will not be exposed here (for more information look at the paper cited earlier) but it is important to mention how this solution allows not only the training of larger models but is shown to partially succeed in solving the catastrophic forgetting problem as well. The most convenient implementation, being integrated with 🤗 HuggingFace is the one provided by 🤗 [Peft](https://huggingface.co/blog/peft).
 
 
+#### Letting LMs Respond with Contronarrative
+
+**Cite: dialoconan**
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris. 
+
 #### Fine-tuning and Reinforcement Learning from (Automatic) Feedback
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris. 
 
 
-#### How to measure Toxicity?
+#### Toxicity meter: an easy way to measure LMs toxicity
+
+**Cite: RealToxicityPrompts**
+**Cite: ⚖️ Toxicity Meter**
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris. 
 
@@ -84,9 +92,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique p
 ## 🔬 Experiment and results
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris. 
-
-### Dataset
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. 
 
 ### Baseline
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. 
