@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Let the Models Respond: interpreting the detoxification process of LMs | Daniel  Scalena</title>
+    <title>Let the Models Respond: Interpreting the Detoxification process of LMs | Daniel  Scalena</title>
     <meta name="author" content="Daniel  Scalena">
     <meta name="description" content="Journal to keep track of work during internship @RUG">
     <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website">
@@ -118,7 +118,7 @@
 <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Let the Models Respond: interpreting the detoxification process of LMs</h1>
+    <h1 class="post-title">Let the Models Respond: Interpreting the Detoxification process of LMs</h1>
     <p class="post-meta">July 12, 2023</p>
     <p class="post-tags">
       <a href="/blog/2023"> <i class="fas fa-calendar fa-sm"></i> 2023 </a>
@@ -179,8 +179,23 @@
 
 <p>It is for this reason that efforts in research have been made to try to mitigate these phenomena as much as possible, both from the data point of view and from the point of view of the pre-trained LMs. Among the best known techniques can be found fine-tuning, RLHF <a href="https://arxiv.org/abs/2204.05862" rel="external nofollow noopener" target="_blank">(Bai et al., 2022)</a> and model steering <a href="https://arxiv.org/abs/1912.02164" rel="external nofollow noopener" target="_blank">(Dathathri et al. 2020)</a>. These techniques turn out to be more than effective in controlling the toxicity in model input/output but, especially in the presence of particularly “tendentious” cases it still remains possible to fool the models that still end up generating potentially toxic or unsafe responses. In addition, the most well-known response pattern to prompts deemed as dangerous is to stop the conversation, trying to stop proceeding to toxic behaviors (e.g., “As an AI Language Model I cannot answer this question, …”).</p>
 
-<p><img src="https://www.danielsc4.it/assets/img/detox_LMs/Example_chatGPT_toxic.png" alt="Toxic Prompt on ChatGPT that generates conversation blocking" title="Title">
-<em>Toxic Prompt on <a href="https://openai.com/blog/chatgpt" rel="external nofollow noopener" target="_blank">ChatGPT</a> that generates conversation blocking</em></p>
+<figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/detox_LMs/Example_chatGPT_toxic-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/detox_LMs/Example_chatGPT_toxic-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/detox_LMs/Example_chatGPT_toxic-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/detox_LMs/Example_chatGPT_toxic.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture>
+
+</figure>
+
+<p><em>Toxic Prompt on <a href="https://openai.com/blog/chatgpt" rel="external nofollow noopener" target="_blank">ChatGPT</a> that generates conversation blocking</em></p>
 
 <p>With the following research project, we therefore want to investigate the detoxification process, pushing not only the models to be safer but exploring their potential by allowing them to respond even to potentially toxic prompts by offering a useful counter narrative to send the conversation forward to reason with the user who authored the original prompt.</p>
 

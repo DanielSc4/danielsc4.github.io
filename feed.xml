@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://danielsc4.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://danielsc4.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-17T15:48:39+00:00</updated><id>https://danielsc4.github.io/feed.xml</id><title type="html">blank</title><subtitle>Master CS student
-</subtitle><entry><title type="html">Let the Models Respond: interpreting the detoxification process of LMs</title><link href="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/" rel="alternate" type="text/html" title="Let the Models Respond: interpreting the detoxification process of LMs" /><published>2023-07-12T15:59:00+00:00</published><updated>2023-07-12T15:59:00+00:00</updated><id>https://danielsc4.github.io/blog/2023/interpreting-detox-LM</id><content type="html" xml:base="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/"><![CDATA[<h4 id="framing">Framing</h4>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://danielsc4.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://danielsc4.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-17T18:58:37+00:00</updated><id>https://danielsc4.github.io/feed.xml</id><title type="html">blank</title><subtitle>Master CS student
+</subtitle><entry><title type="html">Let the Models Respond: Interpreting the Detoxification process of LMs</title><link href="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/" rel="alternate" type="text/html" title="Let the Models Respond: Interpreting the Detoxification process of LMs" /><published>2023-07-12T15:59:00+00:00</published><updated>2023-07-12T15:59:00+00:00</updated><id>https://danielsc4.github.io/blog/2023/interpreting-detox-LM</id><content type="html" xml:base="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/"><![CDATA[<h4 id="framing">Framing</h4>
 
 <p>🚨 This blogpost contains examples which are offensive in nature.</p>
 
@@ -21,8 +21,23 @@
 
 <p>It is for this reason that efforts in research have been made to try to mitigate these phenomena as much as possible, both from the data point of view and from the point of view of the pre-trained LMs. Among the best known techniques can be found fine-tuning, RLHF <a href="https://arxiv.org/abs/2204.05862">(Bai et al., 2022)</a> and model steering <a href="https://arxiv.org/abs/1912.02164">(Dathathri et al. 2020)</a>. These techniques turn out to be more than effective in controlling the toxicity in model input/output but, especially in the presence of particularly “tendentious” cases it still remains possible to fool the models that still end up generating potentially toxic or unsafe responses. In addition, the most well-known response pattern to prompts deemed as dangerous is to stop the conversation, trying to stop proceeding to toxic behaviors (e.g., “As an AI Language Model I cannot answer this question, …”).</p>
 
-<p><img src="https://www.danielsc4.it/assets/img/detox_LMs/Example_chatGPT_toxic.png" alt="Toxic Prompt on ChatGPT that generates conversation blocking" title="Title" />
-<em>Toxic Prompt on <a href="https://openai.com/blog/chatgpt">ChatGPT</a> that generates conversation blocking</em></p>
+<figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/detox_LMs/Example_chatGPT_toxic-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/detox_LMs/Example_chatGPT_toxic-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/detox_LMs/Example_chatGPT_toxic-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/detox_LMs/Example_chatGPT_toxic.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+
+  </picture>
+
+</figure>
+
+<p><em>Toxic Prompt on <a href="https://openai.com/blog/chatgpt">ChatGPT</a> that generates conversation blocking</em></p>
 
 <p>With the following research project, we therefore want to investigate the detoxification process, pushing not only the models to be safer but exploring their potential by allowing them to respond even to potentially toxic prompts by offering a useful counter narrative to send the conversation forward to reason with the user who authored the original prompt.</p>
 
