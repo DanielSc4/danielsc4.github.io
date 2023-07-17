@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://danielsc4.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://danielsc4.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-17T20:53:03+00:00</updated><id>https://danielsc4.github.io/feed.xml</id><title type="html">blank</title><subtitle>Master CS student
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://danielsc4.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://danielsc4.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-17T20:57:47+00:00</updated><id>https://danielsc4.github.io/feed.xml</id><title type="html">blank</title><subtitle>Master CS student
 </subtitle><entry><title type="html">Let the Models Respond: Interpreting the Detoxification process of LMs</title><link href="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/" rel="alternate" type="text/html" title="Let the Models Respond: Interpreting the Detoxification process of LMs" /><published>2023-07-12T15:59:00+00:00</published><updated>2023-07-12T15:59:00+00:00</updated><id>https://danielsc4.github.io/blog/2023/interpreting-detox-LM</id><content type="html" xml:base="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/"><![CDATA[<h4 id="framing">Framing</h4>
 
 <p>🚨 This blogpost contains examples which are offensive in nature.</p>
@@ -68,20 +68,25 @@ is 127 divided by the absolute maximum of the entire tensor. This is equivalent 
 
 <p>In order to fine-tune or otherwise modify the weights of the model there must be weights in FP32 or FP16 representation. For this very reason, <a href="https://arxiv.org/abs/2106.09685">(J. Hu et al., 2021)</a> with Low-Rank Adaptation (LoRA) aims to create adapters that, in parallel with the frozen weights of the model, allow one to circumvent the problem by offering trainable lower-rank matrices based on the frozen model. The details of this operation will not be exposed here (for more information look at the paper cited earlier) but it is important to mention how this solution allows not only the training of larger models but is shown to partially succeed in solving the catastrophic forgetting problem as well. The most convenient implementation, being integrated with 🤗 HuggingFace is the one provided by 🤗 <a href="https://huggingface.co/blog/peft">Peft</a>.</p>
 
+<h4 id="letting-lms-respond-with-contronarrative">Letting LMs Respond with Contronarrative</h4>
+
+<p><strong>Cite: dialoconan</strong>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
+
 <h4 id="fine-tuning-and-reinforcement-learning-from-automatic-feedback">Fine-tuning and Reinforcement Learning from (Automatic) Feedback</h4>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
 
-<h4 id="how-to-measure-toxicity">How to measure Toxicity?</h4>
+<h4 id="toxicity-meter-an-easy-way-to-measure-lms-toxicity">Toxicity meter: an easy way to measure LMs toxicity</h4>
+
+<p><strong>Cite: RealToxicityPrompts</strong>
+<strong>Cite: ⚖️ Toxicity Meter</strong></p>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
 
 <h2 id="-experiment-and-results">🔬 Experiment and results</h2>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
-
-<h3 id="dataset">Dataset</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet.</p>
 
 <h3 id="baseline">Baseline</h3>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet.</p>
