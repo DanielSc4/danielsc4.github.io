@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Let the Models respond: interpreting the detoxification process of LMs"
+title: "Let the Models Respond: interpreting the detoxification process of LMs"
 date: 2023-07-12 11:59:00-0400
 description: Journal to keep track of work during internship @RUG
 categories: journal
