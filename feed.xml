@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://danielsc4.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://danielsc4.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-17T20:57:47+00:00</updated><id>https://danielsc4.github.io/feed.xml</id><title type="html">blank</title><subtitle>Master CS student
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://danielsc4.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://danielsc4.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-17T21:04:44+00:00</updated><id>https://danielsc4.github.io/feed.xml</id><title type="html">blank</title><subtitle>Master CS student
 </subtitle><entry><title type="html">Let the Models Respond: Interpreting the Detoxification process of LMs</title><link href="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/" rel="alternate" type="text/html" title="Let the Models Respond: Interpreting the Detoxification process of LMs" /><published>2023-07-12T15:59:00+00:00</published><updated>2023-07-12T15:59:00+00:00</updated><id>https://danielsc4.github.io/blog/2023/interpreting-detox-LM</id><content type="html" xml:base="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/"><![CDATA[<h4 id="framing">Framing</h4>
 
 <p>🚨 This blogpost contains examples which are offensive in nature.</p>
@@ -41,9 +41,9 @@
 
 <h4 id="goals">Goals</h4>
 
-<p>With the following research project, we therefore want to investigate the detoxification process, pushing not only the models to be safer but exploring their potential by allowing them to respond even to potentially toxic prompts by offering a useful counter narrative to send the conversation forward to reason with the user who authored the original prompt.</p>
+<p>With the following research project, we therefore want to <em>investigate the detoxification process</em>, pushing not only the models to be safer but exploring their potential by <em>allowing them to respond even to potentially toxic prompts</em> by offering a useful counter narrative to send the conversation forward to reason with the user who authored the original prompt.</p>
 
-<p>As can be guessed, it is imperative that such a process be as transparent as possible. For this very reason, techniques for interpreting the models themselves will be employed to discover how the models change their generation. This will hopefully lead to discovering not only new features of the models but also what techniques might be most effective for the safety and effectiveness of the LMs themselves.</p>
+<p>As can be guessed, it is imperative that such <em>a process be as transparent as possible</em>. For this reason, techniques for interpreting the models themselves will be employed to discover how the models change their generation. This will hopefully lead to discovering not only new features of the models but also what techniques might be most effective for <em>the safety and effectiveness of the LMs</em> themselves.</p>
 
 <h2 id="-approach">🔨 Approach</h2>
 
@@ -77,7 +77,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique p
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
 
-<h4 id="toxicity-meter-an-easy-way-to-measure-lms-toxicity">Toxicity meter: an easy way to measure LMs toxicity</h4>
+<h4 id="toxicity-meter-an-easy-way-to-measure-lms-toxicity"><code class="language-plaintext highlighter-rouge">Toxicity Meter</code>: an easy way to measure LMs toxicity</h4>
 
 <p><strong>Cite: RealToxicityPrompts</strong>
 <strong>Cite: ⚖️ Toxicity Meter</strong></p>
