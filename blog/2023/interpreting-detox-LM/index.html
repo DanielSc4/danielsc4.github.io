@@ -134,8 +134,9 @@
     
     <div id="table-of-contents">
       <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h4"><a href="#framing">Framing</a></li>
 <li class="toc-entry toc-h2"><a href="#abstract">Abstract</a></li>
-<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a></li>
+<li class="toc-entry toc-h2"><a href="#introduction-and-state-of-the-art">Introduction and State Of The Art</a></li>
 <li class="toc-entry toc-h2"><a href="#approach">Approach</a></li>
 <li class="toc-entry toc-h2">
 <a href="#experiment-and-results">Experiment and results</a>
@@ -153,14 +154,33 @@
     <hr>
     
     <div id="markdown-content">
-      <h2 id="abstract">Abstract</h2>
+      <h4 id="framing">Framing</h4>
+
+<p>🚨 This blogpost contains examples which are offensive in nature.</p>
+
+<p>This research project was carried out by <a href="danielsc4.it">me 👋🏼</a> during the internship period at the <a href="https://www.rug.nl/research/clcg/research/cl/?lang=en" rel="external nofollow noopener" target="_blank">Computational Linguistics Research Lab</a> at the <a href="https://www.rug.nl/" rel="external nofollow noopener" target="_blank">University of Groningen</a>. Currently, the work is still in progress and nearing completion. The results and status of the work do not represent the final state of the research.</p>
+
+<p>The work is supervised by:</p>
+<ul>
+  <li>
+<a href="gsarti.com">Gabriele Sarti</a>, PhD student @ University of Groningen</li>
+  <li>
+<a href="https://www.rug.nl/staff/m.nissim/" rel="external nofollow noopener" target="_blank">Malvina Nissim</a>, Full professor @ University of Groningen</li>
+  <li>
+<a href="https://en.unimib.it/elisabetta-fersini" rel="external nofollow noopener" target="_blank">Elisabetta Fersini</a>, Associate professor @ University of Milano - Bicocca</li>
+</ul>
+
+<h2 id="abstract">Abstract</h2>
 
 <p><strong>Language Models</strong> (LMs) represent complex systems that are difficult to manage and deploy safely. For this reason, various techniques have been proposed over time with the aim of detoxifying and controlling the behaviour of the models after their training process. With this in mind, this research project aims to <strong>explore the potential of the model detoxification process</strong>. Known techniques of <em>fine-tuning</em> and <em>Reinforcement Learning from Human Feedback</em> (RLHF) will be explored leading to less toxic models. The work also aims to <strong>understand the detoxification process through an exploration on the interpretability of the models</strong> themselves, having the ultimate goal of <strong>not limiting their responses</strong> but offering a contronarrative with respect to potentially toxic prompts.</p>
 
-<h2 id="introduction">Introduction</h2>
-<p>In the recent period, LMs are observing a rise in terms of parameters, complexity and consequently results obtained that, in some cases, manage to exceed even human capabilities for specific tasks. All this power, however, comes from large amounts of data used in the pre-training phase of LMs that learn primarily from corpora extracted from the Internet, forums and social media. The large availability of text on these platforms certainly implies an ease in extracting various aspects of language useful for the learning process but brings with it issues especially relevant to the quality and content itself in the text. Indeed, it is not at all uncommon to find toxic, dangerous, privacy-compromising content or more complex phenomena such as unintended bias hidden in the text itself. All these aspects, which are difficult to control <em>a priori</em>, inevitably end up in the data that make up the LMs’ pre-training datasets, leading them to language generations that cannot always be considered safe and harmless.</p>
+<h2 id="introduction-and-state-of-the-art">Introduction and State Of The Art</h2>
+<p>In the recent period, LMs are observing a rise in terms of parameters, complexity and consequently results obtained that, in some cases, manage to exceed even human capabilities for specific tasks <a href="https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf" rel="external nofollow noopener" target="_blank">(Radford and Narasimhan, 2018)</a>. All this power, however, comes from large amounts of data used in the pre-training phase of LMs that learn primarily from corpora extracted from the Internet, forums and social media. The large availability of text on these platforms certainly implies an ease in extracting various aspects of language useful for the learning process but brings with it issues especially relevant to the quality and content itself in the text. Indeed, it is not at all uncommon to find toxic, dangerous, privacy-compromising content or more complex phenomena such as unintended bias hidden in the text itself <a href="https://dl.acm.org/doi/10.1145/3442188.3445922" rel="external nofollow noopener" target="_blank">(Bender et al., 2021)</a>. All these aspects, which are difficult to control <em>a priori</em>, inevitably end up in the data that make up the LMs’ pre-training datasets, leading them to language generations that cannot always be considered safe and harmless <a href="https://aclanthology.org/2020.findings-emnlp.301.pdf" rel="external nofollow noopener" target="_blank">(Gehman et al., 2020)</a>.</p>
 
-<p>It is for this very reason that efforts in research have been made to try to mitigate these phenomena as much as possible, both from the data point of view and from the point of view of the pre-trained LMs. Among the best known techniques can be found fine-tuning, RLHF and model steering. These techniques turn out to be more than effective in controlling the toxicity in model input/output but, especially in the presence of particularly “tendentious” cases it still remains possible to fool the models that still end up generating potentially toxic or unsafe responses. In addition, the most well-known response pattern to prompts deemed as dangerous is to stop the conversation, trying to stop proceeding to toxic behaviors (e.g., “As an AI Language Model I cannot answer this question, …”).</p>
+<p>It is for this reason that efforts in research have been made to try to mitigate these phenomena as much as possible, both from the data point of view and from the point of view of the pre-trained LMs. Among the best known techniques can be found fine-tuning, RLHF <a href="https://arxiv.org/abs/2204.05862" rel="external nofollow noopener" target="_blank">(Bai et al., 2022)</a> and model steering <a href="https://arxiv.org/abs/1912.02164" rel="external nofollow noopener" target="_blank">(Dathathri et al. 2020)</a>. These techniques turn out to be more than effective in controlling the toxicity in model input/output but, especially in the presence of particularly “tendentious” cases it still remains possible to fool the models that still end up generating potentially toxic or unsafe responses. In addition, the most well-known response pattern to prompts deemed as dangerous is to stop the conversation, trying to stop proceeding to toxic behaviors (e.g., “As an AI Language Model I cannot answer this question, …”).</p>
+
+<p><img src="../assets/img/detox_LMs/Example_chatGPT_toxic.png" alt="Toxic Prompt on ChatGPT that generates conversation blocking" title="Title">
+<em>Toxic Prompt on <a href="https://openai.com/blog/chatgpt" rel="external nofollow noopener" target="_blank">ChatGPT</a> that generates conversation blocking</em></p>
 
 <p>With the following research project, we therefore want to investigate the detoxification process, pushing not only the models to be safer but exploring their potential by allowing them to respond even to potentially toxic prompts by offering a useful counter narrative to send the conversation forward to reason with the user who authored the original prompt.</p>
 
