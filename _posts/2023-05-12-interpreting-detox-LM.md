@@ -38,9 +38,9 @@ It is for this reason that efforts in research have been made to try to mitigate
 
 #### Goals
 
-With the following research project, we therefore want to investigate the detoxification process, pushing not only the models to be safer but exploring their potential by allowing them to respond even to potentially toxic prompts by offering a useful counter narrative to send the conversation forward to reason with the user who authored the original prompt.
+With the following research project, we therefore want to *investigate the detoxification process*, pushing not only the models to be safer but exploring their potential by *allowing them to respond even to potentially toxic prompts* by offering a useful counter narrative to send the conversation forward to reason with the user who authored the original prompt.
 
-As can be guessed, it is imperative that such a process be as transparent as possible. For this very reason, techniques for interpreting the models themselves will be employed to discover how the models change their generation. This will hopefully lead to discovering not only new features of the models but also what techniques might be most effective for the safety and effectiveness of the LMs themselves.
+As can be guessed, it is imperative that such *a process be as transparent as possible*. For this reason, techniques for interpreting the models themselves will be employed to discover how the models change their generation. This will hopefully lead to discovering not only new features of the models but also what techniques might be most effective for *the safety and effectiveness of the LMs* themselves.
 
 
 ## 🔨 Approach
@@ -79,7 +79,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique p
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris. 
 
 
-#### Toxicity meter: an easy way to measure LMs toxicity
+#### `Toxicity Meter`: an easy way to measure LMs toxicity
 
 **Cite: RealToxicityPrompts**
 **Cite: ⚖️ Toxicity Meter**
