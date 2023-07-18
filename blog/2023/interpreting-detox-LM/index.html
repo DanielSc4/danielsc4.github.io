@@ -143,7 +143,7 @@
 </ul>
 </li>
 <li class="toc-entry toc-h2">
-<a href="#-approach">🔨 Approach</a>
+<a href="#-approach">🦾 Approach</a>
 <ul>
 <li class="toc-entry toc-h4"><a href="#how-to-deal-with-large-lms">How to deal with Large LMs?</a></li>
 <li class="toc-entry toc-h4"><a href="#how-to-efficiently-train-quantized-large-lms">How to efficiently train quantized Large LMs?</a></li>
@@ -222,7 +222,7 @@
 <p>As can be guessed, it is imperative that such <strong>a process be as transparent as possible</strong>. For this reason, techniques for interpreting the models themselves will be employed to discover how the models change their generation. This will hopefully lead to discovering not only new features of the models but also what techniques might be most effective for <strong>the safety and effectiveness of the LMs</strong> themselves.</p>
 
 <p><br></p>
-<h2 id="-approach"><strong>🔨 Approach</strong></h2>
+<h2 id="-approach"><strong>🦾 Approach</strong></h2>
 
 <p>Of the various techniques previously listed, fine-tuning and reinforcement learning represent the state of the art, also employed by industry for the most modern LMs. The main problem related to the use of these techniques, however, is the size of the models themselves. In fact, over the utlim years, there has been a trend toward growth in the number of parameters in language models, reaching and exceeding hundreds of billions in the case of the largest models (GPT-3/4, Bard, …). For these reasons, even just performing fine-tuning or applying reinforcement learning techniques seems to be quite impossible on consumer hardware or otherwise accessible to the research community. Even just maintaining a 7B model of parameters, on RAM or VRAM, would take more than 32GB.</p>
 
@@ -318,7 +318,7 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
   <thead>
     <tr>
       <th>All prompts</th>
-      <th style="text-align: center">Pre-trained</th>
+      <th style="text-align: center">PT (Baseline)</th>
       <th style="text-align: center">Fine-tuned</th>
       <th style="text-align: center">RLAF</th>
     </tr>
@@ -343,7 +343,7 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
   <thead>
     <tr>
       <th>Only toxic prompts</th>
-      <th style="text-align: center">Pre-trained</th>
+      <th style="text-align: center">PT (Baseline)</th>
       <th style="text-align: center">Fine-tuned</th>
       <th style="text-align: center">RLAF</th>
     </tr>
@@ -364,7 +364,7 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
   </tbody>
 </table>
 
-<p><em>Toxicity level, lower is better.</em></p>
+<p><em>Toxicity level, lower is better. <code class="language-plaintext highlighter-rouge">PT</code> stands for pre-trained model, aka the model after its pretraining and instruct fine-tuning phase (as described in the original paper from each model)</em></p>
 
 <p>The results obtained show that even <strong>without any limitation</strong> imposed on the models, a <strong>30% reduction in toxicity is observed for the fine-tuned model</strong> and 24% for the model with RLAF one. The results improve when considering only the most toxic prompts instead, with a 40% reduction for the fine-tuned model and the same 24% for the model with RLAF.</p>
 
@@ -386,13 +386,20 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
 
 </figure>
 
-<p><em>Flow chart highlighting the shifts in the different responses. We start from the center with the pre-trained (<code class="language-plaintext highlighter-rouge">PT</code>) model moving left for the fine-tuned (<code class="language-plaintext highlighter-rouge">FT</code>) model and left for the model with Reinforcement Learning (<code class="language-plaintext highlighter-rouge">RL</code>).</em></p>
+<p><em>Flow chart highlighting the shifts in the different responses. We start from the center with the pre-trained (<code class="language-plaintext highlighter-rouge">PT</code>) model moving left for the fine-tuned (<code class="language-plaintext highlighter-rouge">FT</code>) model and right for the model with Reinforcement Learning (<code class="language-plaintext highlighter-rouge">RL</code>).</em></p>
 
 <p><br></p>
 <h2 id="-current-status-and-new-research-questions"><strong>🚀 Current status and new research questions</strong></h2>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
+<blockquote>
+  <p>Editor Note: The following chapter contains content that is mainly derived from assumptions about future directions. None of this represents a constraint or formal expression of the work’s intentions.</p>
+</blockquote>
 
+<p>Considering the pipeline for training through fine-tuning and reinforcement learning, it will be intriguing to be able to extend the research to models of larger dimensions. Specifically, through the use of 4-bit mode, it is possible to scale up the number of parameters, being able to observe the behaviour of larger and more accurate models as well as with more “reasoning” capabilities.</p>
+
+<p>Possible future work with the models now available could be to perform a sanity check following the pre-trained model response generation. The token level log probability of the fine-tuned model or RLAF model is expected to be lower if compared to its pre-trained version. Moreover, from an interpretability point of view, measures such as entropy could be exploited to measure the <em>uncertainty</em> of the model producing a response; if the per token attribution entropy of the fine-tuned/RLAF model turn out to be much higher if compared to the pre-trained one the further trained model is not relying on the prompt anymore, suggesting a strange behaviour to be further analyzed.</p>
+
+<p>Other analysis can be made on RL models and how their responses relate with the prompt, comparing the output with the fine-tuned model: following the reward model, the LMs should avoid toxic responses, but does it still generate meaningful responses? Is it trying to avoid the penalty generating random text? Could be employed semantic similarity in this manner, trying to identify the connection between prompt and response itself.</p>
 
     </div>
   </article>
