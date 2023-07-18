@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://danielsc4.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://danielsc4.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-18T10:01:27+00:00</updated><id>https://danielsc4.github.io/feed.xml</id><title type="html">blank</title><subtitle>Master CS student
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://danielsc4.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://danielsc4.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-18T10:04:42+00:00</updated><id>https://danielsc4.github.io/feed.xml</id><title type="html">blank</title><subtitle>Master CS student
 </subtitle><entry><title type="html">Let the Models Respond: Interpreting the Detoxification process of LMs</title><link href="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/" rel="alternate" type="text/html" title="Let the Models Respond: Interpreting the Detoxification process of LMs" /><published>2023-07-12T15:59:00+00:00</published><updated>2023-07-12T15:59:00+00:00</updated><id>https://danielsc4.github.io/blog/2023/interpreting-detox-LM</id><content type="html" xml:base="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/"><![CDATA[<h4 id="framing"><strong>Framing</strong></h4>
 
 <p>🚨 This blogpost contains examples which are offensive in nature.</p>
@@ -130,7 +130,7 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
 
 <h5 id="toxicity-meter-an-easy-way-to-measure-lms-toxicity"><code class="language-plaintext highlighter-rouge">Toxicity Meter</code>: an easy way to measure LMs toxicity</h5>
 
-<p>Also provided in the <a href="https://github.com/DanielSc4/RewardLM">🥞 RewardLM</a> library is a tool for measuring the average toxicity of models, <code class="language-plaintext highlighter-rouge">⚖️ Toxicity Meter</code>. By default, the tool employs the <code class="language-plaintext highlighter-rouge">RealToxicityPrompts</code> dataset <a href="https://aclanthology.org/2020.findings-emnlp.301/">(Gehman et al., 2020)</a>. It was therefore possible to quantitatively measure not only the initial toxicity of the different models, but also the post fine-tuning toxicity and RLAF. The toxicity itself can be measured either from any of the model configuration(s) used as reward model for RLAF, or from <a href="https://perspectiveapi.com/">Perspective API</a>, offering a better granularity in the different types of toxicity.</p>
+<p>Also provided in the <a href="https://github.com/DanielSc4/RewardLM">🥞 RewardLM</a> library is a tool for measuring the average toxicity of models, ⚖️ <code class="language-plaintext highlighter-rouge">Toxicity Meter</code>. By default, the tool employs the <code class="language-plaintext highlighter-rouge">RealToxicityPrompts</code> dataset <a href="https://aclanthology.org/2020.findings-emnlp.301/">(Gehman et al., 2020)</a>. It was therefore possible to quantitatively measure not only the initial toxicity of the different models, but also the post fine-tuning toxicity and RLAF. The toxicity itself can be measured either from any of the model configuration(s) used as reward model for RLAF, or from <a href="https://perspectiveapi.com/">Perspective API</a>, offering a better granularity in the different types of toxicity.</p>
 
 <p><br /></p>
 <h2 id="-experiment-and-results"><strong>🔬 Experiment and results</strong></h2>
@@ -139,7 +139,7 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
 
 <h3 id="result">Result</h3>
 
-<p>Results are calculated with the toxicity level reported by <code class="language-plaintext highlighter-rouge">⚖️ Toxicity Meter</code>. They are further broken down into two tables highlighted below, where first all prompts from RealToxicityPrompts are present and then only those considered as toxic by the reward model itself.</p>
+<p>Results are calculated with the toxicity level reported by ⚖️ <code class="language-plaintext highlighter-rouge">Toxicity Meter</code>. They are further broken down into two tables highlighted below, where first all prompts from RealToxicityPrompts are present and then only those considered as toxic by the reward model itself.</p>
 
 <table>
   <thead>
