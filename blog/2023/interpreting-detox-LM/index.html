@@ -166,7 +166,7 @@
     <hr>
     
     <div id="markdown-content">
-      <h4 id="framing">Framing</h4>
+      <h4 id="framing"><strong>Framing</strong></h4>
 
 <p>🚨 This blogpost contains examples which are offensive in nature.</p>
 
@@ -182,11 +182,13 @@
 <a href="https://en.unimib.it/elisabetta-fersini" rel="external nofollow noopener" target="_blank">Elisabetta Fersini</a>, Associate professor @ University of Milano - Bicocca</li>
 </ul>
 
-<h2 id="-abstract">📜 Abstract</h2>
+<hr>
+
+<h2 id="-abstract"><strong>📜 Abstract</strong></h2>
 
 <p><strong>Language Models</strong> (LMs) represent complex systems that are difficult to manage and deploy safely. For this reason, various techniques have been proposed over time with the aim of detoxifying and controlling the behaviour of the models after their training process. With this in mind, this research project aims to <strong>explore the potential of the model detoxification process</strong>. Known techniques of <em>fine-tuning</em> and <em>Reinforcement Learning from Human Feedback</em> (RLHF) will be explored leading to less toxic models. The work also aims to <strong>understand the detoxification process through an exploration on the interpretability of the models</strong> themselves, having the ultimate goal of <strong>not limiting their responses</strong> but offering a contronarrative with respect to potentially toxic prompts.</p>
 
-<h2 id="-introduction-and-state-of-the-art">🎨 Introduction and State Of The Art</h2>
+<h2 id="-introduction-and-state-of-the-art"><strong>🎨 Introduction and State Of The Art</strong></h2>
 <p>In the recent period, LMs are observing a rise in terms of parameters, complexity and consequently results obtained that, in some cases, manage to exceed even human capabilities for specific tasks <a href="https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf" rel="external nofollow noopener" target="_blank">(Radford and Narasimhan, 2018)</a>. All this power, however, comes from large amounts of data used in the pre-training phase of LMs that learn primarily from corpora extracted from the Internet, forums and social media. The large availability of text on these platforms certainly implies an ease in extracting various aspects of language useful for the learning process but brings with it issues especially relevant to the quality and content itself in the text. Indeed, it is not at all uncommon to find toxic, dangerous, privacy-compromising content or more complex phenomena such as unintended bias hidden in the text itself <a href="https://dl.acm.org/doi/10.1145/3442188.3445922" rel="external nofollow noopener" target="_blank">(Bender et al., 2021)</a>. All these aspects, which are difficult to control <em>a priori</em>, inevitably end up in the data that make up the LMs’ pre-training datasets, leading them to language generations that cannot always be considered safe and harmless <a href="https://aclanthology.org/2020.findings-emnlp.301.pdf" rel="external nofollow noopener" target="_blank">(Gehman et al., 2020)</a>.</p>
 
 <p>It is for this reason that efforts in research have been made to try to mitigate these phenomena as much as possible, both from the data point of view and from the point of view of the pre-trained LMs. Among the best known techniques can be found fine-tuning, RLHF <a href="https://arxiv.org/abs/2204.05862" rel="external nofollow noopener" target="_blank">(Bai et al., 2022)</a> and model steering <a href="https://arxiv.org/abs/1912.02164" rel="external nofollow noopener" target="_blank">(Dathathri et al. 2020)</a>. These techniques turn out to be more than effective in controlling the toxicity in model input/output but, especially in the presence of particularly “tendentious” cases it still remains possible to fool the models that still end up generating potentially toxic or unsafe responses. In addition, the most well-known response pattern to prompts deemed as dangerous is to stop the conversation, trying to stop proceeding to toxic behaviors (e.g., “As an AI Language Model I cannot answer this question, …”).</p>
@@ -211,11 +213,11 @@
 
 <h4 id="goals">Goals</h4>
 
-<p>With the following research project, we therefore want to <em>investigate the detoxification process</em>, pushing not only the models to be safer but exploring their potential by <em>allowing them to respond even to potentially toxic prompts</em> by offering a useful counter narrative to send the conversation forward to reason with the user who authored the original prompt.</p>
+<p>With the following research project, we therefore want to <strong>investigate the detoxification process</strong>, pushing not only the models to be safer but exploring their potential by <strong>allowing them to respond even to potentially toxic prompts</strong> by offering a useful counter narrative to send the conversation forward to reason with the user who authored the original prompt.</p>
 
-<p>As can be guessed, it is imperative that such <em>a process be as transparent as possible</em>. For this reason, techniques for interpreting the models themselves will be employed to discover how the models change their generation. This will hopefully lead to discovering not only new features of the models but also what techniques might be most effective for <em>the safety and effectiveness of the LMs</em> themselves.</p>
+<p>As can be guessed, it is imperative that such <strong>a process be as transparent as possible</strong>. For this reason, techniques for interpreting the models themselves will be employed to discover how the models change their generation. This will hopefully lead to discovering not only new features of the models but also what techniques might be most effective for <strong>the safety and effectiveness of the LMs</strong> themselves.</p>
 
-<h2 id="-approach">🔨 Approach</h2>
+<h2 id="-approach"><strong>🔨 Approach</strong></h2>
 
 <p>Of the various techniques previously listed, fine-tuning and reinforcement learning represent the state of the art, also employed by industry for the most modern LMs. The main problem related to the use of these techniques, however, is the size of the models themselves. In fact, over the utlim years, there has been a trend toward growth in the number of parameters in language models, reaching and exceeding hundreds of billions in the case of the largest models (GPT-3/4, Bard, …). For these reasons, even just performing fine-tuning or applying reinforcement learning techniques seems to be quite impossible on consumer hardware or otherwise accessible to the research community. Even just maintaining a 7B model of parameters, on RAM or VRAM, would take more than 32GB.</p>
 
@@ -240,12 +242,30 @@ is 127 divided by the absolute maximum of the entire tensor. This is equivalent 
 
 <h4 id="letting-lms-respond-with-contronarrative">Letting LMs Respond with Contronarrative</h4>
 
-<p><strong>Cite: dialoconan</strong>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
+<p>As previously mentioned, the state of the art so far has focused on generic detoxification of LMs, certainly leading them to be less toxic by avoiding responding to compromising prompts or otherwise imposing strong constraints on both the optimization process and the output of the model itself. In fact, based on what has been observed, the same models may be able to articulate more complex responses that capture even the most delicate aspects of the dialogue. Thus, we want precisely to explore this concept further, bringing, through fine-tuning, <strong>the model to a contronarrative generation responsive to the given prompt</strong>.</p>
+
+<p>For this purpose, <a href="https://aclanthology.org/2022.emnlp-main.549/" rel="external nofollow noopener" target="_blank">(Bonaldi et al., 2022)</a>, a dataset curated by experts is employed to provide accurate answers to prompts regarding topics and/or people particularly susceptible and vulnerable to online hate speech.
+The dataset, consists mainly of dialogues (thus with multiple prompt-response pairs); we chose to select each pair while maintaining all its antecedents, exploiting the potential of Chain-of-Thought <a href="https://arxiv.org/abs/2201.11903" rel="external nofollow noopener" target="_blank">(Wei et al., 2022)</a>.</p>
 
 <h4 id="fine-tuning-and-reinforcement-learning-from-automatic-feedback">Fine-tuning and Reinforcement Learning from (Automatic) Feedback</h4>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
+<p>Fine-tuning and reinforcement learning of the models was employed using the <a href="https://github.com/DanielSc4/RewardLM" rel="external nofollow noopener" target="_blank">🥞 RewardLM</a> library. The library allows integration of the models with 🤗 HuggingFace (the <em>de facto</em> standard for OpenSource model sharing and manipulation), training and monitoring of the results obtained efficiently. In the case of Reinforcement Learning (<a href="https://github.com/DanielSc4/RewardLM#-reinforcement-learning-with-automatic-feedback-rlaf" rel="external nofollow noopener" target="_blank">RFAF</a>), besides all the hyperparameters involved, it is possible to specify different details of the reward model, being able to choose any classifier or a set more than one of them for greater efficiency.</p>
+
+<p>More information regarding the tools used:</p>
+<div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-center align-items-center">
+    
+
+
+
+<div class="repo p-2 text-center">
+  <a href="https://github.com/DanielSc4/RewardLM" rel="external nofollow noopener" target="_blank">
+    <img class="repo-img-light w-100" alt="DanielSc4/RewardLM" src="https://github-readme-stats.vercel.app/api/pin/?username=DanielSc4&amp;repo=RewardLM&amp;theme=default&amp;show_owner=false">
+    <img class="repo-img-dark w-100" alt="DanielSc4/RewardLM" src="https://github-readme-stats.vercel.app/api/pin/?username=DanielSc4&amp;repo=RewardLM&amp;theme=dark&amp;show_owner=false">
+  </a>
+</div>
+
+</div>
+<p><br></p>
 
 <h4 id="toxicity-meter-an-easy-way-to-measure-lms-toxicity">
 <code class="language-plaintext highlighter-rouge">Toxicity Meter</code>: an easy way to measure LMs toxicity</h4>
@@ -255,7 +275,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique p
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
 
-<h2 id="-experiment-and-results">🔬 Experiment and results</h2>
+<h2 id="-experiment-and-results"><strong>🔬 Experiment and results</strong></h2>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
 
@@ -297,7 +317,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique p
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet.</p>
 
-<h2 id="-current-status-and-new-research-questions">🚀 Current status and new research questions</h2>
+<h2 id="-current-status-and-new-research-questions"><strong>🚀 Current status and new research questions</strong></h2>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
 
