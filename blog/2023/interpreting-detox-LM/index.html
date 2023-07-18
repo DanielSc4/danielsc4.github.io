@@ -148,8 +148,12 @@
 <li class="toc-entry toc-h4"><a href="#how-to-deal-with-large-lms">How to deal with Large LMs?</a></li>
 <li class="toc-entry toc-h4"><a href="#how-to-efficiently-train-quantized-large-lms">How to efficiently train quantized Large LMs?</a></li>
 <li class="toc-entry toc-h4"><a href="#letting-lms-respond-with-contronarrative">Letting LMs Respond with Contronarrative</a></li>
-<li class="toc-entry toc-h4"><a href="#fine-tuning-and-reinforcement-learning-from-automatic-feedback">Fine-tuning and Reinforcement Learning from (Automatic) Feedback</a></li>
-<li class="toc-entry toc-h4"><a href="#toxicity-meter-an-easy-way-to-measure-lms-toxicity">Toxicity Meter: an easy way to measure LMs toxicity</a></li>
+<li class="toc-entry toc-h4">
+<a href="#fine-tuning-and-reinforcement-learning-from-automatic-feedback">Fine-tuning and Reinforcement Learning from (Automatic) Feedback</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#toxicity-meter-an-easy-way-to-measure-lms-toxicity">Toxicity Meter: an easy way to measure LMs toxicity</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-entry toc-h2">
@@ -184,10 +188,12 @@
 
 <hr>
 
+<p><br></p>
 <h2 id="-abstract"><strong>📜 Abstract</strong></h2>
 
 <p><strong>Language Models</strong> (LMs) represent complex systems that are difficult to manage and deploy safely. For this reason, various techniques have been proposed over time with the aim of detoxifying and controlling the behaviour of the models after their training process. With this in mind, this research project aims to <strong>explore the potential of the model detoxification process</strong>. Known techniques of <em>fine-tuning</em> and <em>Reinforcement Learning from Human Feedback</em> (RLHF) will be explored leading to less toxic models. The work also aims to <strong>understand the detoxification process through an exploration on the interpretability of the models</strong> themselves, having the ultimate goal of <strong>not limiting their responses</strong> but offering a contronarrative with respect to potentially toxic prompts.</p>
 
+<p><br></p>
 <h2 id="-introduction-and-state-of-the-art"><strong>🎨 Introduction and State Of The Art</strong></h2>
 <p>In the recent period, LMs are observing a rise in terms of parameters, complexity and consequently results obtained that, in some cases, manage to exceed even human capabilities for specific tasks <a href="https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf" rel="external nofollow noopener" target="_blank">(Radford and Narasimhan, 2018)</a>. All this power, however, comes from large amounts of data used in the pre-training phase of LMs that learn primarily from corpora extracted from the Internet, forums and social media. The large availability of text on these platforms certainly implies an ease in extracting various aspects of language useful for the learning process but brings with it issues especially relevant to the quality and content itself in the text. Indeed, it is not at all uncommon to find toxic, dangerous, privacy-compromising content or more complex phenomena such as unintended bias hidden in the text itself <a href="https://dl.acm.org/doi/10.1145/3442188.3445922" rel="external nofollow noopener" target="_blank">(Bender et al., 2021)</a>. All these aspects, which are difficult to control <em>a priori</em>, inevitably end up in the data that make up the LMs’ pre-training datasets, leading them to language generations that cannot always be considered safe and harmless <a href="https://aclanthology.org/2020.findings-emnlp.301.pdf" rel="external nofollow noopener" target="_blank">(Gehman et al., 2020)</a>.</p>
 
@@ -217,6 +223,7 @@
 
 <p>As can be guessed, it is imperative that such <strong>a process be as transparent as possible</strong>. For this reason, techniques for interpreting the models themselves will be employed to discover how the models change their generation. This will hopefully lead to discovering not only new features of the models but also what techniques might be most effective for <strong>the safety and effectiveness of the LMs</strong> themselves.</p>
 
+<p><br></p>
 <h2 id="-approach"><strong>🔨 Approach</strong></h2>
 
 <p>Of the various techniques previously listed, fine-tuning and reinforcement learning represent the state of the art, also employed by industry for the most modern LMs. The main problem related to the use of these techniques, however, is the size of the models themselves. In fact, over the utlim years, there has been a trend toward growth in the number of parameters in language models, reaching and exceeding hundreds of billions in the case of the largest models (GPT-3/4, Bard, …). For these reasons, even just performing fine-tuning or applying reinforcement learning techniques seems to be quite impossible on consumer hardware or otherwise accessible to the research community. Even just maintaining a 7B model of parameters, on RAM or VRAM, would take more than 32GB.</p>
@@ -267,14 +274,12 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
 </div>
 <p><br></p>
 
-<h4 id="toxicity-meter-an-easy-way-to-measure-lms-toxicity">
-<code class="language-plaintext highlighter-rouge">Toxicity Meter</code>: an easy way to measure LMs toxicity</h4>
+<h5 id="toxicity-meter-an-easy-way-to-measure-lms-toxicity">
+<code class="language-plaintext highlighter-rouge">Toxicity Meter</code>: an easy way to measure LMs toxicity</h5>
 
-<p><strong>Cite: RealToxicityPrompts</strong>
-<strong>Cite: ⚖️ Toxicity Meter</strong></p>
+<p>Also provided in the <a href="https://github.com/DanielSc4/RewardLM" rel="external nofollow noopener" target="_blank">🥞 RewardLM</a> library is a tool for measuring the average toxicity of models, <code class="language-plaintext highlighter-rouge">⚖️ Toxicity Meter</code>. By default, the tool employs the <code class="language-plaintext highlighter-rouge">RealToxicityPrompts</code> dataset <a href="https://aclanthology.org/2020.findings-emnlp.301/" rel="external nofollow noopener" target="_blank">(Gehman et al., 2020)</a>. It was therefore possible to quantitatively measure not only the initial toxicity of the different models, but also the post fine-tuning toxicity and RLAF. The toxicity itself can be measured either from any of the model configuration(s) used as reward model for RLAF, or from <a href="https://perspectiveapi.com/" rel="external nofollow noopener" target="_blank">Perspective API</a>, offering a better granularity in the different types of toxicity.</p>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
-
+<p><br></p>
 <h2 id="-experiment-and-results"><strong>🔬 Experiment and results</strong></h2>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
@@ -317,6 +322,7 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet.</p>
 
+<p><br></p>
 <h2 id="-current-status-and-new-research-questions"><strong>🚀 Current status and new research questions</strong></h2>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
