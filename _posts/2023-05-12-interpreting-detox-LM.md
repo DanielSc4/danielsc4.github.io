@@ -114,7 +114,7 @@ In parallel with this process, the reward $$ r_{\theta} (y \vert x) $$ given by 
 
 ##### `Toxicity Meter`: an easy way to measure LMs toxicity
 
-Also provided in the [🥞 RewardLM](https://github.com/DanielSc4/RewardLM) library is a tool for measuring the average toxicity of models, `⚖️ Toxicity Meter`. By default, the tool employs the `RealToxicityPrompts` dataset [(Gehman et al., 2020)](https://aclanthology.org/2020.findings-emnlp.301/). It was therefore possible to quantitatively measure not only the initial toxicity of the different models, but also the post fine-tuning toxicity and RLAF. The toxicity itself can be measured either from any of the model configuration(s) used as reward model for RLAF, or from [Perspective API](https://perspectiveapi.com/), offering a better granularity in the different types of toxicity.
+Also provided in the [🥞 RewardLM](https://github.com/DanielSc4/RewardLM) library is a tool for measuring the average toxicity of models, ⚖️ `Toxicity Meter`. By default, the tool employs the `RealToxicityPrompts` dataset [(Gehman et al., 2020)](https://aclanthology.org/2020.findings-emnlp.301/). It was therefore possible to quantitatively measure not only the initial toxicity of the different models, but also the post fine-tuning toxicity and RLAF. The toxicity itself can be measured either from any of the model configuration(s) used as reward model for RLAF, or from [Perspective API](https://perspectiveapi.com/), offering a better granularity in the different types of toxicity.
 
 
 <br/>
@@ -125,7 +125,7 @@ As mentioned generative models are chosen to carry out the first experiments. Am
 
 ### Result
 
-Results are calculated with the toxicity level reported by `⚖️ Toxicity Meter`. They are further broken down into two tables highlighted below, where first all prompts from RealToxicityPrompts are present and then only those considered as toxic by the reward model itself.
+Results are calculated with the toxicity level reported by ⚖️ `Toxicity Meter`. They are further broken down into two tables highlighted below, where first all prompts from RealToxicityPrompts are present and then only those considered as toxic by the reward model itself.
 
 
 | All prompts              | Pre-trained | Fine-tuned |  RLAF |
