@@ -47,8 +47,9 @@ With the following research project, we therefore want to **investigate the deto
 As can be guessed, it is imperative that such **a process be as transparent as possible**. For this reason, techniques for interpreting the models themselves will be employed to discover how the models change their generation. This will hopefully lead to discovering not only new features of the models but also what techniques might be most effective for **the safety and effectiveness of the LMs** themselves.
 
 
+
 <br/>
-## **🔨 Approach**
+## **🦾 Approach**
 
 Of the various techniques previously listed, fine-tuning and reinforcement learning represent the state of the art, also employed by industry for the most modern LMs. The main problem related to the use of these techniques, however, is the size of the models themselves. In fact, over the utlim years, there has been a trend toward growth in the number of parameters in language models, reaching and exceeding hundreds of billions in the case of the largest models (GPT-3/4, Bard, ...). For these reasons, even just performing fine-tuning or applying reinforcement learning techniques seems to be quite impossible on consumer hardware or otherwise accessible to the research community. Even just maintaining a 7B model of parameters, on RAM or VRAM, would take more than 32GB.
 
@@ -128,19 +129,19 @@ As mentioned generative models are chosen to carry out the first experiments. Am
 Results are calculated with the toxicity level reported by ⚖️ `Toxicity Meter`. They are further broken down into two tables highlighted below, where first all prompts from RealToxicityPrompts are present and then only those considered as toxic by the reward model itself.
 
 
-| All prompts              | Pre-trained | Fine-tuned |  RLAF |
+| All prompts              | PT (Baseline) | Fine-tuned |  RLAF |
 |--------------------------|:-----------:|:----------:|:-----:|
 | RedPajama-INCITE-Chat-3B |    0.130    |  **0.091** | 0.099 |
 | falcon-7b-instruct       |     TBD     |     TBD    |  TBD  |
 
 
 
-| Only toxic prompts       | Pre-trained | Fine-tuned |  RLAF |
+| Only toxic prompts       | PT (Baseline) | Fine-tuned |  RLAF |
 |--------------------------|:-----------:|:----------:|:-----:|
 | RedPajama-INCITE-Chat-3B |    0.216    |  **0.127** | 0.159 |
 | falcon-7b-instruct       |     TBD     |     TBD    |  TBD  |
 
-*Toxicity level, lower is better.*
+*Toxicity level, lower is better. `PT` stands for pre-trained model, aka the model after its pretraining and instruct fine-tuning phase (as described in the original paper from each model)*
 
 The results obtained show that even **without any limitation** imposed on the models, a **30% reduction in toxicity is observed for the fine-tuned model** and 24% for the model with RLAF one. The results improve when considering only the most toxic prompts instead, with a 40% reduction for the fine-tuned model and the same 24% for the model with RLAF.
 
@@ -148,13 +149,17 @@ It can be seen from the following flowcharts how the toxic responses shifted to 
 
 
 {% include figure.html path="assets/img/detox_LMs/sankeymatic.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-*Flow chart highlighting the shifts in the different responses. We start from the center with the pre-trained (`PT`) model moving left for the fine-tuned (`FT`) model and left for the model with Reinforcement Learning (`RL`).*
+*Flow chart highlighting the shifts in the different responses. We start from the center with the pre-trained (`PT`) model moving left for the fine-tuned (`FT`) model and right for the model with Reinforcement Learning (`RL`).*
 
 
 
 <br/>
 ## **🚀 Current status and new research questions**
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris. 
+> Editor Note: The following chapter contains content that is mainly derived from assumptions about future directions. None of this represents a constraint or formal expression of the work's intentions.
 
+Considering the pipeline for training through fine-tuning and reinforcement learning, it will be intriguing to be able to extend the research to models of larger dimensions. Specifically, through the use of 4-bit mode, it is possible to scale up the number of parameters, being able to observe the behaviour of larger and more accurate models as well as with more "reasoning" capabilities. 
 
+Possible future work with the models now available could be to perform a sanity check following the pre-trained model response generation. The token level log probability of the fine-tuned model or RLAF model is expected to be lower if compared to its pre-trained version. Moreover, from an interpretability point of view, measures such as entropy could be exploited to measure the *uncertainty* of the model producing a response; if the per token attribution entropy of the fine-tuned/RLAF model turn out to be much higher if compared to the pre-trained one the further trained model is not relying on the prompt anymore, suggesting a strange behaviour to be further analyzed.
+
+Other analysis can be made on RL models and how their responses relate with the prompt, comparing the output with the fine-tuned model: following the reward model, the LMs should avoid toxic responses, but does it still generate meaningful responses? Is it trying to avoid the penalty generating random text? Could be employed semantic similarity in this manner, trying to identify the connection between prompt and response itself.
