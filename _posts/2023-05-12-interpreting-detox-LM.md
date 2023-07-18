@@ -93,6 +93,24 @@ More information regarding the tools used:
 <br/>
 
 
+Particular attention can be paid to the Reinforcement Learning process where, following the diagram below, two identical initial models are kept in memory, one for reference and one that can be changed according to the direction imposed by the reward model. 
+
+{% include figure.html path="assets/img/detox_LMs/rlhf.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+*Training scheme for the RLAF algorithm implemented on [🥞 RewardLM](https://github.com/DanielSc4/RewardLM). Image [source](https://huggingface.co/blog/rlhf).*
+
+Specifically, we begin by having both models produce a response that follows a certain generation configuration. The [Kullback-Leibler divergence](https://en.wikipedia.org/wiki/Kullback–Leibler_divergence) distance between the distributions of the two models is then calculated. 
+
+$$ 
+D_{KL}(\pi_{PPO}(y | x) || \pi_{base}(y | x)) 
+$$
+
+*with $$\pi_{PPO}$$ and $$\pi_{base}$$ denoted the respective weights of the models.*
+
+
+
+In parallel with this process, the reward $$ r_{\theta} (y \vert x) $$ given by the reward model is calculated, which is added to the penalty given by the previous step. At this point it is the job of the [PPO optimization](https://openai.com/research/openai-baselines-ppo) algorithm to update the tuned model weights based on what it received as input from the previously calculated loss.
+
+
 
 ##### `Toxicity Meter`: an easy way to measure LMs toxicity
 
@@ -102,26 +120,36 @@ Also provided in the [🥞 RewardLM](https://github.com/DanielSc4/RewardLM) libr
 <br/>
 ## **🔬 Experiment and results**
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris. 
+As mentioned generative models are chosen to carry out the first experiments. Among the models selected by the HuggingFace Hub are `togethercomputer/RedPajama-INCITE-Chat-3B-v1` ([🤗 Hub ref.](https://huggingface.co/togethercomputer/RedPajama-INCITE-Chat-3B-v1)) and `tiiuae/falcon-7b-instruct` ([🤗 Hub ref.](https://huggingface.co/tiiuae/falcon-7b-instruct)), with 3 and 7 billion parameters, respectively. Their chat/istructed version was chosen to retain the ability to use their conversational capabilities, similar to what has been observed with the more popular [ChatGPT](https://openai.com/blog/chatgpt) from OpenAI and [BARD](https://bard.google.com) from Google. 
 
-### Baseline
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. 
-
-
-### Evaluation setup
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. 
 
 ### Result
 
-| Left aligned | Center aligned | Right aligned |
-| :----------- | :------------: | ------------: |
-| Left 1       | center 1       | right 1       |
-| Left 2       | center 2       | right 2       |
-| Left 3       | center 3       | right 3       |
+Results are calculated with the toxicity level reported by `⚖️ Toxicity Meter`. They are further broken down into two tables highlighted below, where first all prompts from RealToxicityPrompts are present and then only those considered as toxic by the reward model itself.
 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. 
+| All prompts              | Pre-trained | Fine-tuned |  RLAF |
+|--------------------------|:-----------:|:----------:|:-----:|
+| RedPajama-INCITE-Chat-3B |    0.130    |  **0.091** | 0.099 |
+| falcon-7b-instruct       |     TBD     |     TBD    |  TBD  |
+
+
+
+| Only toxic prompts       | Pre-trained | Fine-tuned |  RLAF |
+|--------------------------|:-----------:|:----------:|:-----:|
+| RedPajama-INCITE-Chat-3B |    0.216    |  **0.127** | 0.159 |
+| falcon-7b-instruct       |     TBD     |     TBD    |  TBD  |
+
+*Toxicity level, lower is better.*
+
+The results obtained show that even **without any limitation** imposed on the models, a **30% reduction in toxicity is observed for the fine-tuned model** and 24% for the model with RLAF one. The results improve when considering only the most toxic prompts instead, with a 40% reduction for the fine-tuned model and the same 24% for the model with RLAF.
+
+It can be seen from the following flowcharts how the toxic responses shifted to contents considered less toxic by [Perspective API](https://perspectiveapi.com/); the different toxicity buckets are assigned as low ( $$x < 0.33$$ ), medium ( $$0.33 \leq x \leq 0.66$$ ) and high ( $$x > 0.66$$ ):
+
+
+{% include figure.html path="assets/img/detox_LMs/sankeymatic.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+*Flow chart highlighting the shifts in the different responses. We start from the center with the pre-trained (`PT`) model moving left for the fine-tuned (`FT`) model and left for the model with Reinforcement Learning (`RL`).*
+
 
 
 <br/>
