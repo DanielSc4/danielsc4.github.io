@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://danielsc4.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://danielsc4.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-18T08:57:09+00:00</updated><id>https://danielsc4.github.io/feed.xml</id><title type="html">blank</title><subtitle>Master CS student
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://danielsc4.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://danielsc4.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-18T10:01:27+00:00</updated><id>https://danielsc4.github.io/feed.xml</id><title type="html">blank</title><subtitle>Master CS student
 </subtitle><entry><title type="html">Let the Models Respond: Interpreting the Detoxification process of LMs</title><link href="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/" rel="alternate" type="text/html" title="Let the Models Respond: Interpreting the Detoxification process of LMs" /><published>2023-07-12T15:59:00+00:00</published><updated>2023-07-12T15:59:00+00:00</updated><id>https://danielsc4.github.io/blog/2023/interpreting-detox-LM</id><content type="html" xml:base="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/"><![CDATA[<h4 id="framing"><strong>Framing</strong></h4>
 
 <p>🚨 This blogpost contains examples which are offensive in nature.</p>
@@ -100,6 +100,34 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
 </div>
 <p><br /></p>
 
+<p>Particular attention can be paid to the Reinforcement Learning process where, following the diagram below, two identical initial models are kept in memory, one for reference and one that can be changed according to the direction imposed by the reward model.</p>
+
+<figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/detox_LMs/rlhf-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/detox_LMs/rlhf-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/detox_LMs/rlhf-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/detox_LMs/rlhf.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+
+  </picture>
+
+</figure>
+
+<p><em>Training scheme for the RLAF algorithm implemented on <a href="https://github.com/DanielSc4/RewardLM">🥞 RewardLM</a>. Image <a href="https://huggingface.co/blog/rlhf">source</a>.</em></p>
+
+<p>Specifically, we begin by having both models produce a response that follows a certain generation configuration. The <a href="https://en.wikipedia.org/wiki/Kullback–Leibler_divergence">Kullback-Leibler divergence</a> distance between the distributions of the two models is then calculated.</p>
+
+\[D_{KL}(\pi_{PPO}(y | x) || \pi_{base}(y | x))\]
+
+<p><em>with \(\pi_{PPO}\) and \(\pi_{base}\) denoted the respective weights of the models.</em></p>
+
+<p>In parallel with this process, the reward \(r_{\theta} (y \vert x)\) given by the reward model is calculated, which is added to the penalty given by the previous step. At this point it is the job of the <a href="https://openai.com/research/openai-baselines-ppo">PPO optimization</a> algorithm to update the tuned model weights based on what it received as input from the previously calculated loss.</p>
+
 <h5 id="toxicity-meter-an-easy-way-to-measure-lms-toxicity"><code class="language-plaintext highlighter-rouge">Toxicity Meter</code>: an easy way to measure LMs toxicity</h5>
 
 <p>Also provided in the <a href="https://github.com/DanielSc4/RewardLM">🥞 RewardLM</a> library is a tool for measuring the average toxicity of models, <code class="language-plaintext highlighter-rouge">⚖️ Toxicity Meter</code>. By default, the tool employs the <code class="language-plaintext highlighter-rouge">RealToxicityPrompts</code> dataset <a href="https://aclanthology.org/2020.findings-emnlp.301/">(Gehman et al., 2020)</a>. It was therefore possible to quantitatively measure not only the initial toxicity of the different models, but also the post fine-tuning toxicity and RLAF. The toxicity itself can be measured either from any of the model configuration(s) used as reward model for RLAF, or from <a href="https://perspectiveapi.com/">Perspective API</a>, offering a better granularity in the different types of toxicity.</p>
@@ -107,45 +135,85 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
 <p><br /></p>
 <h2 id="-experiment-and-results"><strong>🔬 Experiment and results</strong></h2>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet. Fusce tellus augue, pulvinar imperdiet rutrum quis, aliquet viverra nulla. Donec interdum ex non rhoncus posuere. Sed ullamcorper ex eu egestas eleifend. Cras urna justo, viverra a porttitor quis, sollicitudin vel mauris.</p>
-
-<h3 id="baseline">Baseline</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet.</p>
-
-<h3 id="evaluation-setup">Evaluation setup</h3>
-
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet.</p>
+<p>As mentioned generative models are chosen to carry out the first experiments. Among the models selected by the HuggingFace Hub are <code class="language-plaintext highlighter-rouge">togethercomputer/RedPajama-INCITE-Chat-3B-v1</code> (<a href="https://huggingface.co/togethercomputer/RedPajama-INCITE-Chat-3B-v1">🤗 Hub ref.</a>) and <code class="language-plaintext highlighter-rouge">tiiuae/falcon-7b-instruct</code> (<a href="https://huggingface.co/tiiuae/falcon-7b-instruct">🤗 Hub ref.</a>), with 3 and 7 billion parameters, respectively. Their chat/istructed version was chosen to retain the ability to use their conversational capabilities, similar to what has been observed with the more popular <a href="https://openai.com/blog/chatgpt">ChatGPT</a> from OpenAI and <a href="https://bard.google.com">BARD</a> from Google.</p>
 
 <h3 id="result">Result</h3>
+
+<p>Results are calculated with the toxicity level reported by <code class="language-plaintext highlighter-rouge">⚖️ Toxicity Meter</code>. They are further broken down into two tables highlighted below, where first all prompts from RealToxicityPrompts are present and then only those considered as toxic by the reward model itself.</p>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: left">Left aligned</th>
-      <th style="text-align: center">Center aligned</th>
-      <th style="text-align: right">Right aligned</th>
+      <th>All prompts</th>
+      <th style="text-align: center">Pre-trained</th>
+      <th style="text-align: center">Fine-tuned</th>
+      <th style="text-align: center">RLAF</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">Left 1</td>
-      <td style="text-align: center">center 1</td>
-      <td style="text-align: right">right 1</td>
+      <td>RedPajama-INCITE-Chat-3B</td>
+      <td style="text-align: center">0.130</td>
+      <td style="text-align: center"><strong>0.091</strong></td>
+      <td style="text-align: center">0.099</td>
     </tr>
     <tr>
-      <td style="text-align: left">Left 2</td>
-      <td style="text-align: center">center 2</td>
-      <td style="text-align: right">right 2</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Left 3</td>
-      <td style="text-align: center">center 3</td>
-      <td style="text-align: right">right 3</td>
+      <td>falcon-7b-instruct</td>
+      <td style="text-align: center">TBD</td>
+      <td style="text-align: center">TBD</td>
+      <td style="text-align: center">TBD</td>
     </tr>
   </tbody>
 </table>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse tristique porta nisl, et feugiat nunc dignissim ac. Morbi auctor eget purus at congue. Maecenas iaculis nulla leo, ac vulputate leo accumsan sit amet.</p>
+<table>
+  <thead>
+    <tr>
+      <th>Only toxic prompts</th>
+      <th style="text-align: center">Pre-trained</th>
+      <th style="text-align: center">Fine-tuned</th>
+      <th style="text-align: center">RLAF</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>RedPajama-INCITE-Chat-3B</td>
+      <td style="text-align: center">0.216</td>
+      <td style="text-align: center"><strong>0.127</strong></td>
+      <td style="text-align: center">0.159</td>
+    </tr>
+    <tr>
+      <td>falcon-7b-instruct</td>
+      <td style="text-align: center">TBD</td>
+      <td style="text-align: center">TBD</td>
+      <td style="text-align: center">TBD</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Toxicity level, lower is better.</em></p>
+
+<p>The results obtained show that even <strong>without any limitation</strong> imposed on the models, a <strong>30% reduction in toxicity is observed for the fine-tuned model</strong> and 24% for the model with RLAF one. The results improve when considering only the most toxic prompts instead, with a 40% reduction for the fine-tuned model and the same 24% for the model with RLAF.</p>
+
+<p>It can be seen from the following flowcharts how the toxic responses shifted to contents considered less toxic by <a href="https://perspectiveapi.com/">Perspective API</a>; the different toxicity buckets are assigned as low ( \(x &lt; 0.33\) ), medium ( \(0.33 \leq x \leq 0.66\) ) and high ( \(x &gt; 0.66\) ):</p>
+
+<figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/detox_LMs/sankeymatic-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/detox_LMs/sankeymatic-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/detox_LMs/sankeymatic-1400.webp" />
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/detox_LMs/sankeymatic.png" class="img-fluid rounded z-depth-1" width="auto" height="auto" data-zoomable="" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+
+  </picture>
+
+</figure>
+
+<p><em>Flow chart highlighting the shifts in the different responses. We start from the center with the pre-trained (<code class="language-plaintext highlighter-rouge">PT</code>) model moving left for the fine-tuned (<code class="language-plaintext highlighter-rouge">FT</code>) model and left for the model with Reinforcement Learning (<code class="language-plaintext highlighter-rouge">RL</code>).</em></p>
 
 <p><br /></p>
 <h2 id="-current-status-and-new-research-questions"><strong>🚀 Current status and new research questions</strong></h2>
