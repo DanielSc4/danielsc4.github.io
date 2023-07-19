@@ -129,27 +129,27 @@ As mentioned generative models are chosen to carry out the first experiments. Am
 Results are calculated with the toxicity level reported by ⚖️ `Toxicity Meter`. They are further broken down into two tables highlighted below, where first all prompts from RealToxicityPrompts are present and then only those considered as toxic by the reward model itself.
 
 
-| All prompts              | PT (Baseline) | Fine-tuned |  RLAF |
-|--------------------------|:-----------:|:----------:|:-----:|
-| RedPajama-INCITE-Chat-3B |    0.130    |  **0.091** | 0.099 |
-| falcon-7b-instruct       |     TBD     |     TBD    |  TBD  |
+| Toxicity, all prompts    | PT (Baseline) | Fine-tuned |  RLAF |
+|--------------------------|:-------------:|:----------:|:-----:|
+| RedPajama-INCITE-Chat-3B |      0.130    |  **0.092** | 0.099 |
+| falcon-7b-instruct       |      0.095    |  **0.078** | 0.082 |
 
 
 
-| Only toxic prompts       | PT (Baseline) | Fine-tuned |  RLAF |
-|--------------------------|:-----------:|:----------:|:-----:|
-| RedPajama-INCITE-Chat-3B |    0.216    |  **0.127** | 0.159 |
-| falcon-7b-instruct       |     TBD     |     TBD    |  TBD  |
+| Toxicity, only toxic prompts | PT (Baseline) | Fine-tuned |  RLAF |
+|------------------------------|:-------------:|:----------:|:-----:|
+| RedPajama-INCITE-Chat-3B     |      0.217    |  **0.129** | 0.160 |
+| falcon-7b-instruct           |      0.140    |  **0.107** | 0.125 |
 
 *Toxicity level, lower is better. `PT` stands for pre-trained model, aka the model after its pretraining and instruct fine-tuning phase (as described in the original paper from each model)*
 
-The results obtained show that even **without any limitation** imposed on the models, a **30% reduction in toxicity is observed for the fine-tuned model** and 24% for the model with RLAF one. The results improve when considering only the most toxic prompts instead, with a 40% reduction for the fine-tuned model and the same 24% for the model with RLAF.
+The results obtained show that even **without any limitation** imposed on the models, a **~30% reduction in toxicity is observed for the `RedPajama` fine-tuned model** (~20% for `falcon` model) and ~24% for the model with RLAF one (~14% for `falcon`). **The results improve when considering only the most toxic prompts, with a ~40% reduction for the `RedPajama` fine-tuned model** (28% for `falcon`) and  ~26% for the model with RLAF (~11% for `falcon`).
 
 It can be seen from the following flowcharts how the toxic responses shifted to contents considered less toxic by [Perspective API](https://perspectiveapi.com/); the different toxicity buckets are assigned as low ( $$x < 0.33$$ ), medium ( $$0.33 \leq x \leq 0.66$$ ) and high ( $$x > 0.66$$ ):
 
 
 {% include figure.html path="assets/img/detox_LMs/sankeymatic.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-*Flow chart highlighting the shifts in the different responses. We start from the center with the pre-trained (`PT`) model moving left for the fine-tuned (`FT`) model and right for the model with Reinforcement Learning (`RL`).*
+*Flow chart highlighting the shifts for different responses from `RedPajama` model. Starting from the center with the pre-trained (`PT`), model' responses moves to left for the fine-tuned (`FT`) and right for the model trained with Reinforcement Learning (`RL`).*
 
 
 
