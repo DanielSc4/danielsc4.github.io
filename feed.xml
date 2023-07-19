@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://danielsc4.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://danielsc4.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-18T13:33:45+00:00</updated><id>https://danielsc4.github.io/feed.xml</id><title type="html">blank</title><subtitle>Master CS student
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="https://danielsc4.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://danielsc4.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-07-19T09:16:25+00:00</updated><id>https://danielsc4.github.io/feed.xml</id><title type="html">blank</title><subtitle>Master CS student
 </subtitle><entry><title type="html">Let the Models Respond: Interpreting the Detoxification process of LMs</title><link href="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/" rel="alternate" type="text/html" title="Let the Models Respond: Interpreting the Detoxification process of LMs" /><published>2023-07-12T15:59:00+00:00</published><updated>2023-07-12T15:59:00+00:00</updated><id>https://danielsc4.github.io/blog/2023/interpreting-detox-LM</id><content type="html" xml:base="https://danielsc4.github.io/blog/2023/interpreting-detox-LM/"><![CDATA[<h4 id="framing"><strong>Framing</strong></h4>
 
 <p>🚨 This blogpost contains examples which are offensive in nature.</p>
@@ -144,7 +144,7 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
 <table>
   <thead>
     <tr>
-      <th>All prompts</th>
+      <th>Toxicity, all prompts</th>
       <th style="text-align: center">PT (Baseline)</th>
       <th style="text-align: center">Fine-tuned</th>
       <th style="text-align: center">RLAF</th>
@@ -154,14 +154,14 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
     <tr>
       <td>RedPajama-INCITE-Chat-3B</td>
       <td style="text-align: center">0.130</td>
-      <td style="text-align: center"><strong>0.091</strong></td>
+      <td style="text-align: center"><strong>0.092</strong></td>
       <td style="text-align: center">0.099</td>
     </tr>
     <tr>
       <td>falcon-7b-instruct</td>
-      <td style="text-align: center">TBD</td>
-      <td style="text-align: center">TBD</td>
-      <td style="text-align: center">TBD</td>
+      <td style="text-align: center">0.095</td>
+      <td style="text-align: center"><strong>0.078</strong></td>
+      <td style="text-align: center">0.082</td>
     </tr>
   </tbody>
 </table>
@@ -169,7 +169,7 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
 <table>
   <thead>
     <tr>
-      <th>Only toxic prompts</th>
+      <th>Toxicity, only toxic prompts</th>
       <th style="text-align: center">PT (Baseline)</th>
       <th style="text-align: center">Fine-tuned</th>
       <th style="text-align: center">RLAF</th>
@@ -178,22 +178,22 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
   <tbody>
     <tr>
       <td>RedPajama-INCITE-Chat-3B</td>
-      <td style="text-align: center">0.216</td>
-      <td style="text-align: center"><strong>0.127</strong></td>
-      <td style="text-align: center">0.159</td>
+      <td style="text-align: center">0.217</td>
+      <td style="text-align: center"><strong>0.129</strong></td>
+      <td style="text-align: center">0.160</td>
     </tr>
     <tr>
       <td>falcon-7b-instruct</td>
-      <td style="text-align: center">TBD</td>
-      <td style="text-align: center">TBD</td>
-      <td style="text-align: center">TBD</td>
+      <td style="text-align: center">0.140</td>
+      <td style="text-align: center"><strong>0.107</strong></td>
+      <td style="text-align: center">0.125</td>
     </tr>
   </tbody>
 </table>
 
 <p><em>Toxicity level, lower is better. <code class="language-plaintext highlighter-rouge">PT</code> stands for pre-trained model, aka the model after its pretraining and instruct fine-tuning phase (as described in the original paper from each model)</em></p>
 
-<p>The results obtained show that even <strong>without any limitation</strong> imposed on the models, a <strong>30% reduction in toxicity is observed for the fine-tuned model</strong> and 24% for the model with RLAF one. The results improve when considering only the most toxic prompts instead, with a 40% reduction for the fine-tuned model and the same 24% for the model with RLAF.</p>
+<p>The results obtained show that even <strong>without any limitation</strong> imposed on the models, a <strong>~30% reduction in toxicity is observed for the <code class="language-plaintext highlighter-rouge">RedPajama</code> fine-tuned model</strong> (~20% for <code class="language-plaintext highlighter-rouge">falcon</code> model) and ~24% for the model with RLAF one (~14% for <code class="language-plaintext highlighter-rouge">falcon</code>). <strong>The results improve when considering only the most toxic prompts, with a ~40% reduction for the <code class="language-plaintext highlighter-rouge">RedPajama</code> fine-tuned model</strong> (28% for <code class="language-plaintext highlighter-rouge">falcon</code>) and  ~26% for the model with RLAF (~11% for <code class="language-plaintext highlighter-rouge">falcon</code>).</p>
 
 <p>It can be seen from the following flowcharts how the toxic responses shifted to contents considered less toxic by <a href="https://perspectiveapi.com/">Perspective API</a>; the different toxicity buckets are assigned as low ( \(x &lt; 0.33\) ), medium ( \(0.33 \leq x \leq 0.66\) ) and high ( \(x &gt; 0.66\) ):</p>
 
@@ -213,7 +213,7 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
 
 </figure>
 
-<p><em>Flow chart highlighting the shifts in the different responses. We start from the center with the pre-trained (<code class="language-plaintext highlighter-rouge">PT</code>) model moving left for the fine-tuned (<code class="language-plaintext highlighter-rouge">FT</code>) model and right for the model with Reinforcement Learning (<code class="language-plaintext highlighter-rouge">RL</code>).</em></p>
+<p><em>Flow chart highlighting the shifts for different responses from <code class="language-plaintext highlighter-rouge">RedPajama</code> model. Starting from the center with the pre-trained (<code class="language-plaintext highlighter-rouge">PT</code>), model’ responses moves to left for the fine-tuned (<code class="language-plaintext highlighter-rouge">FT</code>) and right for the model trained with Reinforcement Learning (<code class="language-plaintext highlighter-rouge">RL</code>).</em></p>
 
 <p><br /></p>
 <h2 id="-current-status-and-new-research-questions"><strong>🚀 Current status and new research questions</strong></h2>
