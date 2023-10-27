@@ -11,16 +11,17 @@
 - title: Education
   type: time_table
   contents:
+    - title: PhD, Computer Science
+      institution: University of Milano - Bicocca & University of Groningen
+      year: 2023
+      description:
+        - Interpretability as a tool to make generative models safer, more reliable and less toxic.
     - title: MSc, Computer Science
       institution: University of Milano - Bicocca
       year: 2023
       description:
-        - Thesis on (ongoing).
-        # - Description 2.
-        # - title: Description 3.
-        #   contents:
-        #     - Sub-description 1.
-        #     - Sub-description 2.
+        - Final grade 110/110 with Honors.
+        - Thesis "On the explainability of Large Language Models detoxification".
     - title: BSc, Computer Science
       institution: University of Milano - Bicocca
       year: 2021
@@ -36,8 +37,8 @@
       institution: University of Groningen, Netherlands
       year: 2023 - Present
       description:
-        - I was occupied with the study, research and development of Reinforcement Learning algorithms applied to generative models (LLMs) to modify their behavior in generating hate speech, effectively automating and controlling the detoxification process.
-        - Collaborated further on the interpretability of the models themselves, researching on the motivations of these generations
+        - Study, research and development of RLHF/RLAIF and fine-tune algorithms applied to generative language models to modify their behaviour in generating hate speech, effectively automating and controlling the detoxification process and counter-narrative generation
+        - Research on the interpretability of the models themselves, analyzing their shift as a result of the post-training procedures adopted.
           # contents:
           #   - Sub-description 1.
           #   - Sub-description 2.
