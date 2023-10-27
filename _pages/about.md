@@ -18,9 +18,9 @@ social: true  # includes social icons at the bottom of the page
 
 ---
 
-Hi! I am `Daniel`, a MSc student in Computer Science at the [University of Milano - Bicocca](https://en.unimib.it/) 🇮🇹. I work closely with my supervisor [Elisabetta Fersini](https://scholar.google.com/citations?user=7_HTCfYAAAAJ&hl=en) and the Mind lab at my university.
+Hi! I am `Daniel`, a double PhD student at the [🇮🇹 University of Milano - Bicocca](https://en.unimib.it/) and the [🇳🇱 University of Groningen](https://rug.nl/) working on interpretability, fairness and security of generative (and non-generative) Large Language Models. My supervisors are [Elisabetta Fersini](https://www.unimib.it/elisabetta-fersini) and [Malvina Nissim](https://www.rug.nl/staff/m.nissim/?lang=en).
 
-My research focuses on Natural Language Processing techniques for hate management and mitigation applied on generative (and non-generative) Large Language Models.
+My research focuses on the use of interpretability as a tool to make generative models safer, more reliable and less toxic in order to extend and improve their real-world applications.
 
-I am currently visiting the Netherlands 🇳🇱 to collaborate with the [@GroNlp](https://twitter.com/gronlp?lang=en) research group at the [University of Groningen](https://www.rug.nl/), investigating the uses of Reinforcement Learning techniques to improve the learning of generative models.
+[comment]: # I am currently visiting the Netherlands 🇳🇱 to collaborate with the [@GroNlp](https://twitter.com/gronlp?lang=en) research group at the [University of Groningen](https://www.rug.nl/), investigating the uses of Reinforcement Learning techniques to improve the learning of generative models.
 
