@@ -2,24 +2,23 @@
 <html lang="en">
 
   <!-- Head -->
-  <head>    <!-- Metadata, OpenGraph and Schema.org -->
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    <!-- Metadata, OpenGraph and Schema.org -->
     
 
     <!-- Standard metadata -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>
-        blog | Daniel  Scalena</title>
-    <meta name="author" content="Daniel  Scalena" />
-    <meta name="description" content="Master CS student
-" />
-    <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website" />
+    <title>In-depth Notes to understand more about Transformers | Daniel  Scalena</title>
+    <meta name="author" content="Daniel  Scalena">
+    <meta name="description" content="Start of the truly in-depth study of the state-of-the-art for Mechanistic Interpretability">
+    <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website">
 
 
     <!-- Bootstrap & MDB -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
 
     <!-- Bootstrap Table -->
     <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
@@ -30,20 +29,20 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
 
     <!-- Code Syntax Highlighting -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/github.css" media="" id="highlight_theme_light">
 
     
 
     <!-- Styles -->
     
-    <link rel="shortcut icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦖</text></svg>">
+    <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%A6%96&lt;/text&gt;&lt;/svg&gt;">
     
     <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="canonical" href="https://danielsc4.github.io/blog/">
+    <link rel="canonical" href="https://danielsc4.github.io/blog/2023/transformers-notes/">
 
     <!-- Dark Mode -->
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jwarby/jekyll-pygments-themes@master/native.css" media="none" id="highlight_theme_dark">
 
     <script src="/assets/js/theme.js"></script>
     <script src="/assets/js/dark_mode.js"></script>
@@ -60,7 +59,7 @@
       <!-- Nav Bar -->
       <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
         <div class="container">
-          <a class="navbar-brand title font-weight-lighter" href="/"><span class="font-weight-bold">Daniel&nbsp;</span>Scalena</a>
+          <a class="navbar-brand title font-weight-lighter" href="/"><span class="font-weight-bold">Daniel </span>Scalena</a>
           <!-- Navbar Toggle -->
           <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -114,90 +113,60 @@
     <!-- Content -->
     <div class="container mt-5">
       
-        <div class="post">
+        <!-- _layouts/post.html -->
 
-  
-  
+<div class="post">
 
-  
-  <div class="header-bar">
-    <h1>Daniel's blog</h1>
-    <h2>Keeping track of what I do & Random things</h2>
-  </div>
-  
-
-  
-
-  <ul class="post-list">
-    
-
-    
-    
-    
-    
-
-    <li><h3>
-        
-          <a class="post-title" href="/blog/2023/transformers-notes/">In-depth Notes to understand more about Transformers</a>
-        
-      </h3>
-      <p>Start of the truly in-depth study of the state-of-the-art for Mechanistic Interpretability</p>
-      <p class="post-meta">
-        3 min read &nbsp; &middot; &nbsp;
-        September 10, 2023
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2023">
-          <i class="fas fa-calendar fa-sm"></i> 2023 </a>
-
+  <header class="post-header">
+    <h1 class="post-title">In-depth Notes to understand more about Transformers</h1>
+    <p class="post-meta">September 10, 2023</p>
+    <p class="post-tags">
+      <a href="/blog/2023"> <i class="fas fa-calendar fa-sm"></i> 2023 </a>
+        ·  
+        <a href="/blog/category/study">
+          <i class="fas fa-tag fa-sm"></i> study</a>  
           
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/category/study">
-              <i class="fas fa-tag fa-sm"></i> study</a> &nbsp;
-              
-          
-    </p></li>
+    </p>
+  </header>
 
+  <article class="post-content">
     
+    <div id="markdown-content">
+      <h2 id="why-this-post">Why this post?</h2>
+<p>With the start of my PhD, I want to focus more and more on the <strong>interpretability</strong> of models, in as much detail as possible. Inspired by the various works in the literature, in particular that which has been carried out by Anthropic (e.g. <a href="https://transformer-circuits.pub/2021/framework/index.html" rel="external nofollow noopener" target="_blank">here</a> and <a href="https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html" rel="external nofollow noopener" target="_blank">here</a>), Google DeepMind and a number of other researchers around the world, I would like to be able to <strong>contribute scientific output on this topic</strong>. 
+I also hope that the material and sources here may be useful for someone else who, at the same time or in the near future, decides to explore this field with me.</p>
 
-    
-    
-    
-    
+<h4 id="what-will-be-the-first-steps">What will be the first steps?</h4>
+<p>Surely there are far more experienced people around on these topics. My knowledge for now is limited to basic notions of linear algebra, mathematics and practical applications of transformer networks in the past, certainly useful for ‘basic’ research but equally expandable for really significant achievements.</p>
 
-    <li><h3>
-        
-          <a class="post-title" href="/blog/2023/interpreting-detox-LM/">Let the Models Respond: Interpreting the Detoxification process of LMs</a>
-        
-      </h3>
-      <p>Journal to keep track of work during internship @RUG</p>
-      <p class="post-meta">
-        15 min read &nbsp; &middot; &nbsp;
-        July 12, 2023
-      </p>
-      <p class="post-tags">
-        <a href="/blog/2023">
-          <i class="fas fa-calendar fa-sm"></i> 2023 </a>
+<p>In the beginning, particular attention will be paid to going into detail on each individual topic, in no particular order but being guided by pure curiosity in understanding new things that I may have taken for granted until recently. Gradually the point will come where I cannot go any lower than this with my study and only at that point will I be able to concentrate on the real research, continuing with the same curiosity but in directions not yet explored.</p>
 
-          
+<h4 id="why-am-i-writing-all-this-here">Why am I writing all this here?</h4>
+<p>Because studying is by no means easy, commitments are many (even outside the PhD) but I still want to achieve goals. This blog post exposes me and therefore forces me to stick to a timeline. And then a plus I like to write random things 😅.</p>
 
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="/blog/category/journal">
-              <i class="fas fa-tag fa-sm"></i> journal</a> &nbsp;
-              
-          
-    </p></li>
+<h4 id="what-will-i-post">What will I post?</h4>
+<p>Everything I produce over time. It could be handwritten notes on a specific topic, written code with experiments or exercises to apply the theory, or resources that I consider fundamental if they have not already been mentioned previously in the material produced.</p>
 
-    
-  </ul>
+<p>Obviously I will continue to update this post as I do things, move forward and proceed in the direction set.</p>
 
-  
+<hr>
 
+<h1 id="chapter-1-transformers-of-course"><strong>Chapter 1: Transformers, of course</strong></h1>
+
+<p>Mainly relying on random resources on transformers online (<a href="https://transformer-circuits.pub/2021/framework/index.html" rel="external nofollow noopener" target="_blank">here</a> and <a href="https://deepgram.com/learn/capturing-attention-decoding-the-success-of-transformer-models-in-natural-language-processing" rel="external nofollow noopener" target="_blank">here</a>), I started to take notes on how they work. I will not focus too much on the whole architecture as a whole but have mainly tried to focus on the attention mechanism and MLP and how these components act on the <a href="https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=DHp9vZ0h9lA9OCrzG2Y3rrzH" rel="external nofollow noopener" target="_blank">residual stream</a> of a transformer. I will therefore leave out for now topics such as embeddings and other trying to implement this using <a href="https://en.wikipedia.org/wiki/Einstein_notation" rel="external nofollow noopener" target="_blank">Einstein notation</a> (<a href="https://einops.rocks/1-einops-basics/" rel="external nofollow noopener" target="_blank">here</a> a Python tutorial) for the various matrix operations, which I knew existed but had never used in practice. Below are handwritten notes to that effect.</p>
+
+<div style="width: 100%; max-width: 100%;">
+    <object data="https://www.danielsc4.it/assets/pdf/interpretability_study/Transformer notes.pdf" type="application/pdf" style="width: 100%; height: 500px;">
+        <embed src="https://www.danielsc4.it/assets/pdf/interpretability_study/Transformer%20notes.pdf"></embed>
+            <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://www.danielsc4.it/assets/pdf/interpretability_study/Transformer%20notes.pdf" rel="external nofollow noopener" target="_blank">Download PDF</a>.</p>
+        &lt;/embed&gt;
+    </object>
+</div>
+
+
+    </div>
+  </article>
 </div>
 
       
@@ -205,7 +174,7 @@
 
     <!-- Footer -->    <footer class="sticky-bottom mt-5">
       <div class="container">
-        &copy; Copyright 2023 Daniel  Scalena. Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
+        © Copyright 2023 Daniel  Scalena. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. Photos from <a href="https://unsplash.com" target="_blank" rel="external nofollow noopener">Unsplash</a>.
 
       </div>
     </footer>
