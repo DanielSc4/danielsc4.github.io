@@ -1,0 +1,8 @@
+---
+layout: post
+date: 2023-12-07 00:01:00-0400
+inline: true
+related_posts: false
+---
+
+I will present my poster (<a href=https://arxiv.org/abs/2309.00751>paper here</a>) at the <a href=https://blackboxnlp.github.io/>BlackBoxNLP</a> workshow @<a href=https://2023.emnlp.org/>EMNLP 2023</a> in Singapore 🇸🇬
