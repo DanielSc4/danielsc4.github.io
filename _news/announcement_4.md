@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-I will present my poster and <a href=https://arxiv.org/abs/2309.00751>paper</a> at the <a href=https://blackboxnlp.github.io/>BlackBoxNLP</a> workshow @<a href=https://2023.emnlp.org/>EMNLP 2023</a> in Singapore 🇸🇬
+I will present my poster and <a href=https://arxiv.org/abs/2309.00751>paper</a> at the BlackBoxNLP workshop <a href=https://2023.emnlp.org/>@EMNLP 2023</a> in Singapore 🇸🇬
