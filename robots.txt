@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://danielsc4.github.io/sitemap.xml
+Sitemap: https://danielsc4.it/sitemap.xml
