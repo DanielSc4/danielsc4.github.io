@@ -12,7 +12,7 @@ The output should not be `/usr/bin/ruby` but something like `/Users/daniel/.rubi
 Then follow the instructions in INSTALL.MD
 ``` bash
 bundle install
-assuming pip is your Python package manager
+# assuming pip is your Python package manager
 pip install jupyter
 bundle exec jekyll serve --lsi
 ```
