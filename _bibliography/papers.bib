@@ -3,113 +3,65 @@
 
 @string{aps = {American Physical Society,}}
 
-@book{einstein1920relativity,
-  title={Relativity: the Special and General Theory},
-  author={Einstein, Albert},
-  year={1920},
-  publisher={Methuen & Co Ltd},
-  html={relativity.html}
+@misc{scalena2024multipropertysteeringlargelanguage,
+      title={Multi-property Steering of Large Language Models with Dynamic Activation Composition}, 
+      author={Daniel Scalena and Gabriele Sarti and Malvina Nissim},
+      year={2024},
+      eprint={2406.17563},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      abstract = "Activation steering methods were shown to be effective in conditioning language model generation by additively intervening over models' intermediate representations. However, the evaluation of these techniques has so far been limited to single conditioning properties and synthetic settings. In this work, we conduct a comprehensive evaluation of various activation steering strategies, highlighting the property-dependent nature of optimal parameters to ensure a robust effect throughout generation. To address this issue, we propose Dynamic Activation Composition, an information-theoretic approach to modulate the steering intensity of one or more properties throughout generation. Our experiments on multi-property steering show that our method successfully maintains high conditioning while minimizing the impact of conditioning on generation fluency.",
+      pdf = "DAC_paper.pdf",
+      html={https://arxiv.org/abs/2406.17563}, 
+      selected={true},
+      preview={duckSteering.jpeg}
 }
 
-@book{einstein1956investigations,
-  bibtex_show={true},
-  title={Investigations on the Theory of the Brownian Movement},
-  author={Einstein, Albert},
-  year={1956},
-  publisher={Courier Corporation},
-  preview={brownian-motion.gif}
+@misc{scalena2023let,
+      title={Let the Models Respond: Interpreting Language Model Detoxification Through the Lens of Prompt Dependence}, 
+      author={Daniel Scalena and Gabriele Sarti and Malvina Nissim and Elisabetta Fersini},
+      year={2023},
+      eprint={2309.00751},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      abstract = "Due to language models' propensity to generate toxic or hateful responses, several techniques were developed to align model generations with users' preferences. Despite the effectiveness of such methods in improving the safety of model interactions, their impact on models' internal processes is still poorly understood. In this work, we apply popular detoxification approaches to several language models and quantify their impact on the resulting models' prompt dependence using feature attribution methods. We evaluate the effectiveness of counter-narrative fine-tuning and compare it with reinforcement learning-driven detoxification, observing differences in prompt reliance between the two methods despite their similar detoxification performances.",
+      pdf = "scalena-etal-letmodel.pdf",
+      html={https://arxiv.org/abs/2309.00751},
+      selected={true},
+      preview={LetTheModelRespond.png}
 }
 
-@article{einstein1950meaning,
-  abbr={AJP},
-  bibtex_show={true},
-  title={The meaning of relativity},
-  author={Einstein, Albert and Taub, AH},
-  journal={American Journal of Physics},
-  volume={18},
-  number={6},
-  pages={403--404},
-  year={1950},
-  publisher={American Association of Physics Teachers}
+
+@inproceedings{rizzi-etal-2023-mind,
+    title = "{MIND} at {S}em{E}val-2023 Task 11: From Uncertain Predictions to Subjective Disagreement",
+    author = "Rizzi, Giulia  and
+      Astorino, Alessandro  and
+      Scalena, Daniel  and
+      Rosso, Paolo  and
+      Fersini, Elisabetta",
+    booktitle = "Proceedings of the The 17th International Workshop on Semantic Evaluation (SemEval-2023)",
+    month = jul,
+    year = "2023",
+    address = "Toronto, Canada",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2023.semeval-1.77",
+    html = {https://aclanthology.org/2023.semeval-1.77},
+    pages = "556--564",
+    abstract = "This paper describes the participation of the research laboratory MIND, at the University of Milano-Bicocca, in the SemEval 2023 task related to Learning With Disagreements (Le-Wi-Di). The main goal is to identify the level of agreement/disagreement from a collection of textual datasets with different characteristics in terms of style, language and task.The proposed approach is grounded on the hypothesis that the disagreement between annotators could be grasped by the uncertainty that a model, based on several linguistic characteristics, could have on the prediction of a given gold label.",
+    pdf = "rizzi-etal-2023-mind.pdf",
+    selected={false},
+    preview={mind_logo.png}
 }
 
-@article{PhysRev.47.777,
-  abbr={PhysRev},
-  title={Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?},
-  author={Einstein*†, A. and Podolsky*, B. and Rosen*, N.},
-  abstract={In a complete theory there is an element corresponding to each element of reality. A sufficient condition for the reality of a physical quantity is the possibility of predicting it with certainty, without disturbing the system. In quantum mechanics in the case of two physical quantities described by non-commuting operators, the knowledge of one precludes the knowledge of the other. Then either (1) the description of reality given by the wave function in quantum mechanics is not complete or (2) these two quantities cannot have simultaneous reality. Consideration of the problem of making predictions concerning a system on the basis of measurements made on another system that had previously interacted with it leads to the result that if (1) is false then (2) is also false. One is thus led to conclude that the description of reality as given by a wave function is not complete.},
-  journal={Phys. Rev.},
-  location={New Jersey},
-  volume={47},
-  issue={10},
-  pages={777--780},
-  numpages={0},
-  year={1935},
-  month={May},
-  publisher=aps,
-  doi={10.1103/PhysRev.47.777},
-  url={http://link.aps.org/doi/10.1103/PhysRev.47.777},
-  html={https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777},
-  pdf={example_pdf.pdf},
-  altmetric={248277},
-  dimensions={true},
-  google_scholar_id={qyhmnyLat1gC},
-  video={https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ},
-  additional_info={. *More Information* can be [found here](https://github.com/alshedivat/al-folio/)},
-  annotation={* Example use of superscripts<br>† Albert Einstein},
-  selected={true},
-  inspirehep_id = {3255}
+
+
+
+@mastersthesis{Scalena-BsThesis,
+    author = {Scalena, Daniel},
+    institution = {University of Milano - Bicocca},
+    title = {Tecniche di Natural Language Processing per il riconoscimento dei discorsi d'odio sui social network},
+    year = "2021",
+    month = {jul},
+    html = {https://github.com/DanielSc4/Bachelor-s-thesis}
 }
 
-@article{einstein1905molekularkinetischen,
-  title={{\"U}ber die von der molekularkinetischen Theorie der W{\"a}rme geforderte Bewegung von in ruhenden Fl{\"u}ssigkeiten suspendierten Teilchen},
-  author={Einstein, A.},
-  journal={Annalen der physik},
-  volume={322},
-  number={8},
-  pages={549--560},
-  year={1905},
-  publisher={Wiley Online Library}
-}
-
-@article{einstein1905movement,
-  abbr={Ann. Phys.},
-  title={Un the movement of small particles suspended in statiunary liquids required by the molecular-kinetic theory 0f heat},
-  author={Einstein, A.},
-  journal={Ann. Phys.},
-  volume={17},
-  pages={549--560},
-  year={1905}
-}
-
-@article{einstein1905electrodynamics,
-  title={On the electrodynamics of moving bodies},
-  author={Einstein, A.},
-  year={1905}
-}
-
-@Article{einstein1905photoelectriceffect,
-  bibtex_show={true},
-  abbr={Ann. Phys.},
-  title="{{\"U}ber einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt}",
-  author={Albert Einstein},
-  abstract={This is the abstract text.},
-  journal={Ann. Phys.},
-  volume={322},
-  number={6},
-  pages={132--148},
-  year={1905},
-  doi={10.1002/andp.19053220607},
-  award={Albert Einstein receveid the **Nobel Prize in Physics** 1921 *for his services to Theoretical Physics, and especially for his discovery of the law of the photoelectric effect*},
-  award_name={Nobel Prize}
-}
-
-@book{przibram1967letters,
-  bibtex_show={true},
-  title={Letters on wave mechanics},
-  author={Einstein, Albert and Schrödinger, Erwin and Planck, Max and Lorentz, Hendrik Antoon and Przibram, Karl},
-  year={1967},
-  publisher={Vision},
-  preview={wave-mechanics.gif},
-  abbr={Vision}
-}

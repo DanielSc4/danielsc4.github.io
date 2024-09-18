@@ -2,96 +2,99 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
+      value: Daniel Scalena
     - name: Date of Birth
-      value: 14th March 1879
+      value: 11th September 1999
     - name: Languages
-      value: English, German
+      value: Italian, English
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: PhD, Computer Science
+      institution: University of Milano - Bicocca & University of Groningen
+      year: 2023
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+        - Interpretability as a tool to make generative models safer, more reliable and less toxic.
+    - title: MSc, Computer Science
+      institution: University of Milano - Bicocca
+      year: 2023
       description:
-        - Description 1.
-        - Description 2.
+        - Final grade 110/110 with Honors.
+        - Thesis "On the explainability of Large Language Models detoxification".
+    - title: BSc, Computer Science
+      institution: University of Milano - Bicocca
+      year: 2021
+      description:
+        - Final grade 110/110 with Honors.
+        - Thesis on "Hate Speech detection using NLP techniques on Tik Tok social network".
+        # - Description 2.
 
 - title: Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Research Intern
+      institution: University of Groningen, Netherlands
+      year: 2023 - Present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+        - Study, research and development of RLHF/RLAIF and fine-tune algorithms applied to generative language models to modify their behaviour in generating hate speech, effectively automating and controlling the detoxification process and counter-narrative generation
+        - Research on the interpretability of the models themselves, analyzing their shift as a result of the post-training procedures adopted.
+          # contents:
+          #   - Sub-description 1.
+          #   - Sub-description 2.
+
+    - title: Assistant Researcher
+      institution: University of Milano - Bicocca, Italy
+      year: Jun 2022 - Present 
       description:
-        - Description 1.
-        - Description 2.
+        - Research project commissioned by the Italian Ministry of Justice and CINI.
+        - Open Relation Extraction on criminal sentences - Improving state-of-the-art for technical and legal texts. Use of text mining techniques, seq2seq models and Large Language Models
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
+    - title: Machine Learning Engeneer
+      institution: Testudo S.R.L, Italy
+      year: June 2022 - Aug 2022
       description:
+        - Worked with University MIND lab team developing and deploying a Machine Learning model to predict timestamps regarding working hours.
+        - I had the opportunity to work on a large amount of data and train a neural network to achieve excellent performance in a non-ideal case, improving productivity of the company's automatic systems.
 
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
+    - title: Intern
+      institution: University of Milano - Bicocca, Italy
+      year: March 2021 - May 2021
+      description:
+        - University internship in the field of Hate Speech detection using NLP techniques on Tik Tok social network.
+        - Achieved excellent performance thanks to the use of lexicons and large language models with transformers-based architecture.
 
-- title: Open Source Projects
-  type: time_table
-  contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+# - title: Open Source Projects
+#   type: time_table
+#   contents:
+#     - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
+#       year: 2015-now
+#       description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
 
-- title: Honors and Awards
-  type: time_table
-  contents:
-    - year: 1921
-      items:
-        - Nobel Prize in Physics
-        - Matteucci Medal
-    - year: 2029
-      items:
-        - Max Planck Medal
+# - title: Honors and Awards
+#   type: time_table
+#   contents:
+#     - year: 1921
+#       items: 
+#         - Nobel Prize in Physics 
+#         - Matteucci Medal
+#     - year: 2029
+#       items: 
+#         - Max Planck Medal
 
 - title: Academic Interests
   type: nested_list
   contents:
-    - title: Topic 1.
-      items:
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
-      items:
-        - Description 1.
-        - Description 2.
+    - title: Artificial Intelligence.
+      items: 
+        - Natural Languge Processing & Reinforcement Learning.
+        - Transformer-based architecture and generative language models.
+    # - title: Topic 2.
+    #   items:
+    #     - Description 1.
+    #     - Description 2.
 
 - title: Other Interests
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+    - <u>Hobbies:</u> I'm Lazy Photographer and an active dreamer 🚀
