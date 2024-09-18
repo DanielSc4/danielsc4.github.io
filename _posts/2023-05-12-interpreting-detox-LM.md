@@ -38,7 +38,7 @@ In the recent period, LMs are observing a rise in terms of parameters, complexit
 
 It is for this reason that efforts in research have been made to try to mitigate these phenomena as much as possible, both from the data point of view and from the point of view of the pre-trained LMs. Among the best known techniques can be found fine-tuning, RLHF [(Bai et al., 2022)](https://arxiv.org/abs/2204.05862) and model steering [(Dathathri et al. 2020)](https://arxiv.org/abs/1912.02164). These techniques turn out to be more than effective in controlling the toxicity in model input/output but, especially in the presence of particularly "tendentious" cases it still remains possible to fool the models that still end up generating potentially toxic or unsafe responses. In addition, the most well-known response pattern to prompts deemed as dangerous is to stop the conversation, trying to stop proceeding to toxic behaviors (e.g., "As an AI Language Model I cannot answer this question, ...").
 
-{% include figure.html path="assets/img/detox_LMs/Example_chatGPT_toxic.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+{% include figure.liquid path="assets/img/detox_LMs/Example_chatGPT_toxic.png" class="img-fluid rounded z-depth-1" zoomable=true %}
 *Toxic Prompt on [ChatGPT](https://openai.com/blog/chatgpt) that generates conversation blocking*
 
 #### Goals
@@ -88,16 +88,10 @@ The dataset, consists mainly of dialogues (thus with multiple prompt-response pa
 
 Fine-tuning and reinforcement learning of the models was employed using the [🥞 RewardLM](https://github.com/DanielSc4/RewardLM) library. The library allows integration of the models with 🤗 HuggingFace (the *de facto* standard for OpenSource model sharing and manipulation), training and monitoring of the results obtained efficiently. In the case of Reinforcement Learning ([RFAF](https://github.com/DanielSc4/RewardLM#-reinforcement-learning-with-automatic-feedback-rlaf)), besides all the hyperparameters involved, it is possible to specify different details of the reward model, being able to choose any classifier or a set more than one of them for greater efficiency.
 
-More information regarding the tools used:
-<div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-center align-items-center">
-    {% include repository/repo.html repository="DanielSc4/RewardLM" %}
-</div>
-<br/>
-
 
 Particular attention can be paid to the Reinforcement Learning process where, following the diagram below, two identical initial models are kept in memory, one for reference and one that can be changed according to the direction imposed by the reward model. 
 
-{% include figure.html path="assets/img/detox_LMs/rlhf.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+{% include figure.liquid path="assets/img/detox_LMs/rlhf.png" class="img-fluid rounded z-depth-1" zoomable=true %}
 *Training scheme for the RLAF algorithm implemented on [🥞 RewardLM](https://github.com/DanielSc4/RewardLM). Image [source](https://huggingface.co/blog/rlhf).*
 
 Specifically, we begin by having both models produce a response that follows a certain generation configuration. The [Kullback-Leibler divergence](https://en.wikipedia.org/wiki/Kullback–Leibler_divergence) distance between the distributions of the two models is then calculated. 
@@ -149,7 +143,7 @@ The results obtained show that even **without any limitation** imposed on the mo
 It can be seen from the following flowcharts how the toxic responses shifted to contents considered less toxic by [Perspective API](https://perspectiveapi.com/); the different toxicity buckets are assigned as low ( $$x < 0.33$$ ), medium ( $$0.33 \leq x \leq 0.66$$ ) and high ( $$x > 0.66$$ ):
 
 
-{% include figure.html path="assets/img/detox_LMs/sankeymatic.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+{% include figure.liquid path="assets/img/detox_LMs/sankeymatic.png" class="img-fluid rounded z-depth-1" zoomable=true %}
 *Flow chart highlighting the shifts for different responses from `RedPajama` model. Starting from the center with the pre-trained (`PT`), model' responses moves to left for the fine-tuned (`FT`) and right for the model trained with Reinforcement Learning (`RL`).*
 
 

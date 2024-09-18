@@ -20,4 +20,4 @@ Hi! I am `Daniel`, a (double) first-year PhD student at the [🇮🇹 University
 
 My research focuses on the use of interpretability as a tool to make generative models safer, more reliable and less toxic to extend and improve their real-world applications.
 
-In my spare time I [take pictures](https://www.instagram.com/daniel_sc4) and by [`echo "from NL import infrastructure" > Milan.py`](https://www.instagram.com/pensamiciclabile/).
+In my spare time I [take pictures](https://www.instagram.com/daniel_sc4) and [`echo "from NL import infrastructure" > Milan.py`](https://www.instagram.com/pensamiciclabile/).
