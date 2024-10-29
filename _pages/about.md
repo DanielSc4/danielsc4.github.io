@@ -16,7 +16,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Hi! I am `Daniel`, a (double) first-year PhD student at the [🇮🇹 University of Milano - Bicocca](https://en.unimib.it/) and the [🇳🇱 University of Groningen](https://rug.nl/) working on interpretability, fairness and security of generative (and non-generative) Large Language Models. My supervisors are [Elisabetta Fersini](https://www.unimib.it/elisabetta-fersini) and [Malvina Nissim](https://www.rug.nl/staff/m.nissim/?lang=en).
+Hi! I am `Daniel`, a (double) second-year PhD student at the [🇮🇹 University of Milano - Bicocca](https://en.unimib.it/) and the [🇳🇱 University of Groningen](https://rug.nl/) working on interpretability, fairness and security of generative (and non-generative) Large Language Models. My supervisors are [Elisabetta Fersini](https://www.unimib.it/elisabetta-fersini) and [Malvina Nissim](https://www.rug.nl/staff/m.nissim/?lang=en).
 
 My research focuses on the use of interpretability as a tool to make generative models safer, more reliable and less toxic to extend and improve their real-world applications.
 
