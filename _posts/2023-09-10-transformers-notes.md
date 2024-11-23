@@ -10,7 +10,6 @@ toc:
   beginning: false
 ---
 
-
 # **Chapter 1: Transformers, of course**
 
 Mainly relying on random resources on transformers online ([here](https://transformer-circuits.pub/2021/framework/index.html) and [here](https://deepgram.com/learn/capturing-attention-decoding-the-success-of-transformer-models-in-natural-language-processing)), I started to take notes on how they work. I will not focus too much on the whole architecture as a whole but have mainly tried to focus on the attention mechanism and MLP and how these components act on the [residual stream](https://dynalist.io/d/n2ZWtnoYHrU1s4vnFSAQ519J#z=DHp9vZ0h9lA9OCrzG2Y3rrzH) of a transformer. I will therefore leave out for now topics such as embeddings and other trying to implement this using [Einstein notation](https://en.wikipedia.org/wiki/Einstein_notation) ([here](https://einops.rocks/1-einops-basics/) a Python tutorial) for the various matrix operations, which I knew existed but had never used in practice. Below are handwritten notes to that effect.
@@ -22,8 +21,3 @@ Mainly relying on random resources on transformers online ([here](https://transf
         </embed>
     </object>
 </div>
-
-
-
-
-

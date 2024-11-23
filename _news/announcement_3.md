@@ -5,5 +5,4 @@ inline: true
 related_posts: false
 ---
 
-
-Graduated! Thesis <a href="https://github.com/DanielSc4/MSc-Thesis">here</a>  🎓
+Graduated! Thesis <a href="https://github.com/DanielSc4/MSc-Thesis">here</a> 🎓

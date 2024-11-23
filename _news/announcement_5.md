@@ -6,4 +6,3 @@ related_posts: false
 ---
 
 📚 New work available on arXiv: [Multi-property Steering of Large Language Models with Dynamic Activation Composition](https://arxiv.org/abs/2406.17563)
-
