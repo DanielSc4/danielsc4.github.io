@@ -3,16 +3,42 @@
 
 @string{aps = {American Physical Society,}}
 
+@misc{scalena2025steeringlargelanguagemodels,
+    title={Steering Large Language Models for Machine Translation Personalization}, 
+    author={Daniel Scalena* and Gabriele Sarti* and Arianna Bisazza and Elisabetta Fersini and Malvina Nissim},
+    year={2025},
+    eprint={2505.16612},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL},
+    url={https://arxiv.org/abs/2505.16612},
+    abstract = {High-quality machine translation systems based on large language models (LLMs) have simplified the production of personalized translations reflecting specific stylistic constraints. However, these systems still struggle in settings where stylistic requirements are less explicit and might be harder to convey via prompting. We explore various strategies for personalizing LLM-generated translations in low-resource settings, focusing on the challenging literary translation domain. We explore prompting strategies and inference-time interventions for steering model generations towards a personalized style, and propose a contrastive framework exploiting latent concepts extracted from sparse autoencoders to identify salient personalization properties. Our results show that steering achieves strong personalization while preserving translation quality. We further examine the impact of steering on LLM representations, finding model layers with a relevant impact for personalization are impacted similarly by multi-shot prompting and our steering method, suggesting similar mechanism at play.},
+    selected={true},
+    html={https://arxiv.org/abs/2505.16612},
+    preview={personalizedMT.png}
+}
 
-@misc{scalena2024italianSteering,
-      title={A gentle push funziona benissimo: making instructed models in Italian via contrastive activation steering}, 
-      author={Daniel Scalena and Elisabetta Fersini and Malvina Nissim},
-      year={2024},
-      abstract = "Adapting models to a language that was only partially present in the pre-training data requires fine-tuning, which is expensive in terms of both data and computational resources. As an alternative to fine-tuning, we explore the potential of activation steering-based techniques to enhance model performance on Italian tasks. Through our experiments we show that Italian steering (i) can be successfully applied to different models, (ii) achieves performances comparable to, or even better than, fine-tuned models for Italian, and (iii) yields higher quality and consistency in Italian generations. We also discuss the utility of steering and fine-tuning in the contemporary LLM landscape where models are anyway getting high Italian performances even if not explicitly trained in this language.",
-      pdf = "Italian_Steering_CLiC_it_2024.pdf",
-      html={}, 
-      selected={true},
-      preview={}
+
+@inproceedings{scalena-etal-2024-gentle,
+    title = "A Gentle Push Funziona Benissimo: Making Instructed Models in {I}talian via Contrastive Activation Steering",
+    author = "Scalena, Daniel  and
+      Fersini, Elisabetta  and
+      Nissim, Malvina",
+    editor = "Dell'Orletta, Felice  and
+      Lenci, Alessandro  and
+      Montemagni, Simonetta  and
+      Sprugnoli, Rachele",
+    booktitle = "Proceedings of the 10th Italian Conference on Computational Linguistics (CLiC-it 2024)",
+    month = dec,
+    year = "2024",
+    address = "Pisa, Italy",
+    publisher = "CEUR Workshop Proceedings",
+    url = "https://aclanthology.org/2024.clicit-1.98/",
+    pages = "909--920",
+    ISBN = "979-12-210-7060-6",
+    abstract = "Adapting models to a language that was only partially present in the pre-training data requires fine-tuning, which is expensive in terms of both data and computational resources. As an alternative to fine-tuning, we explore the potential of activation steering-based techniques to enhance model performance on Italian tasks. Through our experiments we show that Italian steering (i) can be successfully applied to different models, (ii) achieves performances comparable to, or even better than, fine-tuned models for Italian, and (iii) yields higher quality and consistency in Italian generations. We also discuss the utility of steering and fine-tuning in the contemporary LLM landscape where models are anyway getting high Italian performances even if not explicitly trained in this language.",
+    pdf = "Italian_Steering_CLiC_it_2024.pdf",
+    selected={true},
+    preview={}
 }
 
 @inproceedings{scalena-etal-2024-multi,
@@ -50,7 +76,6 @@
       abstract = "Due to language models' propensity to generate toxic or hateful responses, several techniques were developed to align model generations with users' preferences. Despite the effectiveness of such methods in improving the safety of model interactions, their impact on models' internal processes is still poorly understood. In this work, we apply popular detoxification approaches to several language models and quantify their impact on the resulting models' prompt dependence using feature attribution methods. We evaluate the effectiveness of counter-narrative fine-tuning and compare it with reinforcement learning-driven detoxification, observing differences in prompt reliance between the two methods despite their similar detoxification performances.",
       pdf = "scalena-etal-letmodel.pdf",
       html={https://arxiv.org/abs/2309.00751},
-      selected={true},
       preview={LetTheModelRespond.png}
 }
 
