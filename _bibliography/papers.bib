@@ -3,6 +3,21 @@
 
 @string{aps = {American Physical Society,}}
 
+
+@misc{scalena2025steeringlargelanguagemodels,
+    title={EAGER: Entropy-Aware GEneRation for Adaptive Inference-Time Scaling},
+    author={Daniel Scalena and Leonidas Zotos and Elisabetta Fersini and Malvina Nissim and Ahmet Üstün},
+    year={2025},
+    eprint={2510.11170},
+    archivePrefix={arXiv},
+    primaryClass={cs.LG},
+    url={https://arxiv.org/abs/2510.11170},
+    abstract = {With the rise of reasoning language models and test-time scaling methods as a paradigm for improving model performance, substantial computation is often required to generate multiple candidate sequences from the same prompt. This enables exploration of different reasoning paths toward the correct solution, however, allocates the same compute budget for each prompt. Grounded on the assumption that different prompts carry different degrees of complexity, and thus different computation needs, we propose EAGer, a training-free generation method that leverages model uncertainty through token-wise entropy distribution to reduce redundant computation and concurrently improve overall performance. EAGer allows branching to multiple reasoning paths only in the presence of high-entropy tokens, and then reallocates the saved compute budget to the instances where exploration of alternative paths is most needed. We find that across multiple open-source models on complex reasoning benchmarks such as AIME 2025, EAGer can reallocate the budget without accessing target labels, achieving the best efficiency-performance trade-off in terms of reasoning length and Pass@k. When target labels are accessible, EAGer generates up to 65% fewer tokens (hence saving compute) and achieves up to 37% improvement in Pass@k compared to the Full Parallel Sampling.},
+    selected={true},
+    html={https://arxiv.org/abs/2505.16612},
+    preview={EAGer-pic.png}
+}
+
 @misc{scalena2025steeringlargelanguagemodels,
     title={Steering Large Language Models for Machine Translation Personalization}, 
     author={Daniel Scalena* and Gabriele Sarti* and Arianna Bisazza and Elisabetta Fersini and Malvina Nissim},
@@ -37,7 +52,6 @@
     ISBN = "979-12-210-7060-6",
     abstract = "Adapting models to a language that was only partially present in the pre-training data requires fine-tuning, which is expensive in terms of both data and computational resources. As an alternative to fine-tuning, we explore the potential of activation steering-based techniques to enhance model performance on Italian tasks. Through our experiments we show that Italian steering (i) can be successfully applied to different models, (ii) achieves performances comparable to, or even better than, fine-tuned models for Italian, and (iii) yields higher quality and consistency in Italian generations. We also discuss the utility of steering and fine-tuning in the contemporary LLM landscape where models are anyway getting high Italian performances even if not explicitly trained in this language.",
     pdf = "Italian_Steering_CLiC_it_2024.pdf",
-    selected={true},
     preview={}
 }
 
