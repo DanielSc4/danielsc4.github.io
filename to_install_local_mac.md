@@ -10,11 +10,17 @@ rbenv local 3.1.2
 Then reboot the terminal and check which ruby installation is loaded with: `which ruby`.
 The output should not be `/usr/bin/ruby` but something like `/Users/daniel/.rubies/ruby-3.3.0/bin/ruby`
 
-Then follow the instructions in INSTALL.MD
+Then follow the instructions in INSTALL.MD:
 
 ```bash
 bundle install
 # assuming pip is your Python package manager
 pip install jupyter
+# dependencies
+brew install imagemagick
+```
+
+run with:
+```bash
 bundle exec jekyll serve --lsi
 ```
