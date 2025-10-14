@@ -21,6 +21,7 @@ brew install imagemagick
 ```
 
 run with:
+
 ```bash
 bundle exec jekyll serve --lsi
 ```
