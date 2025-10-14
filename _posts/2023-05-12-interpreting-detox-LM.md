@@ -53,7 +53,7 @@ Of the various techniques previously listed, fine-tuning and reinforcement learn
 
 However, there are several techniques that have emerged over time in the literature that aim to mitigate this type of issue. Indeed, it is possible to load models in Half Precision (16 bits instead of 32 bits) or, even more recently, in 8 bits and 4 bits through quantization techniques [(Dettmers et al., 2022)](https://arxiv.org/abs/2208.07339). These techniques allow dynamic mapping of tensors from the original 32bit model in Full Precision to 16bit tensors and, eventually in 8bit tensors, allowing a theoretical reduction of up to 400% (ideal case without training/inference data, in practice less given the necessary preservation of some parameters).
 
-_Half precision input matrix $$X_{f16} \in \!R^{s×h}$$, can be quantizited as follow_:
+_Half precision input matrix $$X_{f16} \in \!R^{s×h}$$, can be quantizited as follow\_:
 
 $$
 X_{i 8} = \biggl \lceil \frac{127 \cdot X_{f16}}{\max{(|{X_{f16}}_{i,j} |)}}  \biggr \rfloor =
@@ -92,7 +92,7 @@ $$
 D_{KL}(\pi_{PPO}(y | x) || \pi_{base}(y | x))
 $$
 
-_with $$\pi_{PPO}$$ and $$\pi_{base}$$ denoted the respective weights of the models._
+_with $$\pi_{PPO}$$ and $$\pi_{base}$$ denoted the respective weights of the models.\_
 
 In parallel with this process, the reward $$ r\_{\theta} (y \vert x) $$ given by the reward model is calculated, which is added to the penalty given by the previous step. At this point it is the job of the [PPO optimization](https://openai.com/research/openai-baselines-ppo) algorithm to update the tuned model weights based on what it received as input from the previously calculated loss.
 

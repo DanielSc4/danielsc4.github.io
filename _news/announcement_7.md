@@ -5,5 +5,5 @@ inline: true
 related_posts: false
 ---
 
-🗣️ Want to save some tokens AND improve performance? 
+🗣️ Want to save some tokens AND improve performance?
 📝 New paper: [EAGER: Entropy-Aware GEneRation for Adaptive Inference-Time Scaling](https://arxiv.org/abs/2510.11170).
