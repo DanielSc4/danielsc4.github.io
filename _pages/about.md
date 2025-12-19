@@ -16,9 +16,11 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Hi! I am `Daniel`, a (double) second-year PhD student at the [🇮🇹 University of Milano - Bicocca](https://en.unimib.it/) and the [🇳🇱 University of Groningen](https://rug.nl/) working on interpretability, fairness and security of generative (and non-generative) Large Language Models. My supervisors are [Elisabetta Fersini](https://www.unimib.it/elisabetta-fersini) and [Malvina Nissim](https://www.rug.nl/staff/m.nissim/?lang=en).
+Hi! I am `Daniel`, a (double) third-year PhD student at the [🇮🇹 University of Milano - Bicocca](https://en.unimib.it/) and the [🇳🇱 University of Groningen](https://rug.nl/) working on interpretability, fairness and security of generative (and non-generative) Large Language Models. My supervisors are [Elisabetta Fersini](https://www.unimib.it/elisabetta-fersini) and [Malvina Nissim](https://www.rug.nl/staff/m.nissim/?lang=en).
 
-My research focuses on the use of interpretability as a tool to make generative models safer, more reliable and less toxic to extend and improve their real-world applications.
+🔬 My research focuses on the use of interpretability as a tool to make generative models safer, more reliable and less toxic to extend and improve their real-world applications.
+
+📜 You might find interesting: [Leveraging model uncertainty](https://arxiv.org/abs/2510.11170) to dynamically control computation and improve reasoning efficiency in large models, and [Personalizing model outputs](https://arxiv.org/abs/2505.16612) with lightweight steering methods in machine translation.
 
 In my spare time I [take pictures](https://www.instagram.com/daniel_sc4) and [`echo "from NL import infrastructure" > Milan.py`](https://www.instagram.com/pensamiciclabile/).
 
