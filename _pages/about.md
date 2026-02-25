@@ -22,7 +22,7 @@ Hi! I am `Daniel`, a (double) third-year PhD student at the [🇮🇹 University
 
 📜 You might find interesting: [Leveraging model uncertainty](https://arxiv.org/abs/2510.11170) to dynamically control computation and improve reasoning efficiency in large models, and [Personalizing model outputs](https://arxiv.org/abs/2505.16612) with lightweight steering methods in machine translation.
 
-In my spare time I [take pictures](https://www.instagram.com/daniel_sc4) and [`echo "from NL import infrastructure" > Milan.py`](https://www.instagram.com/pensamiciclabile/).
+Outside of work, I enjoy the usual suspects (travel, photography, ...) plus an unhealthy interest in big cities — the [usable ones](https://www.instagram.com/pensamiciclabile/). Convinced most problems improve with better design.
 
 <div id="clustrmaps-container" style="display: none;">
   <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=oGCCWNGOZ_AfgS2u11cPRBrdx9o_zPmNvpRtQyfBEa0"></script>
