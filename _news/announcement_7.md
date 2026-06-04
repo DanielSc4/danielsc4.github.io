@@ -5,5 +5,5 @@ inline: true
 related_posts: false
 ---
 
-🎉 [Steering Large Language Models for Machine Translation Personalization](https://arxiv.org/abs/2505.16612) has been accepted to the main conference at EACL 2026. See you in Morocco 🇲🇦!
-
+🎉 [Steering Large Language Models for Machine Translation Personalization](https://arxiv.org/abs/2505.16612) has been accepted to the main
+conference at EACL 2026. See you in Morocco 🇲🇦!
