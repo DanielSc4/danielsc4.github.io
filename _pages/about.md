@@ -20,6 +20,8 @@ Hi! I am `Daniel`, a (double) third-year PhD student at the [🇮🇹 University
 
 🔬 My research focuses on the use of interpretability as a tool to make generative models safer, more reliable and less toxic to extend and improve their real-world applications.
 
+🏢 I am currently interning at Cohere as a Member of Technical Staff, working with the Code Agents team on reward design for code generation.
+
 📜 You might find interesting: [Leveraging model uncertainty](https://arxiv.org/abs/2510.11170) to dynamically control computation and improve reasoning efficiency in large models, and [Personalizing model outputs](https://arxiv.org/abs/2505.16612) with lightweight steering methods in machine translation.
 
 Outside of work, I enjoy the usual suspects (travel, photography, ...) plus an unhealthy interest in big cities — the [usable ones](https://www.instagram.com/pensamiciclabile/). Convinced most problems improve with better design.
