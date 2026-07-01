@@ -4,17 +4,34 @@
 @string{aps = {American Physical Society,}}
 
 
-@misc{scalena2025steeringlargelanguagemodels,
-    title={EAGER: Entropy-Aware GEneRation for Adaptive Inference-Time Scaling},
+@misc{scalena2026commitmentboundary,
+    title={Beyond the Commitment Boundary: Probing Epiphenomenal Chain-of-Thought in Large Reasoning Models},
+    author={Daniel Scalena* and Sara Candussio* and Luca Bortolussi and Elisabetta Fersini and Malvina Nissim and Gabriele Sarti},
+    year={2026},
+    eprint={2606.13603},
+    archivePrefix={arXiv},
+    primaryClass={cs.LG},
+    url={https://arxiv.org/abs/2606.13603},
+    abstract = {Chain-of-thought (CoT) reasoning is the dominant paradigm for inference-time scaling in language models, yet the causal influence of individual steps on the final answer poorly understood. We estimate each step's causal importance via early exit and use this measure to study how answers form across the reasoning traces of several model families. Across diverse tasks, we find that reasoning typically crosses a commitment boundary -- a sharp transition from transient intermediate guesses to a stable, high-confidence answer. This transition often happens in a single step, well before the model's reasoning block ends, and is followed by epiphenomenal CoT steps that leave the final answer probability unaltered. Using attention probes, we show that answer-formation stages can be linearly decoded from intermediate reasoning steps with high accuracy and generalize robustly to unseen reasoning tasks. We exploit this signal to early-exit reasoning blocks at the commitment boundary, reducing the length of CoTs up to 55\% on average with negligible impact on model performance.},
+    selected={true},
+    html={https://commitment-boundary.danielsc4.it/},
+    pdf={https://arxiv.org/pdf/2606.13603},
+    preview={commitment-boundary.gif}
+}
+
+@misc{scalena2025eager,
+    title={EAGer: Entropy-Aware GEneRation for Adaptive Inference-Time Scaling},
     author={Daniel Scalena and Leonidas Zotos and Elisabetta Fersini and Malvina Nissim and Ahmet Üstün},
     year={2025},
     eprint={2510.11170},
     archivePrefix={arXiv},
     primaryClass={cs.LG},
     url={https://arxiv.org/abs/2510.11170},
+    note={Proceedings of the 43rd International Conference on Machine Learning, (ICML 2026)},
     abstract = {With the rise of reasoning language models and test-time scaling methods as a paradigm for improving model performance, substantial computation is often required to generate multiple candidate sequences from the same prompt. This enables exploration of different reasoning paths toward the correct solution, however, allocates the same compute budget for each prompt. Grounded on the assumption that different prompts carry different degrees of complexity, and thus different computation needs, we propose EAGer, a training-free generation method that leverages model uncertainty through token-wise entropy distribution to reduce redundant computation and concurrently improve overall performance. EAGer allows branching to multiple reasoning paths only in the presence of high-entropy tokens, and then reallocates the saved compute budget to the instances where exploration of alternative paths is most needed. We find that across multiple open-source models on complex reasoning benchmarks such as AIME 2025, EAGer can reallocate the budget without accessing target labels, achieving the best efficiency-performance trade-off in terms of reasoning length and Pass@k. When target labels are accessible, EAGer generates up to 65% fewer tokens (hence saving compute) and achieves up to 37% improvement in Pass@k compared to the Full Parallel Sampling.},
     selected={true},
-    html={https://arxiv.org/abs/2505.16612},
+    html={https://arxiv.org/abs/2510.11170},
+    poster={EAGer-poster-ICML2026.pdf},
     preview={EAGer-pic.png}
 }
 
@@ -25,10 +42,11 @@
     eprint={2505.16612},
     archivePrefix={arXiv},
     primaryClass={cs.CL},
-    url={https://arxiv.org/abs/2505.16612},
+    url={https://aclanthology.org/2026.eacl-long.217/},
+    note={Proceedings of the 19th Conference of the European Chapter of the Association for CL, (EACL 2026)},
     abstract = {High-quality machine translation systems based on large language models (LLMs) have simplified the production of personalized translations reflecting specific stylistic constraints. However, these systems still struggle in settings where stylistic requirements are less explicit and might be harder to convey via prompting. We explore various strategies for personalizing LLM-generated translations in low-resource settings, focusing on the challenging literary translation domain. We explore prompting strategies and inference-time interventions for steering model generations towards a personalized style, and propose a contrastive framework exploiting latent concepts extracted from sparse autoencoders to identify salient personalization properties. Our results show that steering achieves strong personalization while preserving translation quality. We further examine the impact of steering on LLM representations, finding model layers with a relevant impact for personalization are impacted similarly by multi-shot prompting and our steering method, suggesting similar mechanism at play.},
     selected={true},
-    html={https://arxiv.org/abs/2505.16612},
+    html={https://aclanthology.org/2026.eacl-long.217/},
     preview={personalizedMT.png}
 }
 
@@ -117,6 +135,113 @@
 
 
 
+
+@misc{nissim2025challenging,
+    title={Challenging the Abilities of Large Language Models in Italian: a Community Initiative},
+    author={Malvina Nissim and Danilo Croce and Viviana Patti and Pierpaolo Basile and Giuseppe Attanasio and Daniel Scalena and others},
+    year={2025},
+    eprint={2512.04759},
+    archivePrefix={arXiv},
+    primaryClass={cs.CL},
+    url={https://arxiv.org/abs/2512.04759},
+    abstract = {The rapid progress of Large Language Models (LLMs) has transformed natural language processing and broadened its impact across research and society. Yet, systematic evaluation of these models, especially for languages beyond English, remains limited. "Challenging the Abilities of LAnguage Models in ITAlian" (CALAMITA) is a large-scale collaborative benchmarking initiative for Italian, coordinated under the Italian Association for Computational Linguistics. Unlike existing efforts that focus on leaderboards, CALAMITA foregrounds methodology: it federates more than 80 contributors from academia, industry, and the public sector to design, document, and evaluate a diverse collection of tasks, covering linguistic competence, commonsense reasoning, factual consistency, fairness, summarization, translation, and code generation. Through this process, we assembled a benchmark of over 20 tasks and almost 100 subtasks, and established a centralized evaluation pipeline that supports heterogeneous datasets and metrics. CALAMITA is conceived as a rolling benchmark, enabling continuous integration of new tasks and models, offering a blueprint for other languages and communities seeking inclusive and rigorous LLM evaluation practices.},
+    selected={false},
+    html={https://arxiv.org/abs/2512.04759}
+}
+
+@inproceedings{rizzi-etal-2025-uncovering,
+    title = "Uncovering Unsafety Traits in Italian Language Models",
+    author = "Rizzi, Giulia  and
+      Magazz{\`u}, Giuseppe  and
+      Sormani, Alberto  and
+      Puler{\`a}, Francesca  and
+      Scalena, Daniel  and
+      Fersini, Elisabetta",
+    booktitle = "Proceedings of the Eleventh Italian Conference on Computational Linguistics (CLiC-it 2025)",
+    month = sep,
+    year = "2025",
+    address = "Cagliari, Italy",
+    publisher = "CEUR Workshop Proceedings",
+    url = "https://aclanthology.org/2025.clicit-1.91/",
+    pages = "974--982",
+    ISBN = "979-12-243-0587-3",
+    abstract = "Large Language Models (LLMs) are increasingly deployed in real-world applications, raising urgent concerns around their safety, reliability, and ethical behavior. While existing safety evaluations have primarily focused on English, low- and mid-resource languages such as Italian remain critically underexplored. In this paper, we present the first comprehensive and multidimensional evaluation of LLM safety in the Italian language. We assess seven state-of-the-art LLMs across key safety dimensions using several automatic moderators tailored to cover the Italian settings. Furthermore, we analyze the challenges of adapting English-centric safety benchmarks to Italian via machine translation, highlighting limitations and proposing best practices for developing culturally and linguistically grounded evaluation frameworks.",
+    html = {https://aclanthology.org/2025.clicit-1.91/},
+    pdf = "https://aclanthology.org/2025.clicit-1.91.pdf",
+    selected={false}
+}
+
+@inproceedings{magazzu-etal-2025-beavertails,
+    title = "{B}eaver{T}ails-{IT}: Towards a Safety Benchmark for Evaluating {I}talian Large Language Models",
+    author = "Magazz{\`u}, Giuseppe  and
+      Sormani, Alberto  and
+      Rizzi, Giulia  and
+      Puler{\`a}, Francesca  and
+      Scalena, Daniel  and
+      Cariddi, Stefano  and
+      Michielon, Edoardo  and
+      Pasqualini, Marco  and
+      Stamile, Claudio  and
+      Fersini, Elisabetta",
+    booktitle = "Proceedings of the Eleventh Italian Conference on Computational Linguistics (CLiC-it 2025)",
+    month = sep,
+    year = "2025",
+    address = "Cagliari, Italy",
+    publisher = "CEUR Workshop Proceedings",
+    url = "https://aclanthology.org/2025.clicit-1.60/",
+    pages = "625--635",
+    ISBN = "979-12-243-0587-3",
+    abstract = "Large Language Models (LLMs) have achieved remarkable success in generating human-like text and are increasingly integrated into real-world applications. However, their deployment raises significant safety concerns, including the risk of generating harmful, biased, or culturally inappropriate content. While several safety benchmarks exist for English, non-English contexts—such as Italian—remain critically underexplored, despite the growing demand for localized and culturally sensitive AI technologies. In this paper, we introduce BeaverTails-IT, the first Italian safety benchmark for LLMs, created through the machine translation of the original English BeaverTails dataset. We employ five state-of-the-art translation models, evaluate translation quality using automated metrics and human judgments, and provide guidelines for selecting high-quality safety prompts. Our benchmark enables the preliminary evaluation of Italian LLMs across key safety dimensions such as toxicity, bias, and ethical compliance.",
+    html = {https://aclanthology.org/2025.clicit-1.60/},
+    pdf = "https://aclanthology.org/2025.clicit-1.60.pdf",
+    selected={false}
+}
+
+@inproceedings{rizzi-etal-2025-gender,
+    title = "Gender Violence in Numbers: Prompting {I}talian {LLM}s to Characterize Crimes against Women",
+    author = "Rizzi, Giulia  and
+      Scalena, Daniel  and
+      Fersini, Elisabetta",
+    booktitle = "Proceedings of the Eleventh Italian Conference on Computational Linguistics (CLiC-it 2025)",
+    month = sep,
+    year = "2025",
+    address = "Cagliari, Italy",
+    publisher = "CEUR Workshop Proceedings",
+    url = "https://aclanthology.org/2025.clicit-1.90/",
+    pages = "965--973",
+    ISBN = "979-12-243-0587-3",
+    abstract = "This paper investigates the application of various prompting strategies and Italian-language large language models (LLMs) to extract salient characteristics of gender-based crimes from judicial courtroom decisions. Recognizing the complex linguistic and legal structures inherent in such documents, we evaluate several types of prompting across multiple LLMs fine-tuned or pretrained on Italian corpora. Our approach focuses on identifying key elements such as crime typology, victim-perpetrator relationships, modus operandi, and main motivations behind the crimes against women. We present a comparative analysis of LLM performance on a small set of judicial courtrooms, highlighting the impact of prompt design on the extraction of legally and socially relevant information. The findings demonstrate the potential of prompt engineering to enhance the ability of LLMs to support socio-legal research and policy development in the context of gender-based violence.",
+    html = {https://aclanthology.org/2025.clicit-1.90/},
+    pdf = "https://aclanthology.org/2025.clicit-1.90.pdf",
+    selected={false}
+}
+
+@inproceedings{attanasio-etal-2024-calamita,
+    title = "{CALAMITA}: Challenge the Abilities of {LA}nguage Models in {ITA}lian",
+    author = "Attanasio, Giuseppe  and
+      Basile, Pierpaolo  and
+      Borazio, Federico  and
+      Croce, Danilo  and
+      Francis, Maria  and
+      Gili, Jacopo  and
+      Musacchio, Elio  and
+      Nissim, Malvina  and
+      Patti, Viviana  and
+      Rinaldi, Matteo  and
+      Scalena, Daniel",
+    booktitle = "Proceedings of the Tenth Italian Conference on Computational Linguistics (CLiC-it 2024)",
+    month = dec,
+    year = "2024",
+    address = "Pisa, Italy",
+    publisher = "CEUR Workshop Proceedings",
+    url = "https://aclanthology.org/2024.clicit-1.116/",
+    pages = "1054--1063",
+    ISBN = "979-12-210-7060-6",
+    abstract = "The rapid development of Large Language Models (LLMs) has called for robust benchmarks to assess their abilities, track progress, and compare iterations. While existing benchmarks provide extensive evaluations across diverse tasks, they predominantly focus on English, leaving other languages underserved. For Italian, the EVALITA campaigns have provided a long-standing tradition of classification-focused shared tasks. However, their scope does not fully align with the nuanced evaluation required for modern LLMs. To address this gap, we introduce “Challenge the Abilities of LAnguage Models in ITAlian” (CALAMITA), a collaborative effort to create a dynamic and growing benchmark tailored to Italian. CALAMITA emphasizes diversity in task design to test a wide range of LLM capabilities through resources natively developed in Italian by the community. This initiative includes a shared platform, live leaderboard, and centralized evaluation framework. This paper outlines the collaborative process, initial challenges, and evaluation framework of CALAMITA.",
+    html = {https://aclanthology.org/2024.clicit-1.116/},
+    pdf = "https://aclanthology.org/2024.clicit-1.116.pdf",
+    selected={false}
+}
 
 @mastersthesis{Scalena-BsThesis,
     author = {Scalena, Daniel},
