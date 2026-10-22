@@ -1,3 +1,26 @@
+@misc{candussio2026demystifying,
+    title={Demystifying Entropy-based Selection for Chain-of-Thought Compression in Large Reasoning Models},
+    author={Sara Candussio* and Daniel Scalena* and Luca Bortolussi and Elisabetta Fersini and Malvina Nissim and Gabriele Sarti},
+    year={2026},
+    eprint={2607.28707},
+    archivePrefix={arXiv},
+    url={https://arxiv.org/abs/2607.28707},
+    abstract = {Entropy-based pruning has been proposed as an effective method for compressing Chain-of-Thought (CoT) reasoning with negligible accuracy loss. We test the robustness of low- and high-entropy CoT step selection methods across various models and reasoning tasks, showing that entropy offers no advantage over random pruning in any evaluated setting. Moving from sentences to tokens, we then show that retaining low-entropy tokens seems effective only on mathematical benchmarks. We find this is due to the inherently low-entropy nature of numeric tokens, which also convey semantic content in such problems. Finally, we demonstrate that patching a subset of a few CoT tokens with their original activations recovers near-perfect full-trace performance, providing causal evidence that task information is not concentrated in a small set of CoT tokens identifiable by heuristics, but rather distributed across the full reasoning chain.},
+    venue={BlackboxNLP 2026},
+    pdf={https://arxiv.org/pdf/2607.28707}
+}
+
+@misc{candussio2026taboo,
+    title={“Don’t Say It!”: Constraints, Compliance, and Communication when Language Models Play Taboo},
+    author={Sara Candussio* and Francesca Padovani* and Daniel Scalena* and Malvina Nissim},
+    year={2026},
+    eprint={2607.00601},
+    archivePrefix={arXiv},
+    url={https://arxiv.org/abs/2607.00601},
+    abstract = {The game of Taboo requires describing a target word without using a set of forbidden words, so that other players can guess it. This deceptively simple task combines strict lexical constraints with the need for communicatively effective descriptions, making it a compelling playground for examining how LLMs navigate competing demands at inference time. We evaluate two open-weight models under conditions that intervene at progressively deeper levels of the generative process, from prompting to generation-time constraints to internal representations manipulations. We assess their outputs through forbidden word violation detection, LLM-as-a-judge measuring the degree to which generated descriptions successfully evoke the target concept for both human and machine guessers, and examining whether the strategies models adopt under constraint align with those of human players. Our results show that compliance with the rules of the game and communicative effectiveness trade off differently across conditions, and that models remain substantially weaker than humans as guessers, suggesting that lexical grounding under constraint is an open challenge for current language models.},
+    pdf={https://arxiv.org/pdf/2607.00601}
+}
+
 @misc{scalena2026commitmentboundary,
     title={Beyond the Commitment Boundary: Probing Epiphenomenal Chain-of-Thought in Large Reasoning Models},
     author={Daniel Scalena* and Sara Candussio* and Luca Bortolussi and Elisabetta Fersini and Malvina Nissim and Gabriele Sarti},
