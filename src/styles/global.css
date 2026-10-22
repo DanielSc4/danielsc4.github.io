@@ -321,6 +321,9 @@ h3 {
   gap: 0.75rem;
   margin-top: 2rem;
 }
+.hero {
+  overflow-x: clip;
+}
 .hero-copy {
   position: relative;
   isolation: isolate;
@@ -581,28 +584,44 @@ h3 {
 .steer:focus-within {
   opacity: 1;
 }
+/* The visible track is a 1px line, but the input itself stays tall enough to grab with a finger. */
 .steer input {
   appearance: none;
   width: 4.5rem;
-  height: 1px;
-  background: var(--muted);
+  height: 1.75rem;
+  margin: 0;
+  background: linear-gradient(var(--muted), var(--muted)) center / 100% 1px no-repeat;
   cursor: ew-resize;
+  touch-action: pan-y;
 }
 .steer input::-webkit-slider-thumb {
   appearance: none;
-  width: 0.7rem;
-  height: 0.7rem;
+  width: var(--thumb, 0.7rem);
+  height: var(--thumb, 0.7rem);
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 10px var(--accent);
 }
 .steer input::-moz-range-thumb {
-  width: 0.7rem;
-  height: 0.7rem;
+  width: var(--thumb, 0.7rem);
+  height: var(--thumb, 0.7rem);
   border: 0;
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 10px var(--accent);
+}
+.steer input::-moz-range-track {
+  background: transparent;
+}
+@media (pointer: coarse) {
+  .steer {
+    opacity: 0.75;
+  }
+  .steer input {
+    --thumb: 1.1rem;
+    width: 7rem;
+    height: 2.75rem;
+  }
 }
 .steer output {
   min-width: 1.5rem;
