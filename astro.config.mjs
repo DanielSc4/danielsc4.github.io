@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://www.danielsc4.it',
+  site: 'https://danielsc4.it',
   integrations: [sitemap()],
   redirects: {
     '/cv': '/assets/pdf/Daniel_Scalena_CV_an.pdf',

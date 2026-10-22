@@ -3,7 +3,7 @@
 export const site = {
   name: 'Daniel Scalena',
   shortName: 'danielsc4',
-  url: 'https://www.danielsc4.it',
+  url: 'https://danielsc4.it',
   wikidata: 'https://www.wikidata.org/wiki/Q141808239',
   title: 'Daniel Scalena',
   description:
