@@ -21,7 +21,7 @@ const preview = showPreview ? pub.preview : undefined;
         {preview.format === 'gif' ? (
           <img src={preview.src} width={preview.width} height={preview.height} alt="" loading="lazy" decoding="async" />
         ) : (
-          <Image src={preview} width={560} widths={[280, 560]} sizes="(min-width: 760px) 280px, 100vw" alt="" loading="lazy" />
+          <Image src={preview} width={560} widths={[280, 560]} sizes="(min-width: 760px) 240px, 96px" alt="" loading="lazy" />
         )}
       </div>
     )

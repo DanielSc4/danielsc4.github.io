@@ -12,10 +12,10 @@ const groups = groupByYear(publications);
   description={`Publications by ${site.name} on interpretability, activation steering and reasoning in large language models.`}
 >
   <section class="page-head container">
-    <p class="kicker mono">{publications.length} papers · * equal contribution</p>
     <h1>Publications</h1>
     <p class="lede">
-      Also on <a href={site.socials.find((s) => s.label === 'Scholar')!.url} target="_blank" rel="noopener">Google Scholar</a>.
+      {publications.length} papers, newest first. Also on{' '}
+      <a href={site.socials.find((s) => s.label === 'Scholar')!.url} target="_blank" rel="noopener">Google Scholar</a>.
     </p>
   </section>
 
@@ -32,5 +32,6 @@ const groups = groupByYear(publications);
         </section>
       ))
     }
+    <p class="pub-note">* Equal contribution</p>
   </div>
 </Base>

@@ -810,11 +810,28 @@ h3 {
 }
 
 @media (max-width: 760px) {
+  /* On small screens the preview becomes a small square beside the title. */
   .pub.has-preview {
-    grid-template-columns: 1fr;
+    display: flow-root;
   }
   .pub-thumb {
-    max-width: 18rem;
+    float: right;
+    width: 6rem;
+    margin: 0.2rem 0 0.75rem 1rem;
+    border-radius: 8px;
+  }
+}
+
+.pub-note {
+  margin: 0;
+  padding-block: 1.5rem 0;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+@media (min-width: 761px) {
+  .pub-note {
+    padding-left: 8rem;
   }
 }
 
