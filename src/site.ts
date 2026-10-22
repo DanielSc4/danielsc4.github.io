@@ -7,33 +7,13 @@ export const site = {
   title: 'Daniel Scalena — Interpretability of Large Language Models',
   description:
     'Daniel Scalena is a PhD researcher at the University of Milano-Bicocca and the University of Groningen, working on interpretability, steering and reasoning of large language models.',
-  tagline: 'I look inside language models to understand how they think, and use what I find to make them more reliable, controllable and capable.',
   email: 'scalena99@gmail.com',
   cv: '/assets/pdf/Daniel_Scalena_CV_an.pdf',
   location: 'Europe',
-  // Most recent first. `logos` are files in public/logos/ (single-colour SVGs, recoloured by CSS).
-  path: [
-    {
-      role: 'Member of Technical Staff, Intern',
-      org: 'Cohere',
-      detail: 'Code Agents team: reward design for code generation.',
-      dates: 'Jun 2026 – Sep 2026',
-      logos: ['cohere'],
-    },
-    {
-      role: 'Double PhD in Computer Science, NLP',
-      org: 'University of Milano-Bicocca & University of Groningen',
-      detail: 'Interpretability for safer, more reliable and more useful generative models.',
-      dates: 'Nov 2023 – 2026',
-      logos: ['unimib', 'rug'],
-    },
-    {
-      role: 'M.Sc. in Computer Science, ML track',
-      org: 'University of Milano-Bicocca',
-      detail: '110/110 cum laude. Thesis on the explainability of LLM detoxification.',
-      dates: 'Oct 2021 – Oct 2023',
-      logos: ['unimib'],
-    },
+  // Shown in the small panel on the home page. `logos` are files in public/logos/ (recoloured by CSS).
+  status: [
+    { label: 'Now', title: 'Member of Technical Staff, Intern', org: 'Cohere', logos: ['cohere'] },
+    { label: 'PhD', title: 'Double PhD in Computer Science', org: 'Milano-Bicocca & Groningen', logos: ['unimib', 'rug'] },
   ],
   affiliations: [
     { name: 'University of Milano-Bicocca', url: 'https://en.unimib.it/' },

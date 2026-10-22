@@ -1,10 +1,6 @@
 ---
-import '@fontsource-variable/mona-sans/standard.css';
-import '@fontsource-variable/instrument-sans/standard.css';
-import '@fontsource-variable/schibsted-grotesk';
-import '@fontsource-variable/hanken-grotesk';
 import '@fontsource-variable/bricolage-grotesque/standard.css';
-import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/hanken-grotesk';
 import '../styles/global.css';
 import { getImage } from 'astro:assets';
 import { site } from '../site';
@@ -24,6 +20,15 @@ const pageTitle = title ? `${title} · ${site.name}` : site.title;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = await getImage({ src: portrait, width: 1200, height: 1200, fit: 'cover', format: 'jpg', quality: 80 });
 const ogImageUrl = new URL(ogImage.src, Astro.site);
+
+const sourceNote = `<!--
+     ╭──────────╮
+    ╭╯ ╭──────╮ ╰╮
+    │  │  ●   │  │    Looking at the source? Same, that's basically my research.
+    ╰╮ ╰──────╯ ╭╯
+     ╰──────────╯     Some things on this page do more than they say.
+                      A few hints: look inside, take a photo, turn the dial, wait for nightfall.
+-->`;
 ---
 
 <!doctype html>
@@ -61,16 +66,11 @@ const ogImageUrl = new URL(ogImage.src, Astro.site);
         };
         apply();
         media.addEventListener('change', apply);
-
-        const params = new URLSearchParams(location.search);
-        if (params.has('fonts')) sessionStorage.setItem('fontpicker', '1');
-        if (sessionStorage.getItem('fontpicker')) document.documentElement.dataset.fontpicker = '';
-        const font = localStorage.getItem('font');
-        if (font) document.documentElement.dataset.font = font;
       })();
     </script>
   </head>
   <body>
+    <Fragment set:html={sourceNote} />
     <canvas id="terrain" class="terrain" data-intensity={terrain} aria-hidden="true"></canvas>
     <a class="skip-link" href="#main">Skip to content</a>
     <Header />
@@ -78,23 +78,6 @@ const ogImageUrl = new URL(ogImage.src, Astro.site);
       <slot />
     </main>
     <Footer />
-
-    <div class="font-picker mono" role="group" aria-label="Font preview">
-      {
-        [
-          ['', 'Mona Sans'],
-          ['instrument', 'Instrument Sans'],
-          ['schibsted', 'Schibsted Grotesk'],
-          ['hanken', 'Hanken Grotesk'],
-          ['bricolage', 'Bricolage + Hanken'],
-          ['space', 'Space Grotesk (v1)'],
-        ].map(([id, label]) => (
-          <button type="button" data-font-option={id}>
-            {label}
-          </button>
-        ))
-      }
-    </div>
 
     <script>
       import { startTerrain } from '../scripts/terrain';
@@ -110,21 +93,6 @@ const ogImageUrl = new URL(ogImage.src, Astro.site);
       };
       if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 800 });
       else setTimeout(start, 200);
-
-      const root = document.documentElement;
-      const buttons = document.querySelectorAll<HTMLButtonElement>('[data-font-option]');
-      const sync = () =>
-        buttons.forEach((b) => b.setAttribute('aria-pressed', String((root.dataset.font ?? '') === b.dataset.fontOption)));
-      buttons.forEach((b) =>
-        b.addEventListener('click', () => {
-          const id = b.dataset.fontOption!;
-          if (id) root.dataset.font = id;
-          else delete root.dataset.font;
-          localStorage.setItem('font', id);
-          sync();
-        }),
-      );
-      sync();
     </script>
   </body>
 </html>

@@ -29,39 +29,13 @@
 }
 
 :root {
-  --font-ui: 'Mona Sans Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-ui);
-  --font-body: var(--font-ui);
-  --display-stretch: 112%;
+  --font-display: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Hanken Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
   --gutter: clamp(1.25rem, 5vw, 4rem);
   --max: 74rem;
   --radius: 14px;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-/* Font candidates for the prototype: open any page with ?fonts to compare. */
-[data-font='instrument'] {
-  --font-ui: 'Instrument Sans Variable', ui-sans-serif, system-ui, sans-serif;
-  --display-stretch: 100%;
-}
-[data-font='schibsted'] {
-  --font-ui: 'Schibsted Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
-  --display-stretch: 100%;
-}
-[data-font='hanken'] {
-  --font-ui: 'Hanken Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
-  --display-stretch: 100%;
-}
-[data-font='bricolage'] {
-  --font-display: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-body: 'Hanken Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
-  --display-stretch: 100%;
-}
-[data-font='space'] {
-  --font-display: 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-body: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --display-stretch: 100%;
 }
 
 @view-transition {
@@ -133,7 +107,6 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-stretch: var(--display-stretch);
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -348,12 +321,88 @@ h3 {
 }
 .hero-foot {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.scroll-cue {
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-size: 0.68rem;
+  white-space: nowrap;
 }
+
+.status {
+  display: grid;
+  gap: 0.55rem;
+  width: min(100%, 24rem);
+  padding: 0.9rem 1rem 0.75rem;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--panel);
+  backdrop-filter: blur(12px) saturate(1.3);
+  -webkit-backdrop-filter: blur(12px) saturate(1.3);
+  font-size: 0.88rem;
+}
+.status-row {
+  display: grid;
+  grid-template-columns: 2.6rem 2.4rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.6rem;
+}
+.status-logos {
+  display: flex;
+  gap: 0.3rem;
+}
+/* Logos are single-colour SVG masks so they follow the theme. */
+.logo {
+  display: block;
+  width: 1.15rem;
+  height: 1.15rem;
+  background-color: var(--muted);
+  mask: var(--logo) center / contain no-repeat;
+  -webkit-mask: var(--logo) center / contain no-repeat;
+  transition: background-color 0.3s;
+}
+.status-label {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.64rem;
+}
+.status-text {
+  line-height: 1.35;
+}
+.status-org {
+  display: block;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.status-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.55rem;
+  margin-top: 0.15rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.64rem;
+}
+.status-foot a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.status-foot a:hover {
+  color: var(--accent);
+}
+.status:hover .logo {
+  background-color: var(--ink);
+}
+
 .scroll-cue::after {
   content: '';
   display: inline-block;
@@ -476,26 +525,91 @@ h3 {
   filter: none;
   transform: scale(1.02);
 }
-.facts {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-  gap: 1.5rem 2.5rem;
-  margin: clamp(2.5rem, 6vh, 4rem) 0 0;
+.prose {
+  transition: opacity 0.25s var(--ease), filter 0.25s var(--ease);
 }
-.facts div {
-  border-top: 1px solid var(--rule);
-  padding-top: 0.9rem;
+.prose.is-steering {
+  opacity: 0;
+  filter: blur(4px);
 }
-.facts dt {
+.steer-warning {
+  display: block;
+  margin-top: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-2);
+}
+
+/* The steering dial: deliberately quiet until you notice it. */
+.steer {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.68rem;
-  margin-bottom: 0.4rem;
+  opacity: 0.45;
+  transition: opacity 0.3s;
 }
-.facts dd {
-  margin: 0;
-  font-family: var(--font-display);
+.steer:hover,
+.steer:focus-within {
+  opacity: 1;
+}
+.steer input {
+  appearance: none;
+  width: 4.5rem;
+  height: 1px;
+  background: var(--muted);
+  cursor: ew-resize;
+}
+.steer input::-webkit-slider-thumb {
+  appearance: none;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+.steer input::-moz-range-thumb {
+  width: 0.7rem;
+  height: 0.7rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+.steer output {
+  min-width: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Hidden triggers inside the text */
+.egg {
+  all: unset;
+  cursor: zoom-in;
+  text-decoration: underline dotted transparent;
+  text-underline-offset: 0.22em;
+  transition: color 0.3s, text-decoration-color 0.3s;
+}
+.egg[data-egg='photo'] {
+  cursor: crosshair;
+}
+.egg:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+.egg:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
 }
 
 @media (max-width: 760px) {
@@ -505,76 +619,6 @@ h3 {
   .portrait {
     max-width: 18rem;
     order: -1;
-  }
-}
-
-/* Experience & education */
-.path {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.path-item {
-  display: grid;
-  grid-template-columns: 5.5rem minmax(0, 1fr) auto;
-  gap: 0.5rem clamp(1rem, 3vw, 2rem);
-  align-items: start;
-  padding-block: 1.4rem;
-  border-top: 1px solid var(--rule);
-}
-.path-item:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
-.path-logos {
-  display: flex;
-  gap: 0.5rem;
-  padding-top: 0.2rem;
-}
-.logo {
-  width: 2.25rem;
-  height: 2.25rem;
-  background-color: var(--muted);
-  mask: var(--logo) center / contain no-repeat;
-  -webkit-mask: var(--logo) center / contain no-repeat;
-  transition: background-color 0.3s;
-}
-.path-item:hover .logo {
-  background-color: var(--accent);
-}
-.path-body h3 {
-  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
-}
-.path-org {
-  margin: 0.2rem 0 0;
-  font-family: var(--font-display);
-}
-.path-detail {
-  margin: 0.35rem 0 0;
-  color: var(--muted);
-  font-size: 0.95rem;
-  max-width: 60ch;
-}
-.path-dates {
-  margin: 0.3rem 0 0;
-  color: var(--muted);
-  white-space: nowrap;
-  text-transform: uppercase;
-}
-.path-cv {
-  margin-top: 2rem;
-}
-@media (max-width: 640px) {
-  .path-item {
-    grid-template-columns: 1fr;
-  }
-  .path-dates {
-    order: -1;
-    margin: 0;
-  }
-  .logo {
-    width: 1.9rem;
-    height: 1.9rem;
   }
 }
 
@@ -890,38 +934,6 @@ html[data-photo] .site-footer {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.6s var(--ease);
-}
-
-.font-picker {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 40;
-  display: none;
-  flex-direction: column;
-  gap: 0.25rem;
-  padding: 0.6rem;
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  background: var(--panel);
-  backdrop-filter: blur(14px);
-}
-html[data-fontpicker] .font-picker {
-  display: flex;
-}
-.font-picker button {
-  padding: 0.35rem 0.6rem;
-  border: 1px solid transparent;
-  border-radius: 6px;
-  background: none;
-  color: var(--ink);
-  text-align: left;
-  cursor: pointer;
-  font-size: 0.85rem;
-}
-.font-picker button[aria-pressed='true'] {
-  border-color: var(--accent);
-  color: var(--accent);
 }
 
 @media (prefers-reduced-motion: reduce) {

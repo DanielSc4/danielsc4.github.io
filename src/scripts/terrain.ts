@@ -152,6 +152,65 @@ void main() {
 }
 `;
 
+// Night sky, drawn behind the terrain only in the dark theme at night (or with ?night).
+const SKY_VERT = /* glsl */ `#version 300 es
+void main() {
+  vec2 p = vec2(float((gl_VertexID << 1) & 2), float(gl_VertexID & 2));
+  gl_Position = vec4(p * 2.0 - 1.0, 0.0, 1.0);
+}
+`;
+
+const SKY_FRAG = /* glsl */ `#version 300 es
+precision highp float;
+uniform vec2 uRes;
+uniform vec2 uShift;
+uniform float uTime;
+uniform float uFade;
+uniform vec3 uBg;
+uniform vec3 uStar;
+uniform vec3 uTint;
+out vec4 outColor;
+float h21(vec2 p) {
+  p = fract(p * vec2(123.34, 456.21));
+  p += dot(p, p + 45.32);
+  return fract(p.x * p.y);
+}
+float stars(vec2 uv, float cellPx, float density, float seed) {
+  vec2 g = uv * uRes.y / cellPx;
+  vec2 id = floor(g);
+  float r = h21(id + seed);
+  if (r < density) return 0.0;
+  vec2 jitter = vec2(h21(id + seed + 3.1), h21(id + seed + 7.7)) - 0.5;
+  float d = length(fract(g) - 0.5 - jitter * 0.6) * cellPx;
+  float size = mix(1.0, 2.2, (r - density) / (1.0 - density)) * uRes.y / 900.0;
+  float twinkle = 0.55 + 0.45 * sin(uTime * (0.8 + r * 2.5) + r * 60.0);
+  return (1.0 - smoothstep(0.0, size, d)) * twinkle;
+}
+void main() {
+  vec2 uv = (gl_FragCoord.xy - 0.5 * uRes) / uRes.y + uShift;
+  float cell = uRes.y / 900.0;
+  float s = stars(uv, 10.0 * cell, 0.975, 0.0) * 0.6 + stars(uv, 26.0 * cell, 0.93, 11.0);
+  s *= smoothstep(-0.15, 0.35, uv.y);
+
+  // An occasional shooting star.
+  float period = 11.0;
+  float slot = floor(uTime / period);
+  float p = fract(uTime / period) * period;
+  vec2 from = vec2(h21(vec2(slot, 1.0)) * 1.4 - 0.7, 0.25 + h21(vec2(slot, 2.0)) * 0.25);
+  vec2 dir = normalize(vec2(h21(vec2(slot, 3.0)) > 0.5 ? 1.0 : -1.0, -0.45));
+  float life = clamp(p / 0.9, 0.0, 1.0);
+  vec2 head = from + dir * life * 0.6;
+  vec2 tail = head - dir * 0.18 * life;
+  vec2 pa = uv - tail, ba = head - tail;
+  float t = clamp(dot(pa, ba) / max(dot(ba, ba), 1e-5), 0.0, 1.0);
+  float d = length(pa - ba * t) * 900.0;
+  float meteor = (1.0 - smoothstep(0.0, 1.6, d)) * t * step(p, 0.9) * sin(life * 3.14159);
+
+  vec3 col = uBg + uStar * s * 0.85 + mix(uStar, uTint, 0.4) * meteor;
+  outColor = vec4(mix(uBg, col, uFade), 1.0);
+}
+`;
+
 type Vec3 = [number, number, number];
 
 const COLOR_VARS = {
@@ -229,18 +288,42 @@ function compile(gl: WebGL2RenderingContext, type: number, source: string): WebG
   return shader;
 }
 
+function link(gl: WebGL2RenderingContext, vert: string, frag: string): WebGLProgram | null {
+  const program = gl.createProgram()!;
+  gl.attachShader(program, compile(gl, gl.VERTEX_SHADER, vert));
+  gl.attachShader(program, compile(gl, gl.FRAGMENT_SHADER, frag));
+  gl.linkProgram(program);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    console.warn(gl.getProgramInfoLog(program));
+    return null;
+  }
+  return program;
+}
+
+function isNight(): boolean {
+  if (new URLSearchParams(location.search).has('night')) return true;
+  const hour = new Date().getHours();
+  return hour >= 22 || hour < 6;
+}
+
 export function startTerrain(canvas: HTMLCanvasElement): void {
   const gl = canvas.getContext('webgl2', { antialias: true, alpha: false, powerPreference: 'low-power' });
   if (!gl) return;
 
-  const program = gl.createProgram()!;
-  gl.attachShader(program, compile(gl, gl.VERTEX_SHADER, VERT));
-  gl.attachShader(program, compile(gl, gl.FRAGMENT_SHADER, FRAG));
-  gl.linkProgram(program);
-  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-    console.warn(gl.getProgramInfoLog(program));
-    return;
-  }
+  const program = link(gl, VERT, FRAG);
+  const sky = link(gl, SKY_VERT, SKY_FRAG);
+  if (!program || !sky) return;
+  const skyVao = gl.createVertexArray();
+  const su = (name: string) => gl.getUniformLocation(sky, name);
+  const skyUniforms = {
+    res: su('uRes'),
+    shift: su('uShift'),
+    time: su('uTime'),
+    fade: su('uFade'),
+    bg: su('uBg'),
+    star: su('uStar'),
+    tint: su('uTint'),
+  };
   gl.useProgram(program);
 
   const coarse = matchMedia('(pointer: coarse)').matches;
@@ -301,16 +384,26 @@ export function startTerrain(canvas: HTMLCanvasElement): void {
   const root = document.documentElement;
   const subtle = canvas.dataset.intensity === 'subtle';
 
+  let night = false;
   function applyTheme() {
     const styles = getComputedStyle(root);
     for (const [uniform, cssVar] of Object.entries(COLOR_VARS)) {
       gl!.uniform3fv(u(uniform), hexToRgb(styles.getPropertyValue(cssVar)));
     }
-    const [r, g, b] = hexToRgb(styles.getPropertyValue('--bg'));
-    gl!.clearColor(r, g, b, 1);
-    gl!.uniform1f(uniforms.dark, root.dataset.theme === 'dark' ? 1 : 0);
+    const bg = hexToRgb(styles.getPropertyValue('--bg'));
+    gl!.clearColor(...bg, 1);
+    const dark = root.dataset.theme === 'dark';
+    gl!.uniform1f(uniforms.dark, dark ? 1 : 0);
+
+    night = dark && isNight();
+    gl!.useProgram(sky);
+    gl!.uniform3fv(skyUniforms.bg, bg);
+    gl!.uniform3fv(skyUniforms.star, hexToRgb(styles.getPropertyValue('--ink')));
+    gl!.uniform3fv(skyUniforms.tint, hexToRgb(styles.getPropertyValue('--accent')));
+    gl!.useProgram(program);
   }
   applyTheme();
+  setInterval(applyTheme, 60_000);
   new MutationObserver(() => {
     applyTheme();
     requestFrame();
@@ -345,13 +438,6 @@ export function startTerrain(canvas: HTMLCanvasElement): void {
   );
   window.addEventListener('scroll', () => requestFrame(), { passive: true });
 
-  // Easter eggs: a short burst of speed, and a UI-free "photo mode".
-  let boostUntil = 0;
-  window.addEventListener('terrain:boost', () => {
-    boostUntil = performance.now() + 6000;
-    requestFrame();
-  });
-
   const start = performance.now();
   let travel = scrollY * 0.012;
   let drift = 0;
@@ -366,10 +452,7 @@ export function startTerrain(canvas: HTMLCanvasElement): void {
     const t = still ? 0 : (now - start) / 1000;
     const delta = now - lastFrame;
     lastFrame = now;
-    if (!still) {
-      const boost = now < boostUntil ? Math.sin(((boostUntil - now) / 6000) * Math.PI) : 0;
-      drift += (Math.min(delta, 50) / 1000) * (0.22 + boost * 9);
-    }
+    if (!still) drift += (Math.min(delta, 50) / 1000) * 0.22;
     const photo = 'photo' in root.dataset;
 
     // Lower the resolution once if the device struggles.
@@ -415,6 +498,19 @@ export function startTerrain(canvas: HTMLCanvasElement): void {
     gl!.uniform1f(uniforms.fade, fade);
 
     gl!.clear(gl!.COLOR_BUFFER_BIT | gl!.DEPTH_BUFFER_BIT);
+    if (night) {
+      gl!.useProgram(sky);
+      gl!.bindVertexArray(skyVao);
+      gl!.disable(gl!.DEPTH_TEST);
+      gl!.uniform2f(skyUniforms.res, canvas.width, canvas.height);
+      gl!.uniform2f(skyUniforms.shift, pointer.x * 0.02, -pitch * 0.45);
+      gl!.uniform1f(skyUniforms.time, t);
+      gl!.uniform1f(skyUniforms.fade, fade);
+      gl!.drawArrays(gl!.TRIANGLES, 0, 3);
+      gl!.enable(gl!.DEPTH_TEST);
+      gl!.bindVertexArray(vao);
+      gl!.useProgram(program);
+    }
     gl!.drawElements(gl!.TRIANGLES, indices.length, gl!.UNSIGNED_SHORT, 0);
 
     if (!canvas.classList.contains('is-ready')) canvas.classList.add('is-ready');

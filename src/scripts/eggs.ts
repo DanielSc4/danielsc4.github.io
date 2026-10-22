@@ -24,7 +24,7 @@ function hash(text: string): number {
   return ((h >>> 0) % 10000) / 10000;
 }
 
-// Fake feature attribution over the page text, in the style of interpretability tools.
+// "Look inside": fake feature attribution over the page text, in the style of interpretability tools.
 const SALIENT =
   /^(interpretab|steer|model|language|reason|llm|safe|reliab|control|capab|agent|generat|entropy|chain|translat|design|cit(y|ies)|travel|photo|explor)/i;
 let attribution: Map<HTMLElement, Text> | null = null;
@@ -41,7 +41,7 @@ function toggleAttribution() {
   if (!main) return;
   const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT, {
     acceptNode: (node) =>
-      node.textContent?.trim() && !node.parentElement?.closest('pre, button, script, style, summary')
+      node.textContent?.trim() && !node.parentElement?.closest('pre, button, script, style, summary, template, label')
         ? NodeFilter.FILTER_ACCEPT
         : NodeFilter.FILTER_REJECT,
   });
@@ -67,25 +67,49 @@ function toggleAttribution() {
     node.replaceWith(wrapper);
     attribution.set(wrapper, node);
   }
-  toast('<b>Attribution mode.</b> Token saliency for “who is Daniel?”. Scores are made up; the papers are not. Press I again to turn off.', 6000);
+  toast('<b>Attribution mode.</b> Token saliency for “who is Daniel?”. Scores are made up; the papers are not. Look inside again to switch off.', 6000);
+}
+
+// "Photography": hide the interface and let the landscape be the picture.
+function exitPhotoOnClick() {
+  togglePhoto(false);
 }
 
 function togglePhoto(force?: boolean) {
   const on = force ?? !('photo' in root.dataset);
   if (on) {
     root.dataset.photo = '';
-    toast('<b>Photo mode.</b> Move the pointer to relight the scene. P or Esc to exit.');
+    toast('<b>Photo mode.</b> Move the pointer to relight the scene. Click anywhere to come back.');
+    setTimeout(() => document.addEventListener('click', exitPhotoOnClick, { once: true }), 0);
   } else {
     delete root.dataset.photo;
+    document.removeEventListener('click', exitPhotoOnClick);
   }
 }
 
-const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-let konami = 0;
+// The α dial next to "About": steer the bio's tone, and over-steer it until fluency collapses.
+const STRENGTH = ['0', '4', '12'];
 
-function breakaway() {
-  window.dispatchEvent(new Event('terrain:boost'));
-  toast('<b>Breakaway!</b> Out of the saddle, the valley flies by. Segment record unlocked.');
+function initSteering() {
+  const input = document.querySelector<HTMLInputElement>('[data-steer]');
+  const output = document.querySelector<HTMLOutputElement>('[data-steer-value]');
+  const target = document.querySelector<HTMLElement>('[data-steer-target]');
+  if (!input || !output || !target) return;
+
+  let pending = 0;
+  input.addEventListener('input', () => {
+    const level = input.value;
+    output.value = STRENGTH[Number(level)];
+    const template = document.querySelector<HTMLTemplateElement>(`template[data-steer-level="${level}"]`);
+    if (!template) return;
+    if (attribution) toggleAttribution();
+    target.classList.add('is-steering');
+    clearTimeout(pending);
+    pending = window.setTimeout(() => {
+      target.replaceChildren(template.content.cloneNode(true));
+      target.classList.remove('is-steering');
+    }, 220);
+  });
 }
 
 let clicks: number[] = [];
@@ -100,48 +124,33 @@ function onBrandClick(event: MouseEvent) {
 }
 
 function greet() {
-  const accent = getComputedStyle(root).getPropertyValue('--accent').trim() || '#4cb8ff';
-  console.log(
-    `%c
-   ╭──────────╮
-  ╭╯ ╭──────╮ ╰╮
-  │  │  ●   │  │   danielsc4.it
-  ╰╮ ╰──────╯ ╭╯
-   ╰──────────╯
-`,
-    `color:${accent};font-family:monospace`,
-  );
-  console.log(
-    '%cPeeking at the internals? Same, that is basically my research.\n\n' +
-      '  I                 attribution mode\n' +
-      '  P                 photo mode\n' +
-      '  ↑↑↓↓←→←→ B A      breakaway\n' +
-      '  5× the logo       early exit\n\n' +
-      'Say hi: scalena99@gmail.com',
-    'font-family:monospace;line-height:1.5',
+  console.info(
+    '%c◉ danielsc4.it%c\nPeeking at the internals? Same, that is basically my research.\nSome words on this page do more than they say. Say hi: scalena99@gmail.com',
+    'font:600 14px monospace;color:#4cb8ff',
+    'font:12px/1.6 monospace',
   );
 }
 
 export function initEggs() {
   greet();
+  initSteering();
   document.querySelector('.brand')?.addEventListener('click', onBrandClick as EventListener);
+
+  document.addEventListener('click', (event) => {
+    const trigger = (event.target as Element | null)?.closest?.<HTMLElement>('[data-egg]');
+    if (!trigger) return;
+    event.stopPropagation();
+    if (trigger.dataset.egg === 'inspect') toggleAttribution();
+    else if (trigger.dataset.egg === 'photo') togglePhoto(true);
+  });
 
   window.addEventListener('keydown', (event) => {
     if (event.metaKey || event.ctrlKey || event.altKey) return;
     const target = event.target as Element | null;
     if (target?.closest?.('input, textarea, select, [contenteditable]')) return;
-
-    const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
-    konami = key === KONAMI[konami] ? konami + 1 : key === KONAMI[0] ? 1 : 0;
-    if (konami === KONAMI.length) {
-      konami = 0;
-      breakaway();
-      return;
-    }
-    if (konami > 0) return;
-
+    const key = event.key.toLowerCase();
     if (key === 'i') toggleAttribution();
     else if (key === 'p') togglePhoto();
-    else if (key === 'Escape' && 'photo' in root.dataset) togglePhoto(false);
+    else if (key === 'escape' && 'photo' in root.dataset) togglePhoto(false);
   });
 }
