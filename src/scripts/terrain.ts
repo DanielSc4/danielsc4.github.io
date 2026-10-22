@@ -91,6 +91,7 @@ uniform vec3 uGlow;
 uniform float uDark;
 uniform float uTime;
 uniform float uFade;
+uniform float uStrength;
 uniform float uFar;
 out vec4 outColor;
 float route(float z) {
@@ -147,7 +148,7 @@ void main() {
   float horizon = smoothstep(0.5, 0.9, f) * (1.0 - smoothstep(0.9, 1.0, f));
   vec3 fogCol = mix(uBg, uGlow, horizon * mix(0.12, 0.25, uDark));
   col = mix(col, fogCol, f);
-  col = mix(uBg, col, uFade);
+  col = mix(uBg, col, uFade * uStrength);
   outColor = vec4(col, 1.0);
 }
 `;
@@ -394,6 +395,7 @@ export function startTerrain(canvas: HTMLCanvasElement): void {
     gl!.clearColor(...bg, 1);
     const dark = root.dataset.theme === 'dark';
     gl!.uniform1f(uniforms.dark, dark ? 1 : 0);
+    gl!.uniform1f(u('uStrength'), parseFloat(styles.getPropertyValue('--terrain-strength')) || 1);
 
     night = dark && isNight();
     gl!.useProgram(sky);

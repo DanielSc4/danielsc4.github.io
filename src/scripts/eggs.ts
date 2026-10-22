@@ -30,10 +30,11 @@ const SALIENT =
 let attribution: Map<HTMLElement, Text> | null = null;
 
 function toggleAttribution() {
+  finishFlap?.();
   if (attribution) {
     attribution.forEach((original, wrapper) => wrapper.replaceWith(original));
     attribution = null;
-    toast('Attribution off. Back to plain text.');
+    toast('Attribution off', 2000);
     return;
   }
   attribution = new Map();
@@ -67,7 +68,7 @@ function toggleAttribution() {
     node.replaceWith(wrapper);
     attribution.set(wrapper, node);
   }
-  toast('<b>Attribution mode.</b> Token saliency for “who is Daniel?”. Scores are made up; the papers are not. Look inside again to switch off.', 6000);
+  toast('<b>Attribution mode</b>', 2500);
 }
 
 // "Photography": hide the interface and let the landscape be the picture.
@@ -79,12 +80,107 @@ function togglePhoto(force?: boolean) {
   const on = force ?? !('photo' in root.dataset);
   if (on) {
     root.dataset.photo = '';
-    toast('<b>Photo mode.</b> Move the pointer to relight the scene. Click anywhere to come back.');
+    toast('<b>Photo mode</b>', 2500);
     setTimeout(() => document.addEventListener('click', exitPhotoOnClick, { once: true }), 0);
   } else {
     delete root.dataset.photo;
     document.removeEventListener('click', exitPhotoOnClick);
   }
+}
+
+// Split-flap transition, like an old station departures board: every letter of the new text
+// flips through the alphabet, starting from the letter that was there before.
+const FLAPS = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:!?'’-()&α";
+const FLAP_MS = 38;
+let finishFlap: (() => void) | null = null;
+
+function flapSteps(from: string, to: string): string[] {
+  const max = 4 + Math.floor(Math.random() * 9);
+  const a = FLAPS.indexOf(from);
+  const b = FLAPS.indexOf(to);
+  if (a < 0 || b < 0) {
+    return [...Array.from({ length: max }, () => FLAPS[1 + Math.floor(Math.random() * 52)]), to];
+  }
+  const distance = (b - a + FLAPS.length) % FLAPS.length;
+  const start = distance > max ? (b - max + FLAPS.length) % FLAPS.length : a;
+  const steps = [FLAPS[start]];
+  for (let i = start; i !== b; ) {
+    i = (i + 1) % FLAPS.length;
+    steps.push(FLAPS[i]);
+  }
+  return steps;
+}
+
+function splitFlap(target: HTMLElement, next: Node) {
+  finishFlap?.();
+  const before = (target.textContent ?? '').replace(/\s+/g, ' ').trim();
+  target.replaceChildren(next);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const walker = document.createTreeWalker(target, NodeFilter.SHOW_TEXT, {
+    acceptNode: (node) => (node.textContent?.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT),
+  });
+  const nodes: Text[] = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode as Text);
+
+  type Cell = { el: HTMLSpanElement; steps: string[]; delay: number; shown: number };
+  const cells: Cell[] = [];
+  const restore: [HTMLElement, Text][] = [];
+  let index = 0;
+  for (const node of nodes) {
+    const wrapper = document.createElement('span');
+    for (const part of node.data.split(/(\s+)/)) {
+      if (!part) continue;
+      if (/^\s+$/.test(part)) {
+        wrapper.append(part);
+        index++;
+        continue;
+      }
+      const word = document.createElement('span');
+      word.className = 'flap-word';
+      for (const ch of part) {
+        const el = document.createElement('span');
+        el.className = 'flap';
+        el.textContent = ch;
+        word.append(el);
+        const delay = Math.min(index * 1.4, 650) + Math.random() * 90;
+        cells.push({ el, steps: flapSteps(before[index] ?? ' ', ch), delay, shown: -1 });
+        index++;
+      }
+      wrapper.append(word);
+    }
+    node.replaceWith(wrapper);
+    restore.push([wrapper, node]);
+  }
+
+  // Lock every cell to the width of its final letter so the text doesn't reflow while flipping.
+  const widths = cells.map((c) => c.el.getBoundingClientRect().width);
+  cells.forEach((c, i) => {
+    c.el.style.width = `${widths[i]}px`;
+    c.el.textContent = c.steps[0];
+  });
+
+  let raf = 0;
+  const t0 = performance.now();
+  finishFlap = () => {
+    cancelAnimationFrame(raf);
+    restore.forEach(([wrapper, node]) => wrapper.replaceWith(node));
+    finishFlap = null;
+  };
+  const tick = (now: number) => {
+    let done = true;
+    for (const c of cells) {
+      const step = Math.min(c.steps.length - 1, Math.max(0, Math.floor((now - t0 - c.delay) / FLAP_MS)));
+      if (step < c.steps.length - 1) done = false;
+      if (step === c.shown) continue;
+      c.shown = step;
+      c.el.textContent = c.steps[step];
+      if (step > 0) c.el.className = c.el.className === 'flap fa' ? 'flap fb' : 'flap fa';
+    }
+    if (done) finishFlap?.();
+    else raf = requestAnimationFrame(tick);
+  };
+  raf = requestAnimationFrame(tick);
 }
 
 // The α dial next to "About": steer the bio's tone, and over-steer it until fluency collapses.
@@ -96,31 +192,30 @@ function initSteering() {
   const target = document.querySelector<HTMLElement>('[data-steer-target]');
   if (!input || !output || !target) return;
 
-  let pending = 0;
   input.addEventListener('input', () => {
     const level = input.value;
     output.value = STRENGTH[Number(level)];
     const template = document.querySelector<HTMLTemplateElement>(`template[data-steer-level="${level}"]`);
     if (!template) return;
     if (attribution) toggleAttribution();
-    target.classList.add('is-steering');
-    clearTimeout(pending);
-    pending = window.setTimeout(() => {
-      target.replaceChildren(template.content.cloneNode(true));
-      target.classList.remove('is-steering');
-    }, 220);
+    splitFlap(target, template.content.cloneNode(true));
   });
 }
 
+// The logo mark: on the home page it scrolls to the top; five quick clicks exit early.
 let clicks: number[] = [];
 function onBrandClick(event: MouseEvent) {
+  if (location.pathname !== '/') return;
+  event.preventDefault();
   const now = performance.now();
   clicks = [...clicks.filter((t) => now - t < 1800), now];
-  if (clicks.length < 5) return;
-  event.preventDefault();
+  if (clicks.length < 5) {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
   clicks = [];
-  toast('<b>Commitment boundary reached.</b> The answer is already decided; the rest of this page is epiphenomenal. Exiting early…', 5000);
-  setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 900);
+  toast('<b>Commitment boundary reached.</b> Exiting early…', 3000);
+  setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), 700);
 }
 
 function greet() {

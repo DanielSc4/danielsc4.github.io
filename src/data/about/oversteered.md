@@ -1,7 +1,7 @@
-Hey hey hey, I'm Daniel Daniel, PhD PhD PhD, Milano Groningen Milano Groningen. Models models models. Steering steering, very steer, much steer. Supervisors supervisors, vibes.
+HEY hey hey!!! I'm Daniel Daniel DANIEL, PhD PhD PhD!! Milano Groningen Milano Groningen Milano!!! Models models MODELS. Steer steer steer!! very steer. much steer!!! wow.
 
-Interpretability interpretability interpretability. I look inside inside inside the model and the model looks inside back. Reliable reliable controllable capable capable capable agents agents agents agents.
+Interpretability interpretability INTERPRETABILITY!!! I look inside inside inside inside the model and the model looks inside back?!? reliable reliable controllable capable capable CAPABLE!! agents agents agents agents agents agents!!!!
 
-Travel photo travel photo photo. Cities cities usable usable cities. Design design design design design design design design
+Travel photo travel photo PHOTO!! Cities cities usable usable cities?!?! Design design design design design design design design design desi
 
-<small class="steer-warning">Steering strength too high: fluency collapsed. Try a smaller α.</small>
+<small class="steer-warning">Nope, try a smaller α</small>
