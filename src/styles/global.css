@@ -538,10 +538,12 @@ h3 {
 .portrait {
   position: relative;
 }
+/* Click-through so save, open-in-tab, drag and long-press all get the original photo underneath. */
 .portrait .portrait-night {
   position: absolute;
   inset: 0;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.6s var(--ease), filter 0.6s var(--ease), transform 0.8s var(--ease);
 }
 [data-theme='dark'] .portrait:not([data-original]) .portrait-night {
