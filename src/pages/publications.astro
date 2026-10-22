@@ -13,10 +13,11 @@ const groups = groupByYear(publications);
 >
   <section class="page-head container">
     <h1>Publications</h1>
-    <p class="lede">
-      {publications.length} papers, newest first. Also on{' '}
-      <a href={site.socials.find((s) => s.label === 'Scholar')!.url} target="_blank" rel="noopener">Google Scholar</a>.
-    </p>
+    <p class="lede">{publications.length} papers, newest first.</p>
+    <a class="button ghost scholar-link" href={site.socials.find((s) => s.label === 'Scholar')!.url} target="_blank" rel="noopener">
+      <span class="logo" style="--logo: url(/logos/scholar.svg)" aria-hidden="true"></span>
+      Google Scholar <span aria-hidden="true">↗</span>
+    </a>
   </section>
 
   <div class="container">
