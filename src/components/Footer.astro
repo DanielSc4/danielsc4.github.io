@@ -1,0 +1,27 @@
+---
+import { site } from '../site';
+---
+
+<footer class="site-footer" id="contact">
+  <div class="container">
+    <p class="kicker mono">Get in touch</p>
+    <a class="footer-email" href={`mailto:${site.email}`}>{site.email}</a>
+    <ul class="socials mono">
+      {
+        site.socials.map((s) => (
+          <li>
+            <a href={s.url} target="_blank" rel="me noopener">
+              {s.label}
+              <span aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="colophon mono">
+      <span>© {new Date().getFullYear()} {site.name}</span>
+      <span>{site.location}</span>
+      <span>Terrain generated live in your browser</span>
+    </p>
+  </div>
+</footer>

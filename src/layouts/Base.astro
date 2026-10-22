@@ -1,0 +1,86 @@
+---
+import '@fontsource-variable/space-grotesk';
+import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import { site } from '../site';
+import portrait from '../assets/prof_pic.jpg';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  terrain?: 'full' | 'subtle';
+  jsonLd?: Record<string, unknown>;
+}
+
+const { title, description = site.description, terrain = 'subtle', jsonLd } = Astro.props;
+const pageTitle = title ? `${title} · ${site.name}` : site.title;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = await getImage({ src: portrait, width: 1200, height: 1200, fit: 'cover', format: 'jpg', quality: 80 });
+const ogImageUrl = new URL(ogImage.src, Astro.site);
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="author" content={site.name} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f2f1ec" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#07080b" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@daniel_sc4" />
+
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
+    <script is:inline>
+      (() => {
+        const media = matchMedia('(prefers-color-scheme: dark)');
+        const apply = () => {
+          document.documentElement.dataset.theme = localStorage.getItem('theme') || (media.matches ? 'dark' : 'light');
+        };
+        apply();
+        media.addEventListener('change', apply);
+      })();
+    </script>
+  </head>
+  <body>
+    <canvas id="terrain" class="terrain" data-intensity={terrain} aria-hidden="true"></canvas>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      import { startTerrain } from '../scripts/terrain';
+
+      const canvas = document.getElementById('terrain') as HTMLCanvasElement;
+      const start = () => {
+        try {
+          startTerrain(canvas, document.getElementById('hud'));
+        } catch (error) {
+          console.warn('Terrain disabled:', error);
+        }
+      };
+      if ('requestIdleCallback' in window) requestIdleCallback(start, { timeout: 800 });
+      else setTimeout(start, 200);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,98 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PubItem from '../components/PubItem.astro';
+import NewsList from '../components/NewsList.astro';
+import { Content as About } from '../data/about.md';
+import { selectedPublications, publications } from '../lib/publications';
+import { site } from '../site';
+import portrait from '../assets/prof_pic.jpg';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: site.url,
+  email: `mailto:${site.email}`,
+  jobTitle: 'PhD Researcher',
+  description: site.description,
+  affiliation: site.affiliations.map((a) => ({ '@type': 'CollegeOrUniversity', name: a.name, url: a.url })),
+  knowsAbout: ['Interpretability', 'Large Language Models', 'Activation Steering', 'Reasoning Models', 'Natural Language Processing'],
+  sameAs: site.socials.map((s) => s.url),
+};
+---
+
+<Base terrain="full" jsonLd={jsonLd}>
+  <section class="hero container">
+    <div class="hero-copy">
+      <p class="kicker mono">PhD researcher · LLM interpretability</p>
+      <h1 class="hero-title">Daniel<br />Scalena</h1>
+      <p class="lede">{site.tagline}</p>
+      <div class="hero-links">
+        <a class="button" href="#work">Selected work</a>
+        <a class="button ghost" href={site.cv} target="_blank" rel="noopener">CV <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="hero-foot mono" aria-hidden="true">
+      <span id="hud" class="hud">45.5181°N 09.2110°E · ALT 0128m · 000.0km</span>
+      <span class="scroll-cue">Scroll to explore</span>
+    </div>
+  </section>
+
+  <section id="about" class="section container">
+    <header class="section-head">
+      <span class="section-index mono">01</span>
+      <h2>About</h2>
+    </header>
+    <div class="about">
+      <div class="prose">
+        <About />
+      </div>
+      <figure class="portrait">
+        <Picture
+          src={portrait}
+          formats={['avif', 'webp']}
+          width={640}
+          widths={[320, 640]}
+          sizes="(min-width: 900px) 320px, 60vw"
+          alt="Portrait of Daniel Scalena"
+          loading="lazy"
+        />
+      </figure>
+    </div>
+    <dl class="facts">
+      <div>
+        <dt class="mono">{site.now.label}</dt>
+        <dd>{site.now.text}</dd>
+      </div>
+      <div>
+        <dt class="mono">Based in</dt>
+        <dd>{site.location}</dd>
+      </div>
+      <div>
+        <dt class="mono">Focus</dt>
+        <dd>Interpretability, steering, reasoning and agents</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section id="work" class="section container">
+    <header class="section-head">
+      <span class="section-index mono">02</span>
+      <h2>Selected work</h2>
+      <a class="section-link mono" href="/publications/">All {publications.length} publications →</a>
+    </header>
+    <div class="pub-list">
+      {selectedPublications.map((pub) => <PubItem pub={pub} showPreview />)}
+    </div>
+  </section>
+
+  <section id="news" class="section container">
+    <header class="section-head">
+      <span class="section-index mono">03</span>
+      <h2>News</h2>
+      <a class="section-link mono" href="/news/">All news →</a>
+    </header>
+    <NewsList limit={4} />
+  </section>
+</Base>

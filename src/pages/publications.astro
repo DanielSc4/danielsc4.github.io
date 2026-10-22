@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+import PubItem from '../components/PubItem.astro';
+import { publications, groupByYear } from '../lib/publications';
+import { site } from '../site';
+
+const groups = groupByYear(publications);
+---
+
+<Base
+  title="Publications"
+  description={`Publications by ${site.name} on interpretability, activation steering and reasoning in large language models.`}
+>
+  <section class="page-head container">
+    <p class="kicker mono">{publications.length} papers · * equal contribution</p>
+    <h1>Publications</h1>
+    <p class="lede">
+      Also on <a href={site.socials.find((s) => s.label === 'Scholar')!.url} target="_blank" rel="noopener">Google Scholar</a>.
+    </p>
+  </section>
+
+  <div class="container">
+    {
+      groups.map(([year, pubs]) => (
+        <section class="year-group" aria-labelledby={`y${year}`}>
+          <h2 id={`y${year}`} class="year mono">{year}</h2>
+          <div class="pub-list">
+            {pubs.map((pub) => (
+              <PubItem pub={pub} />
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</Base>

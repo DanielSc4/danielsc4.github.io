@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from 'astro:content';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit } = Astro.props;
+const all = (await getCollection('news')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const items = await Promise.all(
+  all.slice(0, limit ?? all.length).map(async (entry) => ({ entry, Content: (await render(entry)).Content })),
+);
+const format = new Intl.DateTimeFormat('en', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+---
+
+<ol class="news">
+  {
+    items.map(({ entry, Content }) => (
+      <li class="news-item">
+        <time class="mono" datetime={entry.data.date.toISOString().slice(0, 10)}>
+          {format.format(entry.data.date)}
+        </time>
+        <div class="news-text">
+          <Content />
+        </div>
+      </li>
+    ))
+  }
+</ol>

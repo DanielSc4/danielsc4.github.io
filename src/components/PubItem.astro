@@ -1,0 +1,79 @@
+---
+import { Image } from 'astro:assets';
+import type { Publication } from '../lib/publications';
+
+interface Props {
+  pub: Publication;
+  showPreview?: boolean;
+}
+
+const { pub, showPreview = false } = Astro.props;
+const main = pub.links[0];
+const bibId = `bib-${pub.key}`;
+const preview = showPreview ? pub.preview : undefined;
+---
+
+<article class:list={['pub', { 'has-preview': preview }]}>
+  {
+    preview && (
+      <div class="pub-thumb">
+        {preview.format === 'gif' ? (
+          <img src={preview.src} width={preview.width} height={preview.height} alt="" loading="lazy" decoding="async" />
+        ) : (
+          <Image src={preview} width={560} widths={[280, 560]} sizes="(min-width: 760px) 280px, 100vw" alt="" loading="lazy" />
+        )}
+      </div>
+    )
+  }
+  <div class="pub-body">
+    <p class="pub-meta mono">
+      {pub.venue && <span class="pub-venue">{pub.venue}</span>}
+      {!/\d{4}/.test(pub.venue) && <span>{pub.year}</span>}
+    </p>
+    <h3 class="pub-title">
+      {main ? <a href={main.url} target="_blank" rel="noopener">{pub.title}</a> : pub.title}
+    </h3>
+    <p class="pub-authors">
+      {
+        pub.authors.map((a, i) => (
+          <>
+            {a.me ? <strong>{a.name}</strong> : a.name}
+            {a.equal && <sup title="Equal contribution">*</sup>}
+            {i < pub.authors.length - 1 && ', '}
+          </>
+        ))
+      }
+    </p>
+    <div class="pub-actions mono">
+      {
+        pub.links.map((l) => (
+          <a href={l.url} target="_blank" rel="noopener">
+            {l.label}
+          </a>
+        ))
+      }
+      <details class="pub-more">
+        <summary>{pub.abstract ? 'Abstract · Cite' : 'Cite'}</summary>
+        <div class="pub-more-body">
+          {pub.abstract && <p class="pub-abstract">{pub.abstract}</p>}
+          <div class="bib">
+            <pre id={bibId}>{pub.bibtex}</pre>
+            <button type="button" class="copy mono" data-copy={bibId}>Copy BibTeX</button>
+          </div>
+        </div>
+      </details>
+    </div>
+  </div>
+</article>
+
+<script>
+  document.addEventListener('click', async (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-copy]');
+    if (!button) return;
+    const text = document.getElementById(button.dataset.copy!)?.textContent ?? '';
+    await navigator.clipboard.writeText(text);
+    const label = button.textContent;
+    button.textContent = 'Copied';
+    setTimeout(() => (button.textContent = label), 1400);
+  });
+</script>
