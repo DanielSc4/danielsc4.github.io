@@ -324,32 +324,6 @@ h3 {
 .hero {
   overflow-x: clip;
 }
-.hero-copy {
-  position: relative;
-  isolation: isolate;
-}
-/* A soft pool of background colour behind the text, so the terrain never fights the copy. */
-.hero-copy::before {
-  content: '';
-  position: absolute;
-  inset: -4rem -6rem;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse 42% 58% at 30% 55%,
-    color-mix(in srgb, var(--bg) 72%, transparent),
-    transparent
-  );
-}
-@media (max-width: 760px) {
-  .hero-copy::before {
-    background: radial-gradient(
-      ellipse 70% 60% at 40% 55%,
-      color-mix(in srgb, var(--bg) 72%, transparent),
-      transparent
-    );
-  }
-}
 .hero-foot {
   display: flex;
   justify-content: flex-end;

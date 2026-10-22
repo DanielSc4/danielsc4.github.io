@@ -13,7 +13,7 @@ export const site = {
   // Shown in the small panel on the home page. `logos` are files in public/logos/ (recoloured by CSS).
   status: [
     { label: 'Now', title: 'Member of Technical Staff, Intern', org: 'Cohere', logos: ['cohere'] },
-    { label: 'PhD', title: 'Double PhD in Computer Science', org: 'Milano-Bicocca & Groningen', logos: ['unimib', 'rug'] },
+    { label: 'PhD', title: 'Double PhD in NLP Interpretability', org: 'Milano-Bicocca & Groningen', logos: ['unimib', 'rug'] },
   ],
   affiliations: [
     { name: 'University of Milano-Bicocca', url: 'https://en.unimib.it/' },
