@@ -229,7 +229,7 @@ function compile(gl: WebGL2RenderingContext, type: number, source: string): WebG
   return shader;
 }
 
-export function startTerrain(canvas: HTMLCanvasElement, hud?: HTMLElement | null): void {
+export function startTerrain(canvas: HTMLCanvasElement): void {
   const gl = canvas.getContext('webgl2', { antialias: true, alpha: false, powerPreference: 'low-power' });
   if (!gl) return;
 
@@ -314,7 +314,7 @@ export function startTerrain(canvas: HTMLCanvasElement, hud?: HTMLElement | null
   new MutationObserver(() => {
     applyTheme();
     requestFrame();
-  }).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  }).observe(root, { attributes: true, attributeFilter: ['data-theme', 'data-photo'] });
 
   let dpr = Math.min(window.devicePixelRatio || 1, coarse ? 1.25 : 1.5);
   function resize() {
@@ -345,15 +345,20 @@ export function startTerrain(canvas: HTMLCanvasElement, hud?: HTMLElement | null
   );
   window.addEventListener('scroll', () => requestFrame(), { passive: true });
 
+  // Easter eggs: a short burst of speed, and a UI-free "photo mode".
+  let boostUntil = 0;
+  window.addEventListener('terrain:boost', () => {
+    boostUntil = performance.now() + 6000;
+    requestFrame();
+  });
+
   const start = performance.now();
   let travel = scrollY * 0.012;
+  let drift = 0;
   let raf = 0;
   let lastFrame = start;
   let slowFrames = 0;
   let frames = 0;
-  let lastHud = 0;
-
-  const fmt = (v: number, int: number, dec: number) => v.toFixed(dec).padStart(int + dec + 1, '0');
 
   function render(now: number) {
     raf = 0;
@@ -361,6 +366,11 @@ export function startTerrain(canvas: HTMLCanvasElement, hud?: HTMLElement | null
     const t = still ? 0 : (now - start) / 1000;
     const delta = now - lastFrame;
     lastFrame = now;
+    if (!still) {
+      const boost = now < boostUntil ? Math.sin(((boostUntil - now) / 6000) * Math.PI) : 0;
+      drift += (Math.min(delta, 50) / 1000) * (0.22 + boost * 9);
+    }
+    const photo = 'photo' in root.dataset;
 
     // Lower the resolution once if the device struggles.
     if (frames++ > 10 && frames < 90 && delta > 24 && ++slowFrames > 20 && dpr > 0.75) {
@@ -369,8 +379,8 @@ export function startTerrain(canvas: HTMLCanvasElement, hud?: HTMLElement | null
       resize();
     }
 
-    const progress = scrollY / innerHeight;
-    const targetTravel = scrollY * 0.012 + t * 0.22;
+    const progress = photo ? 0 : scrollY / innerHeight;
+    const targetTravel = scrollY * 0.012 + drift;
     const ease = still ? 1 : 0.08;
     travel += (targetTravel - travel) * ease;
     pointer.x += (pointer.tx - pointer.x) * (still ? 1 : 0.05);
@@ -379,13 +389,14 @@ export function startTerrain(canvas: HTMLCanvasElement, hud?: HTMLElement | null
     const camZs = -travel;
     const camX = route(camZs) * 0.85 + pointer.x * 0.45;
     const camY = 1.35 - pointer.y * 0.18;
-    const pitch = Math.min(1, progress) * (subtle ? 0.6 : 1);
+    const calm = subtle && !photo;
+    const pitch = Math.min(1, progress) * (calm ? 0.6 : 1);
     const aspect = canvas.width / canvas.height;
     const lookDist = 7;
     const portraitLift = aspect < 1 ? 0.5 : 0;
     const target: Vec3 = [
       route(camZs - lookDist) * 0.85 + pointer.x * 0.2,
-      1.15 + portraitLift - pitch * 3.0 - (subtle ? 1.4 : 0),
+      1.15 + portraitLift - pitch * 3.0 - (calm ? 1.4 : 0),
       -lookDist,
     ];
     const eye: Vec3 = [camX, camY, 0];
@@ -400,23 +411,13 @@ export function startTerrain(canvas: HTMLCanvasElement, hud?: HTMLElement | null
     gl!.uniform2f(uniforms.remainder, 0, travel - snappedTravel);
     gl!.uniform3f(uniforms.light, -0.5 + pointer.x * 0.9, 0.45 - pointer.y * 0.25, -1);
     gl!.uniform1f(uniforms.time, t);
-    const fade = subtle ? 0.42 : 1 - 0.8 * Math.min(1, Math.max(0, progress / 0.9));
+    const fade = calm ? 0.42 : 1 - 0.8 * Math.min(1, Math.max(0, progress / 0.9));
     gl!.uniform1f(uniforms.fade, fade);
 
     gl!.clear(gl!.COLOR_BUFFER_BIT | gl!.DEPTH_BUFFER_BIT);
     gl!.drawElements(gl!.TRIANGLES, indices.length, gl!.UNSIGNED_SHORT, 0);
 
     if (!canvas.classList.contains('is-ready')) canvas.classList.add('is-ready');
-
-    if (hud && now - lastHud > 120) {
-      lastHud = now;
-      const max = Math.max(1, root.scrollHeight - innerHeight);
-      const q = Math.min(1, scrollY / max);
-      const lat = 45.5181 + (53.2194 - 45.5181) * q;
-      const lon = 9.211 + (6.5665 - 9.211) * q;
-      const alt = 128 + Math.sin(travel * 0.9) * 34 + Math.sin(travel * 0.31) * 51;
-      hud.textContent = `${fmt(lat, 2, 4)}°N  ${fmt(lon, 2, 4)}°E  ·  ALT ${fmt(alt, 4, 0)}m  ·  ${fmt(travel, 3, 1)}km`;
-    }
 
     if (!still && !document.hidden) requestFrame();
   }

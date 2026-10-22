@@ -25,23 +25,20 @@ const jsonLd = {
 <Base terrain="full" jsonLd={jsonLd}>
   <section class="hero container">
     <div class="hero-copy">
-      <p class="kicker mono">PhD researcher · LLM interpretability</p>
       <h1 class="hero-title">Daniel<br />Scalena</h1>
       <p class="lede">{site.tagline}</p>
       <div class="hero-links">
-        <a class="button" href="#work">Selected work</a>
-        <a class="button ghost" href={site.cv} target="_blank" rel="noopener">CV <span aria-hidden="true">↗</span></a>
+        <a class="button" href={site.cv} target="_blank" rel="noopener">CV <span aria-hidden="true">↗</span></a>
+        <a class="button ghost" href="#contact">Get in touch</a>
       </div>
     </div>
     <div class="hero-foot mono" aria-hidden="true">
-      <span id="hud" class="hud">45.5181°N 09.2110°E · ALT 0128m · 000.0km</span>
       <span class="scroll-cue">Scroll to explore</span>
     </div>
   </section>
 
   <section id="about" class="section container">
     <header class="section-head">
-      <span class="section-index mono">01</span>
       <h2>About</h2>
     </header>
     <div class="about">
@@ -62,10 +59,6 @@ const jsonLd = {
     </div>
     <dl class="facts">
       <div>
-        <dt class="mono">{site.now.label}</dt>
-        <dd>{site.now.text}</dd>
-      </div>
-      <div>
         <dt class="mono">Based in</dt>
         <dd>{site.location}</dd>
       </div>
@@ -73,12 +66,42 @@ const jsonLd = {
         <dt class="mono">Focus</dt>
         <dd>Interpretability, steering, reasoning and agents</dd>
       </div>
+      <div>
+        <dt class="mono">Reviewer</dt>
+        <dd>NeurIPS, ICML, EMNLP, ACL</dd>
+      </div>
     </dl>
+  </section>
+
+  <section id="path" class="section container">
+    <header class="section-head">
+      <h2>Experience &amp; education</h2>
+      <a class="section-link mono" href={site.cv} target="_blank" rel="noopener">Full CV ↗</a>
+    </header>
+    <ol class="path">
+      {
+        site.path.map((item) => (
+          <li class="path-item">
+            <div class="path-logos" aria-hidden="true">
+              {item.logos.map((logo) => (
+                <span class="logo" style={`--logo: url(/logos/${logo}.svg)`} />
+              ))}
+            </div>
+            <div class="path-body">
+              <h3>{item.role}</h3>
+              <p class="path-org">{item.org}</p>
+              <p class="path-detail">{item.detail}</p>
+            </div>
+            <p class="path-dates mono">{item.dates}</p>
+          </li>
+        ))
+      }
+    </ol>
+    <a class="button ghost path-cv" href={site.cv} target="_blank" rel="noopener">Download the full CV <span aria-hidden="true">↗</span></a>
   </section>
 
   <section id="work" class="section container">
     <header class="section-head">
-      <span class="section-index mono">02</span>
       <h2>Selected work</h2>
       <a class="section-link mono" href="/publications/">All {publications.length} publications →</a>
     </header>
@@ -89,7 +112,6 @@ const jsonLd = {
 
   <section id="news" class="section container">
     <header class="section-head">
-      <span class="section-index mono">03</span>
       <h2>News</h2>
       <a class="section-link mono" href="/news/">All news →</a>
     </header>
