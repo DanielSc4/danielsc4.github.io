@@ -4,7 +4,7 @@ export const site = {
   name: 'Daniel Scalena',
   shortName: 'danielsc4',
   url: 'https://danielsc4.it',
-  title: 'Daniel Scalena — Interpretability of Large Language Models',
+  title: 'Daniel Scalena',
   description:
     'Daniel Scalena is a PhD researcher at the University of Milano-Bicocca and the University of Groningen, working on interpretability, steering and reasoning of large language models.',
   email: 'scalena99@gmail.com',
