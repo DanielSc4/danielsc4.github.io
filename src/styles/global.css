@@ -560,6 +560,7 @@ h3 {
   display: inline;
 }
 .flap-word {
+  display: inline-block;
   white-space: nowrap;
 }
 .flap {

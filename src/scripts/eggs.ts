@@ -125,6 +125,7 @@ function splitFlap(target: HTMLElement, next: Node) {
 
   type Cell = { el: HTMLSpanElement; steps: string[]; delay: number; shown: number };
   const cells: Cell[] = [];
+  const words: HTMLSpanElement[] = [];
   const restore: [HTMLElement, Text][] = [];
   let index = 0;
   for (const node of nodes) {
@@ -136,24 +137,37 @@ function splitFlap(target: HTMLElement, next: Node) {
         index++;
         continue;
       }
-      const word = document.createElement('span');
-      word.className = 'flap-word';
-      for (const ch of part) {
-        const el = document.createElement('span');
-        el.className = 'flap';
-        el.textContent = ch;
-        word.append(el);
-        const delay = Math.min(index * 1.4, 650) + Math.random() * 90;
-        cells.push({ el, steps: flapSteps(before[index] ?? ' ', ch), delay, shown: -1 });
-        index++;
+      // Plain text may also wrap after a hyphen or dash, so those split into separate words too.
+      for (const piece of part.split(/(?<=[-–—/])/)) {
+        const word = document.createElement('span');
+        word.className = 'flap-word';
+        word.textContent = piece;
+        words.push(word);
+        for (const ch of piece) {
+          const el = document.createElement('span');
+          el.className = 'flap';
+          el.textContent = ch;
+          const delay = Math.min(index * 1.4, 650) + Math.random() * 90;
+          cells.push({ el, steps: flapSteps(before[index] ?? ' ', ch), delay, shown: -1 });
+          index++;
+        }
+        wrapper.append(word);
       }
-      wrapper.append(word);
     }
     node.replaceWith(wrapper);
     restore.push([wrapper, node]);
   }
 
-  // Lock every cell to the width of its final letter so the text doesn't reflow while flipping.
+  // Lock each word to its natural (kerned) width, so lines break exactly as they will once the
+  // flaps are swapped back for plain text; letters are then sized within that.
+  const wordWidths = words.map((w) => w.getBoundingClientRect().width);
+  let cursor = 0;
+  words.forEach((word, i) => {
+    word.style.width = `${wordWidths[i]}px`;
+    const count = [...(word.textContent ?? '')].length;
+    word.replaceChildren(...cells.slice(cursor, cursor + count).map((c) => c.el));
+    cursor += count;
+  });
   const widths = cells.map((c) => c.el.getBoundingClientRect().width);
   cells.forEach((c, i) => {
     c.el.style.width = `${widths[i]}px`;
