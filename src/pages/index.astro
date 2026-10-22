@@ -9,6 +9,7 @@ import { Content as Oversteered } from '../data/about/oversteered.md';
 import { selectedPublications, publications } from '../lib/publications';
 import { site } from '../site';
 import portrait from '../assets/prof_pic.jpg';
+import portraitNight from '../assets/prof_pic_dark.jpg';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -84,6 +85,20 @@ const jsonLd = {
           alt="Portrait of Daniel Scalena"
           loading="lazy"
         />
+        <Picture
+          src={portraitNight}
+          formats={['avif', 'webp']}
+          width={640}
+          widths={[320, 640]}
+          sizes="(min-width: 900px) 320px, 60vw"
+          alt=""
+          class="portrait-night"
+          loading="lazy"
+        />
+        <button type="button" class="portrait-toggle mono" aria-pressed="false" data-portrait-toggle>
+          <span class="when-night">AI night edit · see original</span>
+          <span class="when-original">Original · back to night</span>
+        </button>
       </figure>
     </div>
     <template data-steer-level="0"><Academic /></template>
@@ -109,3 +124,16 @@ const jsonLd = {
     <NewsList limit={4} />
   </section>
 </Base>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-portrait-toggle]');
+  const figure = toggle?.closest<HTMLElement>('.portrait');
+  if (toggle && figure) {
+    const show = (original: boolean) => {
+      figure.toggleAttribute('data-original', original);
+      toggle.setAttribute('aria-pressed', String(original));
+    };
+    toggle.addEventListener('click', () => show(!figure.hasAttribute('data-original')));
+    new MutationObserver(() => show(false)).observe(document.documentElement, { attributeFilter: ['data-theme'] });
+  }
+</script>
