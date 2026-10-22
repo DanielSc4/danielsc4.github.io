@@ -10,6 +10,7 @@ interface Props {
 const { pub, showPreview = false } = Astro.props;
 const main = pub.links[0];
 const bibId = `bib-${pub.key}`;
+const moreId = `more-${pub.key}`;
 const preview = showPreview ? pub.preview : undefined;
 ---
 
@@ -52,23 +53,31 @@ const preview = showPreview ? pub.preview : undefined;
           </a>
         ))
       }
-      <details class="pub-more">
-        <summary>{pub.abstract ? 'Abstract · Cite' : 'Cite'}</summary>
-        <div class="pub-more-body">
-          {pub.abstract && <p class="pub-abstract">{pub.abstract}</p>}
-          <div class="bib">
-            <pre id={bibId}>{pub.bibtex}</pre>
-            <button type="button" class="copy mono" data-copy={bibId}>Copy BibTeX</button>
-          </div>
-        </div>
-      </details>
+      <button type="button" class="pub-toggle" aria-expanded="false" aria-controls={moreId}>
+        {pub.abstract ? 'Abstract · Cite' : 'Cite'}
+      </button>
+    </div>
+    <div class="pub-more" id={moreId} hidden>
+      {pub.abstract && <p class="pub-abstract">{pub.abstract}</p>}
+      <div class="bib">
+        <pre id={bibId}>{pub.bibtex}</pre>
+        <button type="button" class="copy mono" data-copy={bibId}>Copy BibTeX</button>
+      </div>
     </div>
   </div>
 </article>
 
 <script>
   document.addEventListener('click', async (event) => {
-    const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-copy]');
+    const target = event.target as HTMLElement;
+    const toggle = target.closest<HTMLButtonElement>('.pub-toggle');
+    if (toggle) {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      document.getElementById(toggle.getAttribute('aria-controls')!)!.hidden = !open;
+      return;
+    }
+    const button = target.closest<HTMLButtonElement>('[data-copy]');
     if (!button) return;
     const text = document.getElementById(button.dataset.copy!)?.textContent ?? '';
     await navigator.clipboard.writeText(text);

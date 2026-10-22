@@ -14,14 +14,15 @@ Personal website, built with [Astro](https://astro.build) and deployed to GitHub
 
 ### Publications
 
-Entries are rendered newest first, grouped by `year`. Besides standard BibTeX, these optional fields control the site
-(they are stripped from the "Copy BibTeX" box):
+Entries are rendered newest first, grouped by `year` (within a year, in file order). The standard `url` field is the
+"Paper" link: use the published version (ACL Anthology, journal, OpenReview) or arXiv for preprints. These optional
+fields control the site and are stripped from the "Copy BibTeX" box:
 
 ```bibtex
   selected = {true},                 % show on the home page
   venue    = {ICML 2026},            % label; otherwise taken from "(...)" at the end of booktitle/journal/note
-  html     = {https://...},          % main link (falls back to url)
-  pdf      = {paper.pdf},            % file in public/assets/pdf/ or a full URL
+  website  = {https://...},          % project page
+  pdf      = {paper.pdf},            % only if there is no url: file in public/assets/pdf/
   poster   = {poster.pdf},
   slides   = {slides.pdf},
   code     = {https://github.com/...},

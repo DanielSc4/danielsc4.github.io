@@ -3,7 +3,7 @@ import type { ImageMetadata } from 'astro';
 import bibSource from '../data/papers.bib?raw';
 
 // Fields that only drive the website and are stripped from the copyable BibTeX.
-const SITE_FIELDS = new Set(['abstract', 'selected', 'preview', 'pdf', 'poster', 'html', 'code', 'slides', 'venue']);
+const SITE_FIELDS = new Set(['abstract', 'selected', 'preview', 'pdf', 'poster', 'website', 'code', 'slides', 'venue']);
 
 const ME = 'scalena';
 
@@ -38,10 +38,8 @@ function asset(value: string): string {
 }
 
 function toAuthor(c: Creator): Author {
-  if (c.name) {
-    const name = c.name === 'others' ? 'et al.' : c.name;
-    return { name, me: false, equal: false };
-  }
+  if ((c.name ?? c.lastName) === 'others') return { name: 'et al.', me: false, equal: false };
+  if (c.name) return { name: c.name, me: false, equal: false };
   const last = (c.lastName ?? '').trim();
   const equal = last.endsWith('*');
   const clean = last.replace(/\*$/, '');
@@ -102,12 +100,9 @@ function build(): Publication[] {
   const pubs = library.entries.map((entry): Publication => {
     const f = entry.fields as Record<string, any>;
     const links: PubLink[] = [];
-    const page = f.html || f.url;
-    if (page) links.push({ label: 'Paper', url: page });
-    if (f.pdf) links.push({ label: 'PDF', url: asset(f.pdf) });
-    if (f.eprint && !String(page ?? '').includes('arxiv.org')) {
-      links.push({ label: 'arXiv', url: `https://arxiv.org/abs/${f.eprint}` });
-    }
+    const paper = f.url || (f.pdf ? asset(f.pdf) : undefined);
+    if (paper) links.push({ label: 'Paper', url: paper });
+    if (f.website) links.push({ label: 'Website', url: f.website });
     if (f.code) links.push({ label: 'Code', url: f.code });
     if (f.poster) links.push({ label: 'Poster', url: asset(f.poster) });
     if (f.slides) links.push({ label: 'Slides', url: asset(f.slides) });
