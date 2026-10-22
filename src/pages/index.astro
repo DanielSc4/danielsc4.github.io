@@ -79,18 +79,20 @@ const jsonLd = {
         <Picture
           src={portrait}
           formats={['avif', 'webp']}
-          width={640}
-          widths={[320, 640]}
-          sizes="(min-width: 900px) 320px, 60vw"
+          width={1120}
+          widths={[400, 800, 1120]}
+          sizes="(max-width: 760px) 18rem, 20rem"
+          quality={80}
           alt="Portrait of Daniel Scalena"
           loading="lazy"
         />
         <Picture
           src={portraitNight}
           formats={['avif', 'webp']}
-          width={640}
-          widths={[320, 640]}
-          sizes="(min-width: 900px) 320px, 60vw"
+          width={1120}
+          widths={[400, 800, 1120]}
+          sizes="(max-width: 760px) 18rem, 20rem"
+          quality={80}
           alt=""
           class="portrait-night"
           loading="lazy"
