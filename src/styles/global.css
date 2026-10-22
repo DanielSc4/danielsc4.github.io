@@ -671,9 +671,11 @@ h3 {
 /* Publications */
 .pub-list {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
 }
 .pub {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem;
   padding-block: 1.6rem;
   border-top: 1px solid var(--rule);
@@ -870,7 +872,7 @@ h3 {
 }
 @media (max-width: 760px) {
   .year-group {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .year {
     position: static;
