@@ -1,6 +1,6 @@
 # danielsc4.it
 
-Personal website, built with [Astro](https://astro.build) and deployed to GitHub Pages on every push to `master`.
+Personal website, built with [Astro](https://astro.build) and deployed to GitHub Pages on every push to `main`.
 
 ## Everyday updates
 
