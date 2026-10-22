@@ -412,18 +412,22 @@ export function startTerrain(canvas: HTMLCanvasElement): void {
   }).observe(root, { attributes: true, attributeFilter: ['data-theme', 'data-photo'] });
 
   let dpr = Math.min(window.devicePixelRatio || 1, coarse ? 1.25 : 1.5);
-  function resize() {
+  function resize(): boolean {
     const w = Math.round(canvas.clientWidth * dpr);
     const h = Math.round(canvas.clientHeight * dpr);
-    if (canvas.width !== w || canvas.height !== h) {
+    const changed = canvas.width !== w || canvas.height !== h;
+    if (changed) {
       canvas.width = w;
       canvas.height = h;
     }
     gl!.viewport(0, 0, canvas.width, canvas.height);
+    return changed;
   }
+  // Changing the canvas size wipes it, so redraw before the browser paints instead of on the next frame.
   new ResizeObserver(() => {
-    resize();
-    requestFrame();
+    if (!resize()) return requestFrame();
+    cancelAnimationFrame(raf);
+    render(performance.now());
   }).observe(canvas);
   resize();
 
