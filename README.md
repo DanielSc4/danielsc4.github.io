@@ -52,7 +52,7 @@ All in `src/scripts/eggs.ts`, triggered by `data-egg` buttons in the text (style
 - "photography" in the bio (or `P`): hides the UI so the landscape is the picture.
 - The α dial next to "About": swaps the bio between the three files in `src/data/about/`.
 - Clicking the logo mark five times: early exit to the contact section.
-- Dark theme between 22:00 and 06:00 shows a starry sky (`?night` forces it).
+- Dark theme between 20:00 and 06:00 shows a starry sky (`?night` forces it).
 - A note for whoever reads the page source, in `src/layouts/Base.astro`.
 
 ## Local preview

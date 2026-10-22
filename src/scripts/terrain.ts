@@ -304,7 +304,7 @@ function link(gl: WebGL2RenderingContext, vert: string, frag: string): WebGLProg
 function isNight(): boolean {
   if (new URLSearchParams(location.search).has('night')) return true;
   const hour = new Date().getHours();
-  return hour >= 22 || hour < 6;
+  return hour >= 20 || hour < 6;
 }
 
 export function startTerrain(canvas: HTMLCanvasElement): void {
