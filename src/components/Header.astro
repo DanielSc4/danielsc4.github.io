@@ -49,7 +49,10 @@ const links = [
   const root = document.documentElement;
   document.querySelector('.theme-toggle')?.addEventListener('click', () => {
     const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-    localStorage.setItem('theme', next);
+    const system = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    // Only remember a choice that differs from the system, so matching it again resumes following the system.
+    if (next === system) localStorage.removeItem('theme');
+    else localStorage.setItem('theme', next);
     root.dataset.theme = next;
   });
 
