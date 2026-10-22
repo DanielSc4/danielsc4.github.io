@@ -1,5 +1,5 @@
 ---
-import { Picture } from 'astro:assets';
+import { Picture, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PubItem from '../components/PubItem.astro';
 import NewsList from '../components/NewsList.astro';
@@ -11,17 +11,20 @@ import { site } from '../site';
 import portrait from '../assets/prof_pic.jpg';
 import portraitNight from '../assets/prof_pic_dark.jpg';
 
+const personImage = await getImage({ src: portrait, width: 800, format: 'jpg', quality: 85 });
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: site.name,
   url: site.url,
+  image: new URL(personImage.src, Astro.site).href,
   email: `mailto:${site.email}`,
   jobTitle: 'PhD Researcher',
   description: site.description,
   affiliation: site.affiliations.map((a) => ({ '@type': 'CollegeOrUniversity', name: a.name, url: a.url })),
   knowsAbout: ['Interpretability', 'Large Language Models', 'Activation Steering', 'Reasoning Models', 'Natural Language Processing'],
-  sameAs: site.socials.map((s) => s.url),
+  sameAs: [site.wikidata, ...site.socials.map((s) => s.url)],
 };
 ---
 

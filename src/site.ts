@@ -3,7 +3,8 @@
 export const site = {
   name: 'Daniel Scalena',
   shortName: 'danielsc4',
-  url: 'https://danielsc4.it',
+  url: 'https://www.danielsc4.it',
+  wikidata: 'https://www.wikidata.org/wiki/Q141808239',
   title: 'Daniel Scalena',
   description:
     'Daniel Scalena is a PhD researcher at the University of Milano-Bicocca and the University of Groningen, working on interpretability, steering and reasoning of large language models.',

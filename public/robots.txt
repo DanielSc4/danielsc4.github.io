@@ -3,4 +3,4 @@ Allow: /
 # AI-edited night portrait: shown in dark mode only, keep it out of image search.
 Disallow: /_astro/prof_pic_dark
 
-Sitemap: https://danielsc4.it/sitemap-index.xml
+Sitemap: https://www.danielsc4.it/sitemap-index.xml
