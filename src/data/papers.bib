@@ -1,3 +1,14 @@
+@misc{scalena2026rubricrewards,
+    title={What Makes a Good Rubric Reward? Reinforcement Learning for Coding Agents Beyond Correctness},
+    author={Daniel Scalena and Leon Engländer and Sarra Habchi and Patrick Lewis and Ahmet Üstün and Sophia Althammer},
+    year={2026},
+    note={Preprint},
+    url={https://danielsc4.it/assets/pdf/rubric-rewards-for-coding-agents.pdf},
+    venue={Preprint},
+    selected={true},
+    abstract={Unit-test rewards train coding agents for functional correctness, yet provide no signal on patch quality or the agent's workflow. Rubric rewards address this gap by having an external judge inspect and evaluate candidate solutions against explicit criteria. Existing work adopts disparate rubric-construction strategies and evaluates them primarily on targeted in-domain behaviors, leaving it unclear how rubric specification effort affects learned agent behavior. We study this question systematically, comparing universal rubrics written once per quality dimension, rubric-anchored pairwise comparisons against a stronger reference agent, and agent-generated task-specific rubrics across both patch and trajectory rewards. Our proposed approaches preserve pass@1 while substantially improving patch and trajectory quality over unit-test RL alone (e.g., reducing leftover scratch artifacts on SWE-bench Verified from 29.5\% to 5.4\% and matching the gold patch size). We further show how well each rubric design, specifically targeted at SWE-style tasks, generalizes across in- and out-of-distribution agentic benchmarks: when grading final submissions, we observe that universal rubrics already match the more expensive designs on SWE-bench, while pairwise and task-specific rubrics carry more of the learned behavior to out-of-distribution benchmarks such as TerminalBench; when grading the agent's trajectory, however, universal rubrics prove effective enough to steer agent behavior.}
+}
+
 @misc{candussio2026demystifying,
     title={Demystifying Entropy-based Selection for Chain-of-Thought Compression in Large Reasoning Models},
     author={Sara Candussio* and Daniel Scalena* and Luca Bortolussi and Elisabetta Fersini and Malvina Nissim and Gabriele Sarti},
