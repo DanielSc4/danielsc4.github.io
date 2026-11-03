@@ -5,7 +5,7 @@
     note={Preprint},
     url={https://danielsc4.it/assets/pdf/rubric-rewards-for-coding-agents.pdf},
     venue={Preprint},
-    selected={true},
+    selected={false},
     abstract={Unit-test rewards train coding agents for functional correctness, yet provide no signal on patch quality or the agent's workflow. Rubric rewards address this gap by having an external judge inspect and evaluate candidate solutions against explicit criteria. Existing work adopts disparate rubric-construction strategies and evaluates them primarily on targeted in-domain behaviors, leaving it unclear how rubric specification effort affects learned agent behavior. We study this question systematically, comparing universal rubrics written once per quality dimension, rubric-anchored pairwise comparisons against a stronger reference agent, and agent-generated task-specific rubrics across both patch and trajectory rewards. Our proposed approaches preserve pass@1 while substantially improving patch and trajectory quality over unit-test RL alone (e.g., reducing leftover scratch artifacts on SWE-bench Verified from 29.5\% to 5.4\% and matching the gold patch size). We further show how well each rubric design, specifically targeted at SWE-style tasks, generalizes across in- and out-of-distribution agentic benchmarks: when grading final submissions, we observe that universal rubrics already match the more expensive designs on SWE-bench, while pairwise and task-specific rubrics carry more of the learned behavior to out-of-distribution benchmarks such as TerminalBench; when grading the agent's trajectory, however, universal rubrics prove effective enough to steer agent behavior.}
 }
 
